@@ -1,4 +1,4 @@
-// import { Coords } from "";
+import { Coords } from "@components/Map";
 
 export const validateCoords = (coords: Coords) => {
   const { lat, lng } = coords;

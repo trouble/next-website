@@ -1,6 +1,6 @@
-import { MenuDescription } from '../menuBlocks/MenuDescription'
+import { MenuDescriptionType } from '../menuBlocks/MenuDescription'
 import { MenuFeature } from './MenuFeature';
-import { MenuLink } from './MenuLink'
+import { MenuLinkType } from './MenuLink'
 
 export type MenuBlockTypes =
   'menuDescription' |
@@ -8,7 +8,7 @@ export type MenuBlockTypes =
   'menuLink';
 
 export type MenuBlock = (
-  MenuDescription |
+  MenuDescriptionType |
   MenuFeature |
-  MenuLink
+  MenuLinkType
 )[]

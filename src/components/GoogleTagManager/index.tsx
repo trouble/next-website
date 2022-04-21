@@ -13,7 +13,7 @@ declare global {
 }
 
 export const GoogleTagManager: React.FC = () => {
-  const triggerPageView = useCallback((url) => {
+  const triggerPageView = useCallback((url: string) => {
     router.events.off('routeChangeComplete', () => {
       window.dataLayer.push({
         event: 'pageview',

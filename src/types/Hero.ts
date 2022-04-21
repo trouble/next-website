@@ -1,5 +1,6 @@
 import { FullscreenBackgroundHeroType } from "../heros/FullscreenBackground";
 import { BasicHeroType } from "../heros/Basic";
+import { PostCategoriesType } from ".";
 
 export type HeroTypes = 'basic' |
   'basic' |
@@ -11,4 +12,5 @@ export type Hero = {
   basic?: BasicHeroType
   fullscreenBackground?: FullscreenBackgroundHeroType
   publishedDate?: string
+  categories?: PostCategoriesType
 }

@@ -14,7 +14,7 @@ export type Alert = {
   id: string
   placement?: 'global' | 'pages'
   pages?: {
-    relationTo: 'housing' | 'pages' | 'people' | 'posts',
+    relationTo: string
     value: any // TODO: type this
   }[]
   backgroundColor?: 'matchTheme' | 'green' | 'blue' | 'red' | 'purple'
@@ -22,20 +22,21 @@ export type Alert = {
   links?: LinkGroupType
 }
 
-export type Alerts = Alert[]
+export type AlertsType = Alert[]
 
 export interface IAlerts {
-  alerts: Alerts
-  globalAlerts?: Alerts
-  dismissAlert: (id?: string) => void // eslint-disable-line no-unused-vars
-  pageAlerts?: Alerts
+  alerts: AlertsType
+  globalAlerts?: AlertsType
+  dismissAlert: (id: string) => void // eslint-disable-line no-unused-vars
+  pageAlerts?: AlertsType
 }
 
 export const AlertsContext = createContext<IAlerts>({} as IAlerts);
 export const useAlerts = (): IAlerts => useContext(AlertsContext);
 
 export const AlertsProvider: React.FC<{
-  alerts: Alerts
+  alerts: AlertsType
+  children: React.ReactNode
 }> = (props) => {
   const {
     children,
@@ -44,7 +45,7 @@ export const AlertsProvider: React.FC<{
 
   const [cookies, setCookie] = useCookies();
 
-  const getGlobalAlerts = useCallback((): Alerts => {
+  const getGlobalAlerts = useCallback((): AlertsType => {
     const newGlobalAlerts = alerts?.filter((alert) => {
       const {
         placement,
@@ -67,7 +68,7 @@ export const AlertsProvider: React.FC<{
   ]);
 
   // same as above
-  const getPageAlerts = useCallback((): Alerts => {
+  const getPageAlerts = useCallback((): AlertsType => {
     const newPageAlerts = alerts?.filter((alert) => {
       const {
         placement,
@@ -92,7 +93,7 @@ export const AlertsProvider: React.FC<{
   const [globalAlerts, setGlobalAlerts] = useState(getGlobalAlerts)
   const [pageAlerts, setPageAlerts] = useState(getPageAlerts)
 
-  const dismissAlert = useCallback((alertID) => {
+  const dismissAlert = useCallback((alertID: string) => {
     setCookie(`alert-${alertID}`, 'dismissed');
   }, [setCookie]);
 

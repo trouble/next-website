@@ -1,5 +1,5 @@
+import { LinkType } from '@root/types';
 import { formatPermalink } from '@root/utilities/formatPermalink';
-// import { Link as LinkType } from '';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { CSSProperties } from 'react';
@@ -24,6 +24,7 @@ export type HyperlinkProps = {
   display?: 'block'
   style?: CSSProperties
   newTab?: boolean
+  children?: React.ReactNode
 }
 
 export const Hyperlink: React.FC<HyperlinkProps> = (props) => {

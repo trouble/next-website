@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { ChangeEvent, useCallback } from 'react';
 import useFieldType from '../../useFieldType';
 import Error from '../../Error';
 import Label from '../../Label';
@@ -50,7 +50,7 @@ export const Text: React.FC<{
     errorMessage,
   } = fieldType;
 
-  const handleChange = useCallback((e) => {
+  const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
     if (typeof onChange === 'function') onChange(e.target.value)
   }, [

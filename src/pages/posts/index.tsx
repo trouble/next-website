@@ -1,7 +1,7 @@
 import { GetStaticProps } from 'next'
 import { Archive } from '@root/layout/Archive';
-import { revalidationRate } from '@root/revalidationRate';
-import { PayloadDoc } from '@root/types';
+// import { revalidationRate } from '@root/revalidationRate';
+// import { PayloadDoc } from '@root/types';
 
 const Posts: React.FC = (props) => {
   return (

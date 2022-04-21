@@ -4,7 +4,6 @@ import {
   GetStaticPropsContext,
 } from 'next'
 import { Archive } from '@root/layout/Archive';
-import { getSubsiteByID } from '@root/payload';
 import { revalidationRate } from '@root/revalidationRate';
 import { PayloadDoc, PostCategoryType } from '@root/types';
 
@@ -104,11 +103,6 @@ export const getStaticProps: GetStaticProps = async (
   } else notFound = true;
 
   category = categoryData?.docs?.[0];
-  const subsiteID = category?.subsite?.id;
-
-  if (subsiteID) {
-    subsite = await getSubsiteByID(subsiteID);
-  }
 
   return ({
     props: {

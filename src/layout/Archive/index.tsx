@@ -1,6 +1,5 @@
 import { Fragment } from "react";
 import Meta from "@components/Meta";
-import { Hero } from '../Hero';
 import { CollectionArchive } from "@components/CollectionArchive";
 import Margin from "@components/Margin";
 import { PayloadDoc, PostCategoryType } from "@root/types";
@@ -38,21 +37,7 @@ export const Archive: React.FC<{
         description={`My Website ${collection}`}
       />
       <main>
-        <Hero
-          type="basic"
-          content={{
-            richText: [
-              {
-                type: 'h1',
-                children: [
-                  {
-                    text: title,
-                  },
-                ]
-              },
-            ]
-          }}
-        />
+        {/* TODO: render the basic hero with static rich text */}
         <Margin bottom="large">
           <CollectionArchive
             collection={collection}

@@ -1,10 +1,13 @@
 import { Fragment } from 'react';
-import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next'
+import {
+  GetStaticPaths,
+  GetStaticProps,
+  //  GetStaticPropsContext
+} from 'next'
 import { Archive } from '@root/layout/Archive';
 import { useRouter } from 'next/router';
 import { Hero } from '@root/layout/Hero';
-import { getSubsiteByID } from '@root/payload';
-import { revalidationRate } from '@root/revalidationRate';
+// import { revalidationRate } from '@root/revalidationRate';
 import { PostCategoryType } from '@root/types';
 
 const Posts: React.FC<{
@@ -83,7 +86,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async (
-  context: GetStaticPropsContext
+  // context: GetStaticPropsContext
 ) => {
   return ({
     props: {}

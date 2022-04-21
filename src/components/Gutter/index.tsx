@@ -6,6 +6,7 @@ export const Gutter: React.FC<{
   right?: boolean
   className?: string
   mobileOnly?: boolean
+  children: React.ReactNode
 }> = (props) => {
   const {
     left,

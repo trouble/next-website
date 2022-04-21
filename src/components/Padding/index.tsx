@@ -6,6 +6,7 @@ const Padding: React.FC<{
   bottom?: 'none' | 'small' | 'medium' | 'large'
   className?: string
   style?: React.CSSProperties
+  children: React.ReactNode
 }> = (props) => {
   const {
     children,

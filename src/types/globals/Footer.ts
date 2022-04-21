@@ -7,7 +7,7 @@ export type FooterMenuLinkType = {
   link?: LinkType
 }
 
-export type Footer = {
+export type FooterType = {
   column1?: FooterMenuLinkType[]
   column2?: FooterMenuLinkType[]
 }

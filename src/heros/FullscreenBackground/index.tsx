@@ -1,16 +1,18 @@
 import React from 'react';
 import classes from './index.module.scss';
-import { RichText } from '@components/RichText'
+import { RichText, RichTextType } from '@components/RichText'
 import { BlockContainer } from '@root/layout/BlockContainer';
 import { Cell, Grid } from '@faceless-ui/css-grid';
 import { ButtonGroup } from '@components/ButtonGroup';
 import { Media } from '@components/Media';
+import { LinkGroupType } from '@root/types';
+import { PayloadMediaType } from '@root/types/Media';
 
 export type FullscreenBackgroundHeroType = {
   type?: 'fullscreenBackground'
-  links?: LinkGroup
-  richText?: RichText
-  backgroundMedia?: Media
+  links?: LinkGroupType
+  richText?: RichTextType
+  backgroundMedia?: PayloadMediaType
   invertColors?: boolean
   useOverlay?: boolean
   publishedDate?: string

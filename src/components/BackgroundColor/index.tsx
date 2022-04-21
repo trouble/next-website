@@ -5,6 +5,7 @@ export const BackgroundColor: React.FC<{
   color?: string
   className?: string
   style?: CSSProperties
+  children?: React.ReactNode
 }> = (props) => {
   const {
     className,

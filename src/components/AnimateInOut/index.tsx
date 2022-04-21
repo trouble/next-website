@@ -8,6 +8,7 @@ export const AnimateInOut: React.FC<{
   translateY?: boolean
   translateX?: boolean
   animateOut?: boolean
+  children: React.ReactNode
 }> = (props) => {
   const {
     className,

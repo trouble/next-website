@@ -42,7 +42,7 @@ export const DesktopHeader: React.FC<{
   const mainMenuIsOpen = currentModal === 'main-menu';
   const searchIsOpen = currentModal === 'search';
 
-  const bindEsc = useCallback((e) => {
+  const bindEsc = useCallback((e: KeyboardEvent) => {
     if (e.keyCode === 27) {
       setShowSubmenu(false);
     }

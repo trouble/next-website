@@ -27,8 +27,8 @@ export const Checkbox: React.FC<{
     marginBottom
   } = props;
 
-  const memoizedValidate = useCallback((value) => {
-    const validationResult = defaultValidate(value, { required });
+  const memoizedValidate = useCallback((value: unknown) => {
+    const validationResult = defaultValidate(value as boolean, { required });
     return validationResult;
   }, [required]);
 

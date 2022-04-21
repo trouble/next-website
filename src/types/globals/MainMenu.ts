@@ -1,9 +1,9 @@
 import { LinkType } from '..';
-import { MenuDescription } from '../menuBlocks/MenuDescription';
+import { MenuDescriptionType } from '../menuBlocks/MenuDescription';
 import { MenuFeature } from '../menuBlocks/MenuFeature';
-import { MenuLink } from '../menuBlocks/MenuLink';
+import { MenuLinkType } from '../menuBlocks/MenuLink';
 
-export type SubmenuColumn = (MenuLink | MenuDescription | MenuFeature)[];
+export type SubmenuColumn = (MenuLinkType | MenuDescriptionType | MenuFeature)[];
 
 export type MainMenuSubmenu = {
   column1: SubmenuColumn
@@ -11,7 +11,7 @@ export type MainMenuSubmenu = {
   column2?: SubmenuColumn
 }
 
-export type MainMenu = {
+export type MainMenuType = {
   items: {
     type: 'subMenu' | 'link'
     label: string

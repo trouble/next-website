@@ -1,6 +1,13 @@
 import { Hero } from "./Hero"
 import { Breadcrumb } from "payload-plugin-nested-pages/dist/types"
-// import { Meta } from "payload-plugin-seo/dist/types"
+import { BlockTypes } from "@root/blocks"
+
+export type PayloadBlock = {
+  blockType: BlockTypes
+  blockName: string
+}
+
+export type PayloadBlocks = PayloadBlock[]
 
 export type PayloadDoc = {
   id: string
@@ -9,7 +16,7 @@ export type PayloadDoc = {
   showBreadcrumbs?: boolean
   slug: string
   image?: any // TODO type this
-  layout: any // TODO type this
+  layout: PayloadBlocks // TODO type this
   meta: any // TODO: type this once the plugin exports it
   excerpt?: string
   parent?: PayloadDoc | string
@@ -51,5 +58,14 @@ export type PostCategoriesType = PostCategoryType[];
 export type User = {
   id: string
   email: string
+}
+
+export type CollectionLabel = {
+  singular: string
+  plural: string
+}
+
+export type CollectionLabels = {
+  [collection: string]: CollectionLabel;
 }
 

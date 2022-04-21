@@ -1,16 +1,16 @@
 import { Fragment, useState } from 'react'
 import {
   GetStaticProps,
-  GetStaticPropsContext,
+  // GetStaticPropsContext,
   GetStaticPaths
 } from 'next';
 import Blocks from '../layout/Blocks'
 import { useEffect } from 'react';
-import { ParsedUrlQuery } from 'querystring';
+// import { ParsedUrlQuery } from 'querystring';
 import { Hero } from '../layout/Hero';
 import Meta from '@components/Meta';
 import { useRouter } from 'next/router';
-import { revalidationRate } from '@root/revalidationRate';
+// import { revalidationRate } from '@root/revalidationRate';
 import { PayloadDoc } from '@root/types';
 import { useBreadcrumbs } from '@root/providers/Breadcrumbs';
 
@@ -83,14 +83,14 @@ const Page: React.FC<PayloadDoc & {
 
 export default Page;
 
-interface IParams extends ParsedUrlQuery {
-  slug: string[]
-}
+// interface IParams extends ParsedUrlQuery {
+//   slug: string[]
+// }
 
 // when 'preview' cookies are set in the browser, getStaticProps runs on every request :)
 // NOTE: 'slug' is an array (i.e. [...slug].tsx)
 export const getStaticProps: GetStaticProps = async (
-  context: GetStaticPropsContext,
+  // context: GetStaticPropsContext,
 ) => {
   return {
     props: {}
@@ -159,13 +159,13 @@ export const getStaticProps: GetStaticProps = async (
   // })
 }
 
-type Path = {
-  params: {
-    slug: string[]
-  }
-};
+// type Path = {
+//   params: {
+//     slug: string[]
+//   }
+// };
 
-type Paths = Path[];
+// type Paths = Path[];
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {

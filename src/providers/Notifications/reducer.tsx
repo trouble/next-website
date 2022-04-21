@@ -1,7 +1,7 @@
 import { Notifications, Notification } from '.';
 
 type AddNotification = {
-  type?: 'ADD_NOTIFICATION'
+  type: 'ADD_NOTIFICATION'
   payload: Notification
 }
 

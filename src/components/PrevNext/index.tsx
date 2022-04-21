@@ -1,22 +1,21 @@
 import React from 'react';
 import classes from './index.module.scss';
-// import { Housing as HousingType, Post as PostType } from '';
 import { BlockContainer } from '@root/layout/BlockContainer';
 import { Hyperlink } from '@components/Hyperlink';
 import { Grid, Cell } from '@faceless-ui/css-grid'
 import Margin from '@components/Margin';
 import { Media } from '@components/Media';
 import { Button } from '@components/Button';
-// import { collectionLabels } from ''
-// import { PostCategory } from '';
+import { PayloadDoc, PostCategoryType } from '@root/types';
+import { collectionLabels } from '@root/types/collectionLabels';
 
 export const PrevNext: React.FC<{
-  prev?: (PostType & HousingType) | null
-  next?: (PostType & HousingType) | null
+  prev?: PayloadDoc | null
+  next?: PayloadDoc | null
   className?: string
   collection?: string
   buttonLabel?: string
-  category?: PostCategory
+  category?: PostCategoryType
 }> = (props) => {
   const {
     prev,

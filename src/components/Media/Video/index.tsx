@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import classes from './index.module.scss'
-import { Media, Props } from '..';
+import { Media, MediaProps } from '..';
 
-export const Video: React.FC<Props> = (props) => {
+export const Video: React.FC<MediaProps> = (props) => {
   const {
     videoClassName,
     mediaFromCMS,

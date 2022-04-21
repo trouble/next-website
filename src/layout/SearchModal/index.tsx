@@ -1,7 +1,7 @@
 import qs from 'qs';
 import { Hyperlink } from '@components/Hyperlink';
 import { Modal, useModal } from '@faceless-ui/modal';
-import React, { Fragment, useCallback, useEffect, useRef, useState } from 'react';
+import React, { ChangeEvent, Fragment, useCallback, useEffect, useRef, useState } from 'react';
 import { BlockContainer } from '../BlockContainer';
 import useDebounce from '@root/utilities/useDebounce';
 import classes from './index.module.scss';
@@ -50,7 +50,7 @@ export const SearchModal: React.FC<Props> = ({ popularSearchTerms }) => {
     } = {}
   } = useGlobals();
 
-  const handleChange = useCallback((e) => {
+  const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     setValue(value);
   }, [])

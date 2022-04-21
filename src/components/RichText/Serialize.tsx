@@ -2,12 +2,13 @@ import React, { Fragment } from 'react';
 import escapeHTML from 'escape-html';
 import { Text } from 'slate';
 import classes from './index.module.scss'
-import { Map } from '../Map';
+import { LocationType, Map } from '../Map';
 import { VideoPlayer } from '@components/VideoPlayer';
 import { Media } from '@components/Media';
 import { Hyperlink, HyperlinkProps } from '@components/Hyperlink';
 import { RichTextUpload, RichTextUploadNodeType } from './RichTextUpload';
 import { RichTextNode } from '.';
+import { PayloadMediaType } from '@root/types/Media';
 
 export type RichTextRenderers = {
   [node: string]: (text?: string) => JSX.Element // eslint-disable-line no-unused-vars
@@ -353,7 +354,7 @@ const Serialize: React.FC<Props> = (props) => {
                   return (
                     <Map
                       key={i}
-                      locations={[value]}
+                      locations={[value as LocationType]}
                     />
                   );
                 }
@@ -364,7 +365,7 @@ const Serialize: React.FC<Props> = (props) => {
                       layout="intrinsic"
                       quality={75}
                       key={i}
-                      mediaFromCMS={value}
+                      mediaFromCMS={value as PayloadMediaType}
                     />
                   )
                 }

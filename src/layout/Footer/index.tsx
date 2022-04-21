@@ -8,7 +8,6 @@ import { MenuLink } from './MenuLink';
 import { Hyperlink } from '@components/Hyperlink';
 import { LanguageIcon } from '@root/icons/Language';
 import { ModalToggler } from '@faceless-ui/modal'
-import { Address } from '@components/Address';
 import { SocialMediaLinks } from '@components/SocialMediaLinks';
 import { Logo } from '@components/Logo';
 
@@ -26,7 +25,6 @@ export const Footer: React.FC = () => {
   const {
     legalLinks,
     socialMediaLinks,
-    locations,
     phone,
     nationalPhone,
     fax
@@ -105,22 +103,6 @@ export const Footer: React.FC = () => {
                   </a>
                 </Link>
                 <div className={classes.contact}>
-                  {locations && Array.isArray(locations) && (
-                    <div className={classes.locations}>
-                      {locations.map((location, index) => {
-                        const {
-                          address,
-                        } = location;
-
-                        return (
-                          <Address
-                            key={index}
-                            {...address}
-                          />
-                        )
-                      })}
-                    </div>
-                  )}
                   {phone && (
                     <Hyperlink
                       href={`tel:+${phone}`}

@@ -6,7 +6,7 @@ import Form from '@root/forms/Form';
 import { Cell, Grid } from '@faceless-ui/css-grid';
 import { Select } from '@root/forms/fields/Select';
 import { useRouter } from 'next/router';
-// import { Housing as HousingType, HousingCategories } from '';
+import { PayloadDoc } from '@root/types';
 
 type Field = {
   label: string,
@@ -17,16 +17,14 @@ export const ArchiveControls: React.FC<Props> = (props) => {
   const {
     controlsToShow: {
       categories: showCategories,
-      city: showCity
     } = {},
   } = props;
 
   const router = useRouter();
   const { query } = router;
-  const [cities, setCities] = useState<Field[]>([]);
   const [categories, setCategories] = useState<Field[]>([]);
 
-  const setQueryParam = useCallback((paramName, paramValue?: string) => {
+  const setQueryParam = useCallback((paramName: string, paramValue?: string) => {
     router.push(
       {
         query: {
@@ -39,47 +37,6 @@ export const ArchiveControls: React.FC<Props> = (props) => {
     );
   }, [router]);
 
-  const getAllCities = useCallback(() => {
-    if (showCity) {
-      const makeRequest = async () => {
-        const req = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/housing?limit=200`);
-        const json = await req.json();
-
-        const {
-          docs: allHousingUnits
-        } = json as {
-          docs: HousingType[]
-        };
-
-        if (allHousingUnits && Array.isArray(allHousingUnits) && allHousingUnits.length > 0) {
-          const allCities: Field[] = [];
-
-          allHousingUnits.forEach((unit) => {
-            const {
-              address: {
-                city
-              } = {}
-            } = unit
-
-            if (city) {
-              const notAlreadyIn = allCities.findIndex((c) => c.value === city) === -1;
-              if (notAlreadyIn) {
-                allCities.push({
-                  label: city,
-                  value: city
-                })
-              }
-            }
-          });
-
-          setCities(allCities);
-        }
-      }
-
-      makeRequest();
-    }
-  }, [showCity])
-
   const getAllCategories = useCallback(() => {
     if (showCategories) {
       const makeRequest = async () => {
@@ -87,12 +44,12 @@ export const ArchiveControls: React.FC<Props> = (props) => {
         const json = await req.json();
 
         const {
-          docs: allHousingCategories
+          docs: allCategories
         } = json as {
-          docs: HousingCategories
+          docs: PayloadDoc[]
         };
-        if (allHousingCategories && Array.isArray(allHousingCategories) && allHousingCategories.length > 0) {
-          const categoriesAsFields = allHousingCategories.map((category) => {
+        if (allCategories && Array.isArray(allCategories) && allCategories.length > 0) {
+          const categoriesAsFields = allCategories.map((category) => {
             const {
               title,
               slug
@@ -113,10 +70,8 @@ export const ArchiveControls: React.FC<Props> = (props) => {
   }, [showCategories])
 
   useEffect(() => {
-    getAllCities();
     getAllCategories();
   }, [
-    getAllCities,
     getAllCategories
   ])
 
@@ -134,22 +89,6 @@ export const ArchiveControls: React.FC<Props> = (props) => {
         }}
       >
         <Grid>
-          {showCity && (
-            <Cell
-              cols={6}
-              colsM={8}
-            >
-              <Select
-                label="City"
-                path="city"
-                onChange={(incomingCity) => {
-                  setQueryParam('city', incomingCity)
-                }}
-                options={cities}
-                marginBottom={false}
-              />
-            </Cell>
-          )}
           {showCategories && (
             <Cell
               cols={6}

@@ -13,7 +13,9 @@ const wipeColor = '#000000';
 
 export const pageTransTime = 400; // IMPORTANT: must match scss variables, i.e. var(--page-trans-time)
 
-export const PageTransition: React.FC = (props) => {
+export const PageTransition: React.FC<{
+  children: React.ReactNode
+}> = (props) => {
   const { children } = props;
   const hasInitialized = useRef(false); // don't scroll to top on first render
   const { asPath } = useRouter();
@@ -58,7 +60,9 @@ export const PageTransition: React.FC = (props) => {
   ]);
 
   return (
+    // @ts-ignore TODO: fix this
     <SwitchTransition mode="out-in">
+      {/* @ts-ignore TODO: fix this */}
       <CSSTransition
         nodeRef={nodeRef}
         key={JSON.stringify(sanitizePath(asPath))}

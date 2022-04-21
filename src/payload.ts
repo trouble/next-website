@@ -1,3 +1,10 @@
+import { AlertsType } from "./providers/Alerts";
+import {
+  FooterType,
+  GlobalMeta,
+  MainMenuType
+} from "./types/globals";
+
 // TODO: if in preview mode, add payload token and ?draft=true to the request
 export const getByID = async ({
   collection,
@@ -38,12 +45,6 @@ export const getBySlug = async ({
   return doc;
 }
 
-export const getSubsiteByID = async (id?: string): Promise<SubSite> =>
-  await getByID({
-    collection: 'subsites',
-    id
-  });
-
 
 export const getPostCategoryBySlug = async (slug?: string) =>
   await getBySlug({
@@ -77,9 +78,9 @@ export const getGlobalMeta = async (): Promise<GlobalMeta> => {
 
 export const getAllGlobals = async (): Promise<{
   meta: GlobalMeta
-  alerts: Alerts
-  footer: Footer
-  mainMenu: MainMenu
+  alerts: AlertsType
+  footer: FooterType
+  mainMenu: MainMenuType
 }> => {
   const [
     mainMenu,

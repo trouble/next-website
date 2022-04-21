@@ -1,13 +1,19 @@
 import { BackgroundColor } from '@components/BackgroundColor';
 import { ButtonGroup } from '@components/ButtonGroup';
-import { RichText } from '@components/RichText';
+import { RichText, RichTextType } from '@components/RichText';
 import { CloseIcon } from '@root/icons/CloseIcon';
 import { BlockContainer } from '@root/layout/BlockContainer';
 import { useAlerts } from '@root/providers/Alerts';
+import { LinkGroupType } from '@root/types';
 import React from 'react';
 import classes from './index.module.scss';
 
-export type AlertType = {}
+export type AlertType = {
+  id: string
+  content?: RichTextType
+  links?: LinkGroupType
+  backgroundColor?: string
+}
 
 export const Alert: React.FC<AlertType> = (props) => {
   const {

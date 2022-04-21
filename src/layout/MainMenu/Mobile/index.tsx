@@ -56,7 +56,9 @@ export const MobileMainMenu: React.FC<{
     >
       <BackgroundColor color="themeDark" />
       <BlockContainer className={classes.blockContainer}>
+        {/* @ts-ignore TODO: fix this */}
         <SwitchTransition mode="out-in">
+          {/* @ts-ignore TODO: fix this */}
           <CSSTransition
             nodeRef={nodeRef}
             appear

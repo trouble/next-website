@@ -6,6 +6,7 @@ import { generateMapStyles } from './generateMapStyles';
 import getCSSVariable from '@root/utilities/getCSSVariable';
 import { generateMarkerContent } from './generateMarkerContent';
 import { useRouter } from 'next/router';
+import { DefaultMarkerProps } from './DefaultMarker/generateDefaultMarker';
 
 // NOTE: the map will auto zoom and position itself to contain all of its markers
 
@@ -26,11 +27,13 @@ const defaultMapControls = {
   fullscreenControl: true,
 }
 
+export type Coords = {
+  lat: number
+  lng: number
+}
+
 export type MapCoords = {
-  coords: {
-    lat: number
-    lng: number
-  }
+  coords: Coords
 }
 
 export type LocationType = {
@@ -49,14 +52,14 @@ export const Map: React.FC<{
     rotateControl?: boolean
     fullscreenControl?: boolean
   },
-  markerType?: 'location' | 'housing'
+  markerType?: 'default'
   mapPadding?: number // the `fitBounds` method with prevent markers from rendering in the padding area (distance from the marker point to the container edge)
   maxZoom?: number
 }> = (props) => {
   const {
     locations,
     mapControls,
-    markerType = 'location',
+    markerType = 'default',
     mapPadding = 100,
     maxZoom = 15
   } = props;
@@ -105,6 +108,10 @@ export const Map: React.FC<{
               coords
             } = {}
           } = location as LocationType;
+
+          const markerProps: DefaultMarkerProps = {
+            title,
+          }
 
           if (coords) {
             const {
@@ -167,7 +174,7 @@ export const Map: React.FC<{
                 if (infoWindowRef.current) {
 
                   infoWindowRef.current.setContent(
-                    generateMarkerContent(markerType, location, asPath)
+                    generateMarkerContent(markerType, markerProps, asPath)
                   );
 
                   infoWindowRef.current.open({

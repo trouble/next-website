@@ -1,9 +1,21 @@
+import { AddressType } from '@components/Address';
+import { PayloadMediaType } from '@root/types/Media';
 import { generateDirectionsHref } from '@root/utilities/generateDirectionsHref';
-// import { Housing as HousingType } from '';
-// import { Contact } from '';
+
 import classes from './index.module.scss'
 
-export const generateHousingMarker = (props: Omit<HousingType, 'layout'>, asPath: string): string => {
+export type DefaultMarkerProps = {
+  title?: string
+  slug?: string
+  address?: AddressType
+  meta?: {
+    image: PayloadMediaType
+  }
+  contacts?: any
+  categories?: any
+}
+
+export const generateDefaultMarker = (props: DefaultMarkerProps, asPath: string): string => {
   const {
     title,
     slug,
@@ -18,7 +30,6 @@ export const generateHousingMarker = (props: Omit<HousingType, 'layout'>, asPath
     meta: {
       image
     } = {},
-    contacts,
     categories
   } = props;
 
@@ -35,29 +46,6 @@ export const generateHousingMarker = (props: Omit<HousingType, 'layout'>, asPath
       </div>
     </div>
   `;
-
-  const contactString = (contact: Contact) => {
-    const {
-      type,
-      label,
-      value
-    } = contact;
-
-    return (
-      `<div>
-        ${label}:
-        ${' '}
-        <a
-          href="${type}:+${value}"
-          class="${classes.anchor} ${classes.contactAnchor}"
-        >
-          <div class="${classes.contactLabel}">
-            ${value}
-          </div>
-        </a>
-      </div>`
-    )
-  }
 
   const titleToUse = title || name;
   const href = slug ? `/housing/${slug}` : '';
@@ -112,11 +100,6 @@ export const generateHousingMarker = (props: Omit<HousingType, 'layout'>, asPath
           ${addressString}
         </div>`
     )}
-      ${contacts ? (
-      `<div class="${classes.contacts}">
-        ${contacts.map((contact) => contactString(contact)).join('')}
-      </div>`
-    ) : ''}
     ${!isOnPage ? (
       `<a
             href="${href}"

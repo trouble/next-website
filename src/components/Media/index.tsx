@@ -1,13 +1,13 @@
 import React, { ElementType, Fragment, Ref } from 'react';
 import { Video } from './Video';
 import { Image } from './Image';
-import { PayloadMediaType } from '@root/types/Media';
+import { MediaSize, PayloadMediaType } from '@root/types/Media';
 
-export type MediaType = {
+export type MediaProps = {
   className?: string
   imgClassName?: string
   videoClassName?: string
-  cmsImageSize?: string
+  cmsImageSize?: MediaSize
   htmlElement?: ElementType | null
   onClick?: () => void
   onLoad?: () => void
@@ -24,7 +24,7 @@ export type MediaType = {
   placeholderColor?: 'dark' | 'light'
 }
 
-export const Media: React.FC<MediaType> = (props) => {
+export const Media: React.FC<MediaProps> = (props) => {
   const {
     className,
     mediaFromCMS,

@@ -9,6 +9,7 @@ type Props = {
   style?: React.CSSProperties
   ref?: Ref<HTMLElement>
   tabIndex?: number
+  children: React.ReactNode
 }
 
 // places two columns onto each side of its children,
@@ -32,7 +33,7 @@ export const BlockContainer: React.FC<Props> = forwardRef<HTMLElement, Props>((p
         classes.blockContainer
       ].filter(Boolean).join(' ')}
       style={style}
-      htmlAttributes={{tabIndex}}
+      htmlAttributes={{ tabIndex }}
     >
       <Cell
         className={cellClassName}

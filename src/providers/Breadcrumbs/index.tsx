@@ -19,7 +19,8 @@ export const BreadcrumbsContext = createContext<IBreadcrumbs>({} as IBreadcrumbs
 export const useBreadcrumbs = (): IBreadcrumbs => useContext(BreadcrumbsContext);
 
 export const BreadcrumbsProvider: React.FC<{
-  breadcrumbs: Breadcrumb[],
+  breadcrumbs: Breadcrumb[]
+  children: React.ReactNode
 }> = (props) => {
   const {
     breadcrumbs,

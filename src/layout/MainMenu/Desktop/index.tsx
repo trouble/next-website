@@ -7,6 +7,7 @@ import { SubMenu } from './SubMenu';
 import { Cell, Grid } from '@faceless-ui/css-grid';
 import { Button } from '@components/Button';
 import { useHeaderHeight } from '@root/providers/HeaderHeight';
+import { SubMenuType } from '../Mobile/SubMenu';
 
 export const DesktopMainMenu: React.FC = () => {
   const {
@@ -16,7 +17,7 @@ export const DesktopMainMenu: React.FC = () => {
     } = {}
   } = useGlobals();
 
-  const [currentSubMenu, setCurrentSubMenu] = useState<undefined>(items?.[0]?.subMenu); // TODO: type this
+  const [currentSubMenu, setCurrentSubMenu] = useState<SubMenuType | undefined>(items?.[0]?.subMenu); // TODO: type this
   const [hoveredIndex, setHoveredIndex] = useState<number | undefined>()
 
   const { totalHeaderHeight } = useHeaderHeight();

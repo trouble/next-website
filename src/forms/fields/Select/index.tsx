@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import ReactSelect from 'react-select';
+import ReactSelect, { SingleValue } from 'react-select';
 import useFieldType from '../../useFieldType';
 import Label from '../../Label';
 import Error from '../../Error';
@@ -47,9 +47,9 @@ export const Select: React.FC<{
     marginBottom
   } = props;
 
-  const memoizedValidate = useCallback((value) => {
+  const memoizedValidate = useCallback((value: unknown) => {
     const validationResult = validate(
-      value,
+      value as string,
       {
         required,
         options
@@ -68,7 +68,7 @@ export const Select: React.FC<{
     validate: memoizedValidate,
   });
 
-  const handleChange = useCallback((selectedOption) => {
+  const handleChange = useCallback((selectedOption: SingleValue<Option>) => {
     if (selectedOption) {
       setValue(selectedOption.value);
       if (typeof onChange === 'function') onChange(selectedOption.value)
@@ -100,7 +100,6 @@ export const Select: React.FC<{
       <ReactSelect
         onChange={handleChange}
         value={valueToRender}
-        showError={showError}
         options={options}
         className={classes.reactSelect}
         classNamePrefix="rs"

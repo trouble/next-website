@@ -49,7 +49,7 @@ export const RichTextUpload: React.FC<Props> = (props) => {
       break;
   }
 
-  const wrapProps: HyperlinkProps = {}
+  const wrapProps: HyperlinkProps = {} as HyperlinkProps;
 
   if (fields?.enableLink) {
     Wrap = Hyperlink

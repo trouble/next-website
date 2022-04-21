@@ -8,7 +8,7 @@ export type SubMenuType = {
   title?: string
   column1: any
   enableColumn2?: boolean
-  column2: any
+  column2?: any
 }
 export const SubMenu: React.FC<{
   currentSubmenu?: SubMenuType

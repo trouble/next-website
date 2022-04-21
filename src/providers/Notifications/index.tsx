@@ -18,19 +18,22 @@ export type Notifications = {
   [id: string]: Notification
 }
 
+export type SetNotificationArgs = {
+  id: string,
+  message?: string,
+  duration?: number
+}
 export interface INotifications {
-  setNotification: (args: {
-    id?: string,
-    message?: string,
-    duration?: number
-  }) => void
+  setNotification: (args: SetNotificationArgs) => void // eslint-disable-line no-unused-vars
   notifications: Notifications
 }
 
 export const NotificationsContext = createContext<INotifications>({} as INotifications);
 export const useNotifications = (): INotifications => useContext(NotificationsContext);
 
-export const NotificationsProvider: React.FC = (props) => {
+export const NotificationsProvider: React.FC<{
+  children: React.ReactNode
+}> = (props) => {
   const [notifications, dispatchNotifications] = useReducer(reducer, {});
 
   const { children } = props;
@@ -39,7 +42,7 @@ export const NotificationsProvider: React.FC = (props) => {
     id,
     message = 'No message provided',
     duration = 5000,
-  }) => {
+  }: SetNotificationArgs) => {
     // set deletion timer
     const timerID = setTimeout(() => {
       dispatchNotifications({
@@ -49,6 +52,7 @@ export const NotificationsProvider: React.FC = (props) => {
         },
       });
     }, duration);
+
     // set notification
     dispatchNotifications({
       type: 'ADD_NOTIFICATION',

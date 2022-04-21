@@ -2,15 +2,15 @@ import { Fragment, useEffect, useState } from 'react';
 import {
   GetStaticPaths,
   GetStaticProps,
-  GetStaticPropsContext,
+  // GetStaticPropsContext,
 } from 'next'
 import Blocks from '@root/layout/Blocks';
 import { Hero } from '@root/layout/Hero';
 import Meta from '@components/Meta';
 import { PrevNext } from '@components/PrevNext';
 import { useRouter } from 'next/router';
-import { getPostCategoryBySlug, getSubsiteByID } from '@root/payload';
-import { revalidationRate } from '@root/revalidationRate';
+// import { getPostCategoryBySlug } from '@root/payload';
+// import { revalidationRate } from '@root/revalidationRate';
 import { PayloadDoc, PostCategoryType } from '@root/types';
 
 const Post: React.FC<PayloadDoc & {
@@ -122,7 +122,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async (
-  context: GetStaticPropsContext
+  // context: GetStaticPropsContext
 ) => {
   return ({
     props: {}

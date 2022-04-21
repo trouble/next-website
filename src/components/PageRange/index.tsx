@@ -1,6 +1,6 @@
+import { collectionLabels } from '@root/types/collectionLabels';
 import React from 'react';
 import classes from './index.module.scss';
-// import { collectionLabels } from ''
 
 export const PageRange: React.FC<{
   className?: string

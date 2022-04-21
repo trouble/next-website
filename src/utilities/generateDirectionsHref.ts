@@ -1,6 +1,6 @@
-export type Address = {}; // TODO: type this
+import { AddressType } from "@components/Address";
 
-export const generateDirectionsHref = (props?: Address) => {
+export const generateDirectionsHref = (props?: AddressType) => {
   if (props) {
     const {
       line1,

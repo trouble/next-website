@@ -4,7 +4,7 @@ export type SizeDetails = {
   height: number
 }
 
-export type Size = 'thumbnail' | 'card' | 'square' | 'portrait' | 'feature' | 'hero';
+export type MediaSize = 'thumbnail' | 'card' | 'square' | 'portrait' | 'feature' | 'hero';
 
 export type PayloadMediaType = string | {
   id: string
@@ -14,12 +14,7 @@ export type PayloadMediaType = string | {
   width?: number
   height?: number
   sizes?: {
-    thumbnail?: SizeDetails
-    card?: SizeDetails
-    square?: SizeDetails
-    portrait?: SizeDetails
-    feature?: SizeDetails
-    hero?: SizeDetails
+    [key in MediaSize]: SizeDetails // eslint-disable-line no-unused-vars
   },
   fallback?: PayloadMediaType
 }

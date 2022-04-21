@@ -22,7 +22,9 @@ interface IHeaderHeight {
 export const HeaderHeightContext = createContext<IHeaderHeight>({} as IHeaderHeight);
 export const useHeaderHeight = (): IHeaderHeight => useContext(HeaderHeightContext);
 
-const HeaderHeightProvider: React.FC = ({ children }) => {
+const HeaderHeightProvider: React.FC<{
+  children: React.ReactNode
+}> = ({ children }) => {
   const [stickyElements, dispatchStickyElement] = useReducer(stickyElementReducer, {});
   const [headerHeight, setHeaderHeight] = useState<number>();
   const [alertsHeight, setAlertsHeight] = useState<number>();
@@ -56,10 +58,10 @@ const HeaderHeightProvider: React.FC = ({ children }) => {
     stickyElements
   ]);
 
-  const reportStickyElement = useCallback((payload) => {
+  const reportStickyElement = useCallback((payload: StickyElement) => {
     dispatchStickyElement({
       type: 'ADD_STICKY_ELEMENT',
-      payload: payload
+      payload
     })
   }, [])
 

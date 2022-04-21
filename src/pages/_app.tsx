@@ -11,18 +11,18 @@ import { CloseModalOnRouteChange } from '@components/CloseModalOnRouteChange';
 import { Header } from '../layout/Header'
 import { AppHead } from '@components/AppHead';
 import { NotificationsProvider } from '@root/providers/Notifications';
-import { Alerts, AlertsProvider } from '@root/providers/Alerts';
+import { AlertsType, AlertsProvider } from '@root/providers/Alerts';
 import { CookiesProvider } from 'react-cookie'
 import { PageTransition } from '@root/layout/PageTransition';
 import { ModalContainer } from '@root/layout/ModalContainer';
 import GutterProvider from '@root/providers/GutterProvider';
 import cssVariables from '../../cssVariables';
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 import { GoogleAnalytics } from '@components/GoogleAnalytics';
 import { GoogleTagManager } from '@components/GoogleTagManager';
 import HeaderHeightProvider from '@root/providers/HeaderHeight';
 import { AlertBar } from '@root/layout/AlertBar';
-import { getAllGlobals } from '@root/payload';
+// import { getAllGlobals } from '@root/payload';
 import { BreadcrumbsProvider } from '@root/providers/Breadcrumbs';
 import { SkipToContent } from '@root/layout/Header/SkipToContent';
 
@@ -30,7 +30,7 @@ import '../scss/app.scss';
 
 const MyApp = (appProps: AppProps & {
   globals: IGlobals,
-  alerts: Alerts
+  alerts: AlertsType
 }): React.ReactElement => {
   const {
     Component,

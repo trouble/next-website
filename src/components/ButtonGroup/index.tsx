@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './index.module.scss';
 import { Button, ButtonProps } from '@components/Button';
-// import { LinkGroup as LinkGroupType } from '';
+import { LinkGroupType } from '@root/types';
 
 export const ButtonGroup: React.FC<{
   className?: string

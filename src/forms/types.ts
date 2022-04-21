@@ -1,6 +1,6 @@
 import React from 'react';
 
-export type Validate = undefined | ((value: unknown) => boolean | string)
+export type Validate = undefined | ((value: unknown) => boolean | string) // eslint-disable-line no-unused-vars
 
 export type Value = unknown
 
@@ -13,7 +13,7 @@ export interface Data {
 }
 
 export interface OnSubmit {
-  (data: Property, unflattenedData: Data): void | Promise<void>
+  (data: Property, unflattenedData: Data): void | Promise<void> // eslint-disable-line no-unused-vars
 }
 
 export interface Field {
@@ -32,15 +32,15 @@ export interface Fields {
 }
 
 export interface SetModified {
-  (modified: boolean): void
+  (modified: boolean): void // eslint-disable-line no-unused-vars
 }
 
 export interface SetProcessing {
-  (processing: boolean): void
+  (processing: boolean): void // eslint-disable-line no-unused-vars
 }
 
 export interface SetSubmitted {
-  (submitted: boolean): void
+  (submitted: boolean): void // eslint-disable-line no-unused-vars
 }
 
 interface REPLACE_STATE {
@@ -74,12 +74,12 @@ export interface IContext {
   initialState: InitialState
   fields: Fields
   validateForm: () => boolean
-  submit?: (e: React.ChangeEvent<HTMLFormElement>) => Promise<boolean> | void | false
+  submit?: (e: React.ChangeEvent<HTMLFormElement>) => Promise<boolean> | void | false // eslint-disable-line no-unused-vars
   getFields: () => Fields
-  getField: (path: string) => Field | undefined
+  getField: (path: string) => Field | undefined // eslint-disable-line no-unused-vars
   getData?: () => Data
   dispatchFields: React.Dispatch<Action>
-  setModified: (modified: boolean) => void
-  setProcessing: (processing: boolean) => void
-  setSubmitted: (submitted: boolean) => void
+  setModified: (modified: boolean) => void // eslint-disable-line no-unused-vars
+  setProcessing: (processing: boolean) => void // eslint-disable-line no-unused-vars
+  setSubmitted: (submitted: boolean) => void // eslint-disable-line no-unused-vars
 }

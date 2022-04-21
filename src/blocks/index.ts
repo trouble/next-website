@@ -6,6 +6,14 @@ import { MediaBlock } from './MediaBlock';
 import { MediaSlider } from './MediaSlider';
 import { ArchiveBlock } from './Archive';
 
+export type BlockTypes = 'content' |
+  'archive' |
+  'mediaContent' |
+  'media' |
+  'contentSlider' |
+  'embeddedForm' |
+  'mediaSlider'
+
 export const blocks = {
   content: ContentBlock,
   archive: ArchiveBlock,

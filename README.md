@@ -14,6 +14,7 @@ Core features:
     - Sliders
     - Modals
     - Header
+    - Header height watcher
     - Footer
     - Basic menu building blocks
     - Basic hero styles

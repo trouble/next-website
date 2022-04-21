@@ -1,6 +1,7 @@
 import { GetServerSideProps } from "next";
 import fs from "fs";
 import { formatPermalink } from "@root/utilities/formatPermalink";
+import { PayloadDoc } from "@root/types";
 // import { Housing, Page, Person, Post } from "";
 const path = require("path");
 
@@ -29,7 +30,7 @@ const getCollection = async (collectionName: 'pages' | 'posts' | 'housing' | 'pe
   const data = await res.json();
   const { docs } = data;
   if (docs) {
-    return docs.map((doc: Page | Housing | Person | Post) => {
+    return docs.map((doc: PayloadDoc) => {
       const {
         updatedAt
       } = doc;

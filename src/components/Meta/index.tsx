@@ -1,8 +1,15 @@
+import { PayloadMediaType } from '@root/types/Media';
 import NextHead from 'next/head';
 import React, { Fragment } from 'react';
-// import { Meta as MetaType } from ''
 
 // NOTE: there is also an 'AppHead' component
+
+export type MetaType = {
+  title?: string
+  description?: string
+  keywords?: string
+  image?: PayloadMediaType
+}
 
 const Meta: React.FC<MetaType> = (props) => {
   const {

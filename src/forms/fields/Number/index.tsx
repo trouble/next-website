@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { ChangeEvent, useCallback } from 'react';
 import useFieldType from '../../useFieldType';
 import Error from '../../Error';
 import Label from '../../Label';
@@ -49,9 +49,10 @@ export const NumberInput: React.FC<{
     errorMessage,
   } = fieldType;
 
-  const handleChange = useCallback((e) => {
-    setValue(e.target.value);
-    if (typeof onChange === 'function') onChange(e.target.value)
+  const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+    const valueAsNumber = Number(e.target.value);
+    setValue(valueAsNumber);
+    if (typeof onChange === 'function') onChange(valueAsNumber)
   }, [
     onChange,
     setValue

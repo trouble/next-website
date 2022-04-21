@@ -2,10 +2,9 @@ import React, { Fragment } from 'react';
 import NextImage from 'next/image';
 import classes from './index.module.scss'
 import cssVariables from '../../../../cssVariables';
-// import { imageSizes } from '';
-import { Props } from '..';
+import { MediaProps } from '..';
 
-export const Image: React.FC<Props> = (props) => {
+export const Image: React.FC<MediaProps> = (props) => {
   const {
     imgClassName,
     cmsImageSize,
@@ -39,7 +38,7 @@ export const Image: React.FC<Props> = (props) => {
     let layoutToUse = layout;
     let objectFitToUse = objectFit;
 
-    const foundSize = cmsImageSize && typeof cmsSizes?.[cmsImageSize] !== 'undefined' && cmsSizes[cmsImageSize];
+    const foundSize = cmsImageSize && cmsSizes && cmsImageSize in cmsSizes && cmsSizes[cmsImageSize];
 
     if (cmsImageSize && foundSize) {
       let sizeIsValid = foundSize && Object.keys(foundSize).length > 0;
@@ -59,7 +58,7 @@ export const Image: React.FC<Props> = (props) => {
         const {
           width: staticWidth,
           height: staticHeight
-        } = imageSizes[cmsImageSize];
+        } = cmsSizes[cmsImageSize];
 
         imageWidth = staticWidth * 2; // hackish: double because next/image sets a max-width of 100% and some sizes are too small for them to fill entire containers (i.e. thumbnail)
         imageHeight = staticHeight * 2;
@@ -88,7 +87,7 @@ export const Image: React.FC<Props> = (props) => {
       }
     }
 
-    const sizesToUse = sizes || Object.entries(cssVariables.breakpoints).map(([, value]) => `(max-width: ${value}px) ${value}px`).join(', ');
+    const sizesToUse: string = sizes || Object.entries(cssVariables.breakpoints).map(([, value]) => `(max-width: ${value}px) ${value}px`).join(', ');
 
     return (
       <Fragment>

@@ -1,9 +1,9 @@
 import React from 'react';
 import Head from 'next/head'
-// import { Media } from '';
+import { PayloadMediaType } from '@root/types/Media';
 
 export const AppHead: React.FC<{
-  image?: Media
+  image?: PayloadMediaType
 }> = (props) => {
   const {
     image
@@ -21,8 +21,8 @@ export const AppHead: React.FC<{
       <link
         rel="preload"
         // @ts-ignore
-        imagesizes="1440px"
-        imagesrcset={`/images/texture-1@2x.png 2x, /images/texture-1.png 1440w`}
+        imageSizes="1440px"
+        imageSrcSet={`/images/texture-1@2x.png 2x, /images/texture-1.png 1440w`}
         href={`/images/texture-1.png`}
         as="image"
         type="image/png"

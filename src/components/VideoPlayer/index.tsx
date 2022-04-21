@@ -27,7 +27,7 @@ type Play = () => void
 export const VideoPlayer: React.FC<{
   platform?: 'vimeo' | 'youtube'
   videoID?: string
-  aspectRatio?: string
+  aspectRatio?: number
   poster?: PayloadMediaType
   autoplay?: boolean
   showControls?: boolean

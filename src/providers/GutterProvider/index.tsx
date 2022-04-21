@@ -18,7 +18,9 @@ interface IGutter {
 export const GutterContext = createContext<IGutter>({} as IGutter);
 export const useGutter = (): IGutter => useContext(GutterContext);
 
-const GutterProvider: React.FC = ({ children }) => {
+const GutterProvider: React.FC<{
+  children: React.ReactNode
+}> = ({ children }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
@@ -46,10 +48,12 @@ const GutterProvider: React.FC = ({ children }) => {
   ])
 
   return (
-    <GutterContext.Provider value={{
-      blockContainerWidth,
-      gutter
-    }}>
+    <GutterContext.Provider
+      value={{
+        blockContainerWidth,
+        gutter
+      }}
+    >
       {children}
       <BlockContainer
         className={classes.gutter}
