@@ -1,0 +1,8 @@
+@use "@scss/common" as *;
+
+.blockID {
+  position: absolute;
+  width: 100%;
+  // 'top' defined in js
+  left: 0;
+}

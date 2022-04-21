@@ -1,0 +1,117 @@
+@use "@scss/common" as *;
+
+.contentSlider {
+  position: relative;
+  overflow: hidden;
+}
+
+.intro {
+  margin-bottom: base(2);
+  @include mid-break {
+    margin-bottom: base();
+  }
+}
+
+.trackWrapper {
+  position: relative;
+}
+
+.sliderTrack {
+  @include hide-scrollbar;
+  overflow-y: hidden;
+  padding-right: 0;
+  width: 100%;
+  padding: base(4) 0 base(4) base(4);
+
+  @include large-break {
+    padding: base(2) 0 base(2) base(2);
+  }
+
+  @include mid-break {
+    padding: base() 0 base() base();
+  }
+}
+
+.slide {
+  height: 100%;
+  position: relative;
+  // width defined in js
+}
+
+.slideWrap {
+  padding-right: base();
+  position: relative;
+}
+
+.notLastSlide {
+  &::after {
+    content: "";
+    position: absolute;
+    right: base(0.5);
+    top: 50%;
+    height: 100vh; // hack using large value here, because of the track overflow and flexbox situation
+    transform: translate3d(0, -50%, 0);
+    width: 1px;
+    background-color: white;
+  }
+}
+
+.controlsGrid {
+  margin-top: base(3);
+  @include large-break {
+    margin-top: base(2);
+  }
+  @include mid-break {
+    margin-top: base();
+  }
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+}
+
+.arrows {
+  display: flex;
+  align-items: center;
+  margin-right: base();
+
+  & > *:not(:last-child) {
+    margin-right: base(0.5);
+  }
+
+  @include mid-break {
+    color: unset;
+  }
+}
+
+.arrow {
+  @include button-reset;
+}
+
+.progress {
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-light-gray);
+}
+
+.progressIndicator {
+  background-color: var(--color-black);
+}
+
+.background {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  // width defined in js
+}
+
+.backgroundWrapper {
+  position: relative;
+  height: 100%;
+}
+
+.slideLink {
+  margin-top: base(0.5);
+}

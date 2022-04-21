@@ -1,0 +1,32 @@
+@use "@scss/common" as *;
+
+.mainMenu {
+  @include hide-scrollbar;
+  border: none;
+  width: 100%;
+  height: 100%;
+  color: var(--color-white);
+  will-change: transform opacity;
+  transition: all var(--modal-trans-time) linear;
+  transform: translate3d(0, #{base(-2)}, 0);
+  transition-delay: calc(#{var(--modal-trans-time)} / 2);
+  min-height: 100vh;
+  opacity: 0;
+  padding: 0;
+  overflow: auto;
+  background: none;
+
+  &:global(.mywebsite__modal-item--appearActive),
+  &:global(.mywebsite__modal-item--appearDone),
+  &:global(.mywebsite__modal-item--enterActive),
+  &:global(.mywebsite__modal-item--enterDone) {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+
+  &:global(.mywebsite__modal-item--exitActive),
+  &:global(.mywebsite__modal-item--exitDone) {
+    transform: translate3d(0, #{base(-2)}, 0);
+    opacity: 0;
+  }
+}

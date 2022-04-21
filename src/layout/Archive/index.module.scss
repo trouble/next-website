@@ -1,0 +1,17 @@
+@use "@scss/common" as *;
+
+.content {
+  position: relative;
+}
+
+.divider {
+  margin: base() 0;
+}
+
+.pageRange {
+  margin-bottom: base(2);
+
+  @include mid-break {
+    margin-bottom: base();
+  }
+}

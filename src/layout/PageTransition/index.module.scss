@@ -1,0 +1,94 @@
+@use "@scss/common" as *;
+
+$transCurve: cubic-bezier(0.6, 0, 0.5, 1);
+
+.wipe {
+  pointer-events: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  will-change: transform;
+  transform: translate3d(0, 100%, 0);
+  z-index: 100;
+}
+
+.page {
+  opacity: 1;
+  // IMPORTANT: do not create a new stacking context here, i.e. transform, etc
+}
+
+.exit {
+  &:local() {
+    .page {
+      transition: transform var(--page-trans-time) $transCurve, opacity var(--page-trans-time) $transCurve;
+      opacity: 0;
+      transform: translate3d(0, -100px, 0);
+    }
+
+    .wipe {
+      transform: translate3d(0, 100%, 0);
+    }
+  }
+}
+
+.exitActive {
+  &:local() {
+    .page {
+      opacity: 0;
+      transform: translate3d(0, -100px, 0);
+    }
+  }
+}
+
+.exitDone {
+  &:local() {
+    .page {
+      opacity: 0;
+      transform: translate3d(0, -100px, 0);
+    }
+  }
+}
+
+.enter {
+  &:local() {
+    .page {
+      opacity: 0;
+      transform: translate3d(0, 0, 0);
+    }
+
+    .wipe {
+      transition: transform var(--page-trans-time) $transCurve;
+      transform: translate3d(0, 100%, 0);
+    }
+  }
+}
+
+.enterActive {
+  &:local() {
+    .page {
+      opacity: 0;
+      transform: translate3d(0, 0, 0);
+    }
+
+    .wipe {
+      transition: transform var(--page-trans-time) $transCurve;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+}
+
+.enterDone {
+  &:local() {
+    .page {
+      opacity: 1;
+      // IMPORTANT: do not create a new stacking context here, i.e. transform, etc
+    }
+
+    .wipe {
+      transition: transform var(--page-trans-time) $transCurve;
+      transform: translate3d(0, -100%, 0);
+    }
+  }
+}

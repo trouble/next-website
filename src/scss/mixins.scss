@@ -1,0 +1,98 @@
+@use "./queries" as *;
+@use "./functions" as *;
+@use "./vars" as *;
+
+@mixin button-reset {
+  font-size: inherit;
+  text-align: left;
+  font-family: inherit;
+  line-height: inherit;
+  background-color: transparent;
+  letter-spacing: inherit;
+  padding: 0;
+  border: none;
+  color: inherit;
+  font-weight: inherit;
+  display: inline-flex;
+  cursor: pointer;
+  margin: unset;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+// only pass even numbers for the $width param
+@mixin checkbox() {
+  height: 1.7rem;
+  width: 1.9rem;
+  position: relative;
+  cursor: pointer;
+  border: none;
+  appearance: none;
+
+  &:before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    border: 1px solid #d4d4d4;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &:after {
+    content: "";
+    opacity: 0;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-image: url("/images/Checkmark.svg");
+    top: calc(50%);
+    left: calc(50%);
+    transform: translate(-50%, -50%);
+    transition: $default-trans-time ease opacity;
+    background-repeat: no-repeat;
+    border: none;
+  }
+}
+
+@mixin selectbox() {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: transparent;
+  background-image: url("/images/Down.svg");
+  background-size: 15px 15px;
+  background-repeat: no-repeat;
+  background-position-x: 95%;
+  background-position-y: 50%;
+  border: 1px solid #d4d4d4;
+  border-radius: 2px;
+  height: base(1.75);
+  padding: 0.6375rem base(0.75);
+  background-color: white;
+}
+
+@mixin textbox() {
+  font-family: Work Sans, sans-serif;
+  width: 100%;
+  border: 1px solid #d4d4d4;
+  background: #fff;
+  color: #4f5152;
+  border-radius: 0;
+  font-size: base(0.6);
+  height: base(1.75);
+  line-height: base(1);
+  padding: 0.6375rem base(0.75);
+  -webkit-appearance: none;
+}
+
+@mixin hide-scrollbar {
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

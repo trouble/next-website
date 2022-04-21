@@ -1,0 +1,23 @@
+@use "@scss/common" as *;
+
+.wrap {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: base(1);
+
+  & > *:not(:last-child) {
+    margin-right: base(0.25);
+  }
+
+  @include mid-break {
+    display: block;
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
+
+.dash {
+  @include mid-break {
+    display: none;
+  }
+}

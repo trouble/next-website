@@ -1,0 +1,117 @@
+@use "@scss/common" as *;
+
+.arrowButton {
+  @include button-reset;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  will-change: transform;
+  transition: all var(--default-trans-time) linear;
+  width: base(1.25);
+  height: base(1.25);
+  border: var(--stroke-width) solid currentColor;
+  border-radius: 100%;
+}
+
+.left {
+  &:hover {
+    &:local() {
+      .arrowWrapper {
+        transform: translate3d(calc(-50% - 5px), -50%, 0);
+      }
+    }
+  }
+}
+
+.right {
+  &:hover {
+    &:local() {
+      .arrowWrapper {
+        transform: translate3d(calc(-50% + 5px), -50%, 0);
+      }
+    }
+  }
+}
+
+.up {
+  &:hover {
+    &:local() {
+      .arrowWrapper {
+        transform: translate3d(-50%, calc(-50% - 5px), 0);
+      }
+    }
+  }
+}
+
+.down {
+  &:hover {
+    &:local() {
+      .arrowWrapper {
+        transform: translate3d(-50%, calc(-50% + 5px), 0);
+      }
+    }
+  }
+}
+
+.arrowWrapper {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: all var(--default-trans-time) linear;
+}
+
+.white {
+  color: var(--color-white);
+  &:hover {
+    color: var(--color-light-gray);
+  }
+}
+
+.red {
+  color: var(--color-red);
+  &:hover {
+    color: var(--color-dark-red);
+  }
+}
+
+.blue {
+  color: var(--color-blue);
+  &:hover {
+    color: var(--color-dark-blue);
+  }
+}
+
+.green {
+  color: var(--color-green);
+  &:hover {
+    color: var(--color-dark-green);
+  }
+}
+
+.purple {
+  color: var(--color-purple);
+  &:hover {
+    color: var(--color-dark-purple);
+  }
+}
+
+.large {
+  width: base(2);
+  height: base(2);
+  @include mid-break {
+    width: base(1.5);
+    height: base(1.5);
+  }
+}
+
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}

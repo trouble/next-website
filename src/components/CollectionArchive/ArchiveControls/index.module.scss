@@ -1,0 +1,17 @@
+@use "@scss/common" as *;
+
+.archiveControls {
+  margin-bottom: base(2);
+  @include mid-break {
+    margin-bottom: base(0.5);
+  }
+}
+
+.controlsCell {
+  position: relative;
+  padding: base();
+}
+
+.formWrapper {
+  position: relative;
+}

@@ -1,0 +1,14 @@
+@use '@scss/common' as *;
+
+.subMenu {
+  width: 100%;
+}
+
+.columns {
+  display: flex;
+  margin: base(-1);
+  flex-wrap: nowrap;
+  & > * {
+    margin: base(1);
+  }
+}

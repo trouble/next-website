@@ -1,0 +1,40 @@
+@use "@scss/common" as *;
+
+.alertWrapper {
+  position: relative;
+}
+
+.alertContent {
+  padding: base(0.25) 0;
+  padding-bottom: calc(#{base(0.25)} + 1px);
+  color: var(--color-white);
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  margin-right: base();
+}
+
+.richText {
+  flex-grow: 1;
+}
+
+.dismiss {
+  @include button-reset;
+  flex-shrink: 0;
+}
+
+.separator {
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-trans-white-2);
+  position: relative;
+}

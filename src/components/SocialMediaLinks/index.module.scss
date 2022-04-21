@@ -1,0 +1,28 @@
+@use "@scss/common" as *;
+
+.socialMediaLinks {
+  display: flex;
+  flex-wrap: wrap;
+  margin: base(-0.25);
+  padding: base(0.25);
+
+  & > * {
+    margin: base(0.25);
+  }
+}
+
+.label {
+  margin-right: base(0.5);
+}
+
+.justify-flex-start {
+  justify-content: flex-start;
+}
+
+.justify-flex-end {
+  justify-content: flex-end;
+}
+
+.justify-center {
+  justify-content: center;
+}

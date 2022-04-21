@@ -1,0 +1,21 @@
+@use "@scss/common" as *;
+
+.basicHero {
+  display: block;
+  padding-top: base(6);
+  position: relative;
+  margin-bottom: base(4);
+
+  @include mid-break {
+    padding-top: base();
+    margin-bottom: base();
+  }
+}
+
+.pageCrumb {
+  margin-bottom: base();
+
+  @include mid-break {
+    margin-bottom: base(0.5);
+  }
+}

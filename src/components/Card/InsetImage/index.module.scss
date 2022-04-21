@@ -1,0 +1,41 @@
+@use "@scss/common" as *;
+
+.imageWrapper {
+  overflow: hidden;
+}
+
+.image {
+  transition: all var(--default-trans-time) linear;
+  transform: scale(1);
+}
+
+.card {
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--color-white);
+  box-shadow: var(--shadow-s), var(--shadow-m);
+
+  &:hover {
+    &:local() {
+      .image {
+        transform: scale(1.05);
+      }
+    }
+  }
+}
+
+.anchor {
+  display: block;
+  padding: base(0.5);
+}
+
+.content {
+  display: flex;
+  align-items: flex-end;
+  padding: base(1);
+
+  @include large-break {
+    padding: base(0.5);
+  }
+}

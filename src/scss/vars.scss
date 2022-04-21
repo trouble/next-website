@@ -1,0 +1,66 @@
+$html-font-size-xl: 20;
+$html-line-height-xl: 30;
+$html-font-size-l: 17;
+$html-line-height-l: 28;
+$html-font-size-m: 16;
+$html-line-height-m: 24;
+
+// Caption styles
+$caption-font-size: 14px;
+
+$fontHeading: "Tiempos Headline", serif;
+$fontBody: "Work Sans", sans-serif;
+
+$blockContainerWidth: 1400px;
+
+$color-darker-green: #093e41;
+$color-dark-green: #18666a;
+$color-green: #0d8a92;
+$color-light-green: #bff6e9;
+
+$color-darker-blue: #133e50;
+$color-dark-blue: #1f556b;
+$color-blue: #49869a;
+$color-light-blue: #c1f1f2;
+
+$color-darker-red: #7c1a1d;
+$color-dark-red: #a42d30;
+$color-red: #c74848;
+$color-light-red: #f8dbde;
+
+$color-darker-purple: #421b2e;
+$color-dark-purple: #67324b;
+$color-purple: #af7591;
+$color-light-purple: #efdcf8;
+
+$color-dark-gray: #4f5152;
+$color-gray: #d4d4d4;
+$color-light-gray: #f4f4f4;
+$color-light-gray-rgba: rgba(244, 244, 244, 1);
+
+$color-trans-white: rgba(255, 255, 255, 0.25);
+$color-trans-white-2: rgba(255, 255, 255, 0.1);
+$color-white: #ffffff;
+$color-black: #333434;
+
+$breakpoint-xs-width: 400px;
+$breakpoint-s-width: 768px;
+$breakpoint-m-width: 1279px;
+$breakpoint-l-width: 1679px;
+$breakpoint-xl-width: 1920px;
+
+// IMPORTANT: must keep GridProvider settings in _app.js synced
+$mobile-gutter: 20px;
+$desktop-gutter: 20px;
+
+$modal-trans-time: 250ms; // IMPORTANT: match value in any ModalProvider (./pages/_app.tsx)
+$default-trans-time: 150ms;
+$slider-trans-time: 750ms;
+$page-trans-time: 400ms; // IMPORTANT: must match timeout value in 'PageTransition' component
+
+$stroke-width: 1px;
+$stroke-width-bold: 2px;
+
+$shadow-xs: 0px 2px 4px rgba(0, 0, 0, 0.05);
+$shadow-s: 0px 4px 10px rgba(0, 0, 0, 0.05);
+$shadow-m: 0px 0px 20px rgba(0, 0, 0, 0.05);

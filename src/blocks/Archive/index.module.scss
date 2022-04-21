@@ -1,0 +1,13 @@
+@use "@scss/common" as *;
+
+.archiveBlock {
+  position: relative;
+}
+
+.introContent {
+  margin-bottom: base(2);
+
+  @include mid-break {
+    margin-bottom: base();
+  }
+}

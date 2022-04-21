@@ -1,0 +1,9 @@
+@use '@scss/common' as *;
+
+.column {
+  flex: 1;
+
+  & > *:not(:last-child) {
+    margin-bottom: base();
+  }
+}

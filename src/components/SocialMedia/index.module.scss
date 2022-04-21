@@ -1,0 +1,40 @@
+@use "@scss/common" as *;
+
+.socialMedia {
+  background-color: var(--color-white);
+  width: base();
+  height: base();
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  width: base(0.5);
+  height: base(0.5);
+}
+
+.icon-color-gray {
+  &:local() {
+    .fill {
+      fill: var(--color-dark-gray);
+    }
+  }
+}
+
+.icon-color-white {
+  &:local() {
+    .fill {
+      fill: var(--color-white);
+    }
+  }
+}
+
+.bg-color-white {
+  background-color: var(--color-white);
+}
+
+.bg-color-dark-gray {
+  background-color: var(--color-dark-gray);
+}

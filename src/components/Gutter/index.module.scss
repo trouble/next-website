@@ -1,0 +1,26 @@
+@use '@scss/common' as *;
+
+.gutterLeft {
+  padding-left: var(--mobile-gutter);
+}
+
+.gutterRight {
+  padding-right: var(--mobile-gutter);
+}
+
+.mobileOnly {
+  padding-left: 0;
+  padding-right: 0;
+
+  @include mid-break {
+    &:local() {
+      .gutterLeft {
+        padding-left: var(--mobile-gutter);
+      }
+
+      .gutterRight {
+        padding-right: var(--mobile-gutter);
+      }
+    }
+  }
+}

@@ -1,0 +1,62 @@
+@use "@scss/common" as *;
+
+// this is to make up for the space taken by the fixed header, since the scroll method does not accept an offset parameter
+.scrollRef {
+  position: absolute;
+  left: 0;
+  top: base(-5);
+  @include mid-break {
+    top: base(-2);
+  }
+}
+
+.introContent {
+  position: relative;
+  margin-bottom: base(2);
+
+  @include mid-break {
+    margin-bottom: base();
+  }
+}
+
+.resultCountWrapper {
+  display: flex;
+  margin-bottom: base(2);
+  @include mid-break {
+    margin-bottom: base();
+  }
+}
+
+.pageRange {
+  margin-bottom: base(2);
+
+  @include mid-break {
+    margin-bottom: base();
+  }
+}
+
+.list {
+  position: relative;
+}
+
+.grid {
+  width: 100%;
+}
+
+.row {
+  &:not(last-child) {
+    margin-bottom: base();
+  }
+}
+
+.divider {
+  width: 100%;
+}
+
+.pagination {
+  margin-top: base(2);
+
+  @include mid-break {
+    margin-top: base();
+  }
+}

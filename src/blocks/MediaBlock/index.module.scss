@@ -1,0 +1,26 @@
+@use "@scss/common" as *;
+
+.mediaBlock {
+  position: relative;
+  width: 100%;
+}
+
+.caption {
+  margin-top: base();
+
+  @include mid-break {
+    margin-top: base(0.5);
+  }
+}
+
+.wideCaption {
+  @include mid-break {
+    padding: 0;
+  }
+}
+
+.wideMediaBlock {
+  @include mid-break {
+    padding-left: var(--mobile-gutter);
+  }
+}

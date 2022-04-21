@@ -1,0 +1,19 @@
+@use '@scss/common' as *;
+
+.buttonGroup {
+  display: flex;
+  flex-wrap: wrap;
+  margin: base(-0.5);
+
+  & > * {
+    margin: base(0.5);
+  }
+}
+
+.margin--small {
+  margin: base(-0.25);
+
+  & > * {
+    margin: base(0.25);
+  }
+}

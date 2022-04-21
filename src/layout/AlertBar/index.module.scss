@@ -1,0 +1,10 @@
+@use "@scss/common" as *;
+
+.alertBar {
+  position: relative;
+  z-index: 10;
+}
+
+.alertWrapper {
+  position: relative;
+}

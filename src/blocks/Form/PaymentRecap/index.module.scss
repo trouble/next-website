@@ -1,0 +1,19 @@
+@use "@scss/common" as *;
+
+.paymentRecap {
+  margin-bottom: base(1);
+  background-color: white;
+  padding: base(0.5);
+  box-shadow: var(--shadow-s);
+  display: flex;
+  justify-content: space-between;
+}
+
+.label {
+  margin-right: base(1);
+  font-weight: 600;
+}
+
+.total {
+  font-weight: 600;
+}

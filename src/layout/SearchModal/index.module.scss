@@ -1,0 +1,157 @@
+@use "@scss/common" as *;
+
+.searchModal {
+  border: none;
+  width: 100%;
+  height: 100%;
+  color: var(--color-white);
+  will-change: transform opacity;
+  transition: all var(--modal-trans-time) linear;
+  transform: translate3d(0, #{base(-2)}, 0);
+  transition-delay: calc(#{var(--modal-trans-time)} / 2);
+  min-height: 100vh;
+  opacity: 0;
+  padding: 0;
+  background: none;
+  overflow: auto;
+
+  &:global(.mywebsite__modal-item--appearActive),
+  &:global(.mywebsite__modal-item--appearDone),
+  &:global(.mywebsite__modal-item--enterActive),
+  &:global(.mywebsite__modal-item--enterDone) {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+
+  &:global(.mywebsite__modal-item--exitActive),
+  &:global(.mywebsite__modal-item--exitDone) {
+    transform: translate3d(0, #{base(-2)}, 0);
+    opacity: 0;
+  }
+}
+
+.blockContainer {
+  position: relative;
+}
+
+.blockContainerCell {
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapper {
+  padding-top: base(1);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  @include mid-break {
+    padding-top: base(4);
+  }
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  padding-top: base(1);
+  flex-grow: 1;
+  @include mid-break {
+    padding-bottom: base(4);
+  }
+}
+
+.bodyHeading {
+  display: flex;
+  & > *:not(:last-child) {
+    margin-right: base(0.5);
+  }
+}
+
+.clearButton {
+  @include button-reset;
+  opacity: 0.5;
+  transition: all var(--default-trans-time) linear;
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.searchInputWrapper {
+  position: relative;
+}
+
+.searchInput {
+  @include h2;
+  width: 100%;
+  font-weight: 600;
+  margin: 0;
+  background: none;
+  outline: none;
+  border: none;
+  padding: base(0.375) 0;
+  display: block;
+  appearance: unset;
+  color: currentColor;
+  border-bottom: var(--stroke-width) rgba(255, 255, 255, 0.25) solid;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.25);
+  }
+}
+
+.closeButton {
+  @include button-reset;
+  position: absolute;
+  top: calc(50%);
+  right: 0;
+  transform: translate(0%, -50%);
+}
+
+.hyperlink {
+  text-decoration: underline;
+}
+
+.results {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.result {
+  margin-bottom: base(0.75);
+}
+
+.placeholder {
+  display: block;
+}
+
+.desc {
+  margin: base(0.5) 0 0;
+}
+
+.pagination {
+  margin: base(1) 0 base(2);
+}
+
+.pageRange {
+  margin-bottom: base(1);
+}
+
+.popularSearchTerms {
+  display: flex;
+  list-style: none;
+  margin: base(0.5) 0;
+  padding: 0;
+  flex-wrap: wrap;
+
+  li {
+    margin-right: base(0.5);
+  }
+}
+
+.startOver {
+  margin-top: base(1);
+}

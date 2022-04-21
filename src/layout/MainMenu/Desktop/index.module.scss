@@ -1,0 +1,144 @@
+@use "@scss/common" as *;
+
+.desktopMainMenu {
+  width: 100%;
+  height: 100%;
+  position: relative;
+
+  @include mid-break {
+    display: none !important;
+  }
+}
+
+.content {
+  position: relative;
+  height: 100%;
+}
+
+.wrapper {
+  padding-top: base(1);
+  padding-bottom: base(4);
+  height: 100%;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  align-items: flex-start;
+}
+
+.items {
+  display: flex;
+  flex-direction: column;
+
+  & > *:not(:last-child) {
+    margin-bottom: base(1);
+  }
+}
+
+.item {
+  position: relative;
+  opacity: 0.5;
+  transition: all linear var(--default-trans-time);
+  opacity: 0.5;
+}
+
+.itemActive {
+  opacity: 1;
+}
+
+.itemIndex {
+  font-family: $fontHeading;
+  font-weight: 400;
+  letter-spacing: 2px;
+  position: absolute;
+  left: base(-2);
+  top: 0;
+}
+
+.link {
+  cursor: pointer;
+  margin: 0;
+}
+
+.secondaryItems {
+  margin-top: base(2);
+  display: flex;
+  flex-direction: column;
+
+  & > *:not(:last-child) {
+    margin-bottom: base(0.5);
+  }
+}
+
+.secondaryItem {
+  transition: opacity linear var(--default-trans-time);
+  opacity: 1;
+
+  &:hover {
+    opacity: 0.5;
+  }
+}
+
+.red {
+  &:local() {
+    .itemIndex {
+      color: var(--color-red);
+    }
+  }
+}
+
+.blue {
+  &:local() {
+    .itemIndex {
+      color: var(--color-blue);
+    }
+  }
+}
+
+.green {
+  &:local() {
+    .itemIndex {
+      color: var(--color-green);
+    }
+  }
+}
+
+.purple {
+  &:local() {
+    .itemIndex {
+      color: var(--color-purple);
+    }
+  }
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.background {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  height: 100%;
+  left: 0;
+}
+
+.backgroundGrid {
+  height: 100%;
+}
+
+.backgroundCell {
+  position: relative;
+}
+
+.backgroundColor {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  height: 100%;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.05);
+  mix-blend-mode: multiply;
+}

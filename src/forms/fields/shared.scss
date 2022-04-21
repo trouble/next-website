@@ -1,0 +1,55 @@
+@use "@scss/common" as *;
+
+@mixin formInput() {
+  font-family: $fontBody;
+  width: 100%;
+  border: 1px solid $color-gray;
+  background: white;
+  color: $color-dark-gray;
+  border-radius: 0;
+  font-size: 1rem;
+  height: base(1.75);
+  line-height: base(1);
+  padding: base(0.375) base(0.75);
+  -webkit-appearance: none;
+  margin-bottom: base(1);
+
+  &::-webkit-input-placeholder {
+    color: $color-gray;
+    font-weight: normal;
+    font-size: 1rem;
+  }
+
+  &::-moz-placeholder {
+    color: $color-gray;
+    font-weight: normal;
+    font-size: 1rem;
+  }
+
+  &:hover {
+    border-color: darken($color-gray, 10%);
+  }
+
+  &:focus,
+  &:active {
+    border-color: $color-gray;
+    outline: 0;
+  }
+
+  &:disabled {
+    background: lighten($color-light-gray, 5%);
+    color: darken($color-gray, 5%);
+
+    &:hover {
+      border-color: $color-light-gray;
+    }
+  }
+
+  @include small-break {
+    margin-bottom: base(0.5);
+  }
+}
+
+.noMarginBottom {
+  margin-bottom: 0;
+}

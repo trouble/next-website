@@ -1,0 +1,14 @@
+@use "@scss/common" as *;
+
+.desktop {
+  @include mid-break {
+    display: none;
+  }
+}
+
+.mobile {
+  display: none;
+  @include mid-break {
+    display: block;
+  }
+}

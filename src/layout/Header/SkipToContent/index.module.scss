@@ -1,0 +1,31 @@
+@use "@scss/common" as *;
+
+.skipToContent {
+  position: relative;
+  z-index: 10;
+  height: 0;
+  overflow: hidden;
+
+  &:focus-within {
+    height: auto;
+  }
+}
+
+.buttonWrapper {
+  position: relative;
+}
+
+.skipMenuButton {
+  opacity: 0;
+  text-decoration: none;
+  color: var(--color-white);
+  font-weight: normal;
+  display: inline-flex;
+  align-items: center;
+  padding: 0;
+
+  &:focus {
+    opacity: 1;
+    outline: none;
+  }
+}

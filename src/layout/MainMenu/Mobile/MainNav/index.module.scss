@@ -1,0 +1,50 @@
+@use "@scss/common" as *;
+
+.mainNav {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding-top: base();
+  padding-bottom: base(2);
+}
+
+.items {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+
+  & > *:not(:last-child) {
+    margin-bottom: base();
+  }
+}
+
+.secondaryItems {
+  margin-top: base();
+  display: flex;
+  flex-direction: column;
+
+  * > *:not(:last-child) {
+    margin-bottom: base();
+  }
+}
+
+.secondaryItem {
+  margin-bottom: base(0.5);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.link {
+  cursor: pointer;
+  margin: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.linkLabel {
+  margin-right: base();
+  flex-grow: 1;
+}

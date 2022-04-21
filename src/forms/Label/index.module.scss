@@ -1,0 +1,11 @@
+@use '@scss/common' as *;
+
+.label {
+  display: block;
+  margin-bottom: base(.25);
+}
+
+.required {
+  color: $color-red;
+  margin: 0 base(.25);
+}

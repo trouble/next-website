@@ -1,0 +1,46 @@
+@use "@scss/common" as *;
+
+.formBlock {
+  position: relative;
+}
+
+.formWrap {
+  position: relative;
+  margin-top: base(2);
+  padding: base(3) 0;
+}
+
+.formCell {
+  & > *:not(:last-child) {
+    margin-bottom: base(1);
+  }
+}
+
+.bgGrid,
+.bg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.bgCell {
+  height: 100%;
+  position: relative;
+}
+
+.fieldWrap {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: base(-0.5);
+  margin-right: base(-0.5);
+  width: calc(100% + #{base(1)});
+
+  > * {
+    width: 100%;
+  }
+}

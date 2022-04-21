@@ -1,0 +1,41 @@
+@use "@scss/common" as *;
+
+.contentBlock {
+  position: relative;
+}
+
+.content {
+  position: relative;
+}
+
+.background {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.backgroundGrid {
+  height: 100%;
+}
+
+.backgroundCell {
+  position: relative;
+}
+
+.buttonGroup {
+  margin-top: base(1);
+  flex-direction: column;
+  align-items: flex-start;
+
+  @include mid-break {
+    margin-top: base(.5);
+    margin-bottom: base(1);
+  }
+}
+
+.button {
+  margin-top: base(.125);
+  margin-bottom: base(.125);
+}

@@ -1,0 +1,6 @@
+@use '@scss/common' as *;
+
+.menuDescription {
+  @include small;
+  margin: 0;
+}

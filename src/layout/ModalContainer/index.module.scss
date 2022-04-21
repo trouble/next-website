@@ -1,0 +1,20 @@
+@use "@scss/common" as *;
+
+.modalContainer {
+  transition: all var(--modal-trans-time) linear;
+  transform: translate3d(0, #{base(-2)}, 0);
+
+  &:global(.mywebsite__modal-container--appearActive),
+  &:global(.mywebsite__modal-container--appearDone),
+  &:global(.mywebsite__modal-container--enterActive),
+  &:global(.mywebsite__modal-container--enterDone) {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+
+  &:global(.mywebsite__modal-container--exitActive),
+  &:global(.mywebsite__modal-container--exitDone) {
+    transform: translate3d(0, #{base(-2)}, 0);
+    opacity: 0;
+  }
+}

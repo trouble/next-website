@@ -1,0 +1,45 @@
+@use "@scss/common" as *;
+
+.caption {
+  margin-bottom: base(0.6);
+  max-width: fit-content;
+  font-size: var(--caption-font-size);
+  line-height: calc(var(--html-line-height) * 0.85px);
+}
+
+.alignment-left {
+  margin-right: base(1.25);
+
+  @include mid-break {
+    margin-right: base(1);
+  }
+
+  @include small-break {
+    margin-right: base(0.75);
+  }
+
+  @include extra-small-break {
+    margin-right: 0;
+  }
+}
+
+.alignment-right {
+  margin-left: base(1.25);
+
+  @include mid-break {
+    margin-left: base(1);
+  }
+
+  @include small-break {
+    margin-left: base(0.75);
+  }
+
+  @include extra-small-break {
+    margin-left: 0;
+  }
+}
+
+.alignment-center {
+  max-width: fit-content;
+  margin-bottom: base(0.5);
+}

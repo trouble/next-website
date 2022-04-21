@@ -1,0 +1,54 @@
+@use "@scss/common" as *;
+
+.pageCrumb {
+  @include small;
+  display: flex;
+}
+
+.line {
+  display: inline-flex;
+  position: relative;
+  top: 8px;
+  width: base(1);
+  height: 1px;
+  background-color: currentColor;
+  margin-right: base(0.5);
+  flex-shrink: 0;
+
+  @include mid-break {
+    width: base(1);
+  }
+}
+
+.arrow {
+  position: relative;
+  top: 3px;
+  margin-right: base(0.5);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  @include mid-break {
+    top: 2px;
+  }
+}
+
+.white {
+  color: var(--color-white);
+}
+
+.red {
+  color: var(--color-red);
+}
+
+.green {
+  color: var(--color-green);
+}
+
+.blue {
+  color: var(--color-blue);
+}
+
+.purple {
+  color: var(--color-purple);
+}

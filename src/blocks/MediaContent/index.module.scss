@@ -1,0 +1,118 @@
+@use "@scss/common" as *;
+
+.mediaContent {
+  position: relative;
+}
+
+.grid {
+  align-items: center;
+}
+
+.background {
+  z-index: -1;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.bgGrid {
+  height: 100%;
+}
+
+.bgCell {
+  position: relative;
+  height: 100%;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+
+  &.content--overlap {
+    :global {
+      h2,
+      h3,
+      h4 {
+        width: 150%;
+
+        @include mid-break {
+          width: 100%;
+        }
+      }
+    }
+
+    @include mid-break {
+      margin: base(-3) 0 0;
+      order: 2;
+    }
+  }
+}
+
+.contentCell {
+  @include mid-break {
+    padding-left: var(--mobile-gutter);
+    padding-right: var(--mobile-gutter);
+  }
+}
+
+.contentCellPaddingBottom {
+  padding-bottom: base();
+}
+
+.content--contentOnRight {
+  order: 2;
+
+  @include mid-break {
+    margin: base() 0 0;
+  }
+
+  &.content--overlap {
+    :global {
+      h2,
+      h3,
+      h4 {
+        margin-left: -50%;
+
+        @include mid-break {
+          margin-left: 0;
+        }
+      }
+    }
+
+    @include mid-break {
+      margin: base(-3) 0 0;
+      order: 2;
+    }
+  }
+}
+
+.content--contentOnLeft {
+  @include mid-break {
+    margin: base() 0 0;
+    order: 2;
+  }
+}
+
+.contentGrid {
+  position: relative;
+}
+
+.contentGridOverlap {
+  @include mid-break {
+    padding: base() 0 0;
+  }
+}
+
+.media--contentOnRight {
+  order: 1;
+}
+
+.buttonGroup {
+  margin-top: base(1);
+}
+
+.bg {
+  z-index: -1;
+}

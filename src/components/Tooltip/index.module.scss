@@ -1,0 +1,40 @@
+@use '@scss/common' as *;
+
+.tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  z-index: 2;
+  transform: translate3d(-50%, -20%, 0);
+  padding: base(0.2) base(0.4);
+  color: white;
+  line-height: base(0.75);
+  font-weight: normal;
+  white-space: nowrap;
+}
+
+.caret {
+  position: absolute;
+  transform: translateX(-50%);
+  top: calc(100% - #{base(0.0625)});
+  left: 50%;
+  height: 0;
+  width: 0;
+  border: 10px solid transparent;
+}
+
+.type-default {
+  background-color: $color-dark-gray;
+}
+
+.caret-type-default {
+  border-top-color: $color-dark-gray
+}
+
+.type-error {
+  background-color: $color-red;
+}
+
+.caret-type-error {
+  border-top-color: $color-red
+}

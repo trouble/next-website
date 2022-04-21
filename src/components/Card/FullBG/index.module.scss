@@ -1,0 +1,38 @@
+@use "@scss/common" as *;
+
+.background {
+  display: flex;
+  transition: all var(--default-trans-time) linear;
+  transform: scale(1);
+}
+
+.card {
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-s), var(--shadow-m);
+
+  &:hover {
+    &:local() {
+      .background {
+        transform: scale(1.05);
+      }
+    }
+  }
+}
+
+.content {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: flex-end;
+  color: white;
+  padding: base(1.5);
+
+  @include large-break {
+    padding: base(1);
+  }
+}

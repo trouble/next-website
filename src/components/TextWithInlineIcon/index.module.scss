@@ -1,0 +1,45 @@
+@use "@scss/common" as *;
+
+.textWithInlineIcon {
+  opacity: 1;
+  transition: all linear var(--default-trans-time);
+}
+
+.iconWrapper {
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+}
+
+.span {
+  display: inline-block;
+}
+
+.icon {
+  translate: translate3d(0, 0, 0);
+  transition: all linear var(--default-trans-time);
+}
+
+.animateIconOnHover {
+  &:hover {
+    &:local() {
+      .icon {
+        transform: translate3d(5px, 0, 0);
+        @include mid-break {
+          transform: translate3d(0, 0, 0);
+        }
+      }
+    }
+  }
+}
+
+.dimOnHover {
+  &:hover {
+    &:local() {
+      opacity: 0.5;
+      @include mid-break {
+        opacity: 1;
+      }
+    }
+  }
+}

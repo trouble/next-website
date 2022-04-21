@@ -1,0 +1,244 @@
+@use "./mixins.scss" as *;
+@use "./functions.scss" as *;
+@use "./queries.scss" as *;
+@use "./vars.scss" as *;
+@use "./type.scss" as *;
+@import "./fonts.scss";
+
+#__next {
+  height: 100%;
+}
+
+:root {
+  --html-font-size: #{$html-font-size-xl};
+  --html-line-height: #{$html-line-height-xl};
+
+  --caption-font-size: #{$caption-font-size};
+
+  --font-heading: #{$fontHeading};
+  --font-body: #{$fontBody};
+
+  --color-dark-green: #{$color-dark-green};
+  --color-darker-green: #{$color-darker-green};
+  --color-green: #{$color-green};
+  --color-light-green: #{$color-light-green};
+
+  --color-dark-blue: #{$color-dark-blue};
+  --color-darker-blue: #{$color-darker-blue};
+  --color-blue: #{$color-blue};
+  --color-light-blue: #{$color-light-blue};
+
+  --color-dark-red: #{$color-dark-red};
+  --color-darker-red: #{$color-darker-red};
+  --color-red: #{$color-red};
+  --color-light-red: #{$color-light-red};
+
+  --color-dark-purple: #{$color-dark-purple};
+  --color-darker-purple: #{$color-darker-purple};
+  --color-purple: #{$color-purple};
+  --color-light-purple: #{$color-light-purple};
+
+  --color-dark-gray: #{$color-dark-gray};
+  --color-gray: #{$color-gray};
+  --color-light-gray: #{$color-light-gray};
+
+  --color-trans-white: #{$color-trans-white};
+  --color-trans-white-2: #{$color-trans-white-2};
+  --color-white: #{$color-white};
+  --color-black: #{$color-black};
+
+  --breakpoint-xs-width: #{$breakpoint-xs-width};
+  --breakpoint-s-width: #{$breakpoint-s-width};
+  --breakpoint-m-width: #{$breakpoint-m-width};
+  --breakpoint-l-width: #{$breakpoint-l-width};
+  --breakpoint-xl-width: #{$breakpoint-xl-width};
+
+  --modal-trans-time: #{$modal-trans-time};
+  --default-trans-time: #{$default-trans-time};
+  --slider-trans-time: #{$slider-trans-time};
+  --page-trans-time: #{$page-trans-time};
+
+  --mobile-gutter: #{$mobile-gutter};
+  --desktop-gutter: #{$desktop-gutter};
+
+  --stroke-width: #{$stroke-width};
+  --stroke-width-bold: #{$stroke-width-bold};
+
+  --shadow-xs: #{$shadow-xs};
+  --shadow-s: #{$shadow-s};
+  --shadow-m: #{$shadow-m};
+
+  --col-gap: 2rem;
+
+  --gutter-h: #{base(2)};
+  --gutter-v: #{base(1)};
+
+  @include mid-break {
+    --gutter-h: #{base(1)};
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+}
+
+html {
+  color: $color-dark-gray;
+  font-family: $fontBody;
+  font-size: calc(#{var(--html-font-size)} * 1px);
+  line-height: calc(#{var(--html-line-height)} * 1px);
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+
+  @include large-break {
+    @at-root {
+      :root {
+        --html-font-size: #{$html-font-size-l};
+        --html-line-height: #{$html-line-height-l};
+      }
+    }
+  }
+
+  @include mid-break {
+    @at-root {
+      :root {
+        --html-font-size: #{$html-font-size-m};
+        --html-line-height: #{$html-line-height-m};
+      }
+    }
+  }
+}
+
+body {
+  -webkit-text-size-adjust: none;
+}
+
+h1 {
+  @include h1;
+}
+
+h2 {
+  @include h2;
+}
+
+h3 {
+  @include h3;
+}
+
+h4 {
+  @include h4;
+}
+
+h5 {
+  @include h5;
+}
+
+h6 {
+  @include h6;
+}
+
+p {
+  @include p;
+}
+
+b,
+strong {
+  font-weight: 600;
+}
+
+ul {
+  @include ul;
+}
+
+li {
+  @include li;
+}
+
+li > ul, li > ol {
+  margin-top: base(0.5);
+}
+
+small {
+  font-size: 75%;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid currentColor;
+  margin: 0;
+}
+
+input,
+textarea,
+select {
+  margin: 0;
+}
+
+svg {
+  path,
+  circle,
+  line {
+    vector-effect: non-scaling-stroke;
+  }
+}
+
+// google maps widget
+
+.gm-ui-hover-effect {
+  width: base() !important;
+  height: base() !important;
+  & img {
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+  }
+}
+
+.gm-ui-hover-effect {
+  top: base(0.5) !important;
+  right: base(0.5) !important;
+}
+
+.gm-style-iw.gm-style-iw-c,
+.gm-style-iw-d {
+  padding: 0 !important;
+}
+
+.gm-style-iw-c,
+.gm-style-iw-d {
+  max-height: unset !important;
+  overflow: visible !important;
+}
+
+.gm-style .gm-style-iw {
+  font-size: unset;
+  font-weight: normal;
+  line-height: unset;
+  color: var(--color-dark-gray);
+}
+
+.gm-style .gm-style-iw-t::after {
+  top: -1px;
+}
+
+.gm-style {
+  font-family: $fontBody;
+  font-size: unset;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: $fontHeading;
+  }
+}
+
+.gm-style-moc {
+  opacity: 0 !important;
+}

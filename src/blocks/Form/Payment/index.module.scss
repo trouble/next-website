@@ -1,0 +1,12 @@
+@use "@scss/common" as *;
+@use "../../../forms/fields/shared.scss";
+
+.cardElement {
+  @include shared.formInput;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  & > * {
+    width: 100%;
+  }
+}

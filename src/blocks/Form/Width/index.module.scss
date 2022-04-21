@@ -1,0 +1,10 @@
+@use '@scss/common' as *;
+
+.width {
+  padding-left: base(.5);
+  padding-right: base(.5);
+
+  @include mid-break {
+    width: 100% !important;
+  }
+}

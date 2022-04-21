@@ -1,0 +1,46 @@
+@use "@scss/common" as *;
+
+.subMenu {
+  position: relative;
+}
+
+.columns {
+  display: flex;
+  flex-direction: column;
+  & > *:not(:last-child) {
+    margin-bottom: base();
+  }
+  padding-bottom: base(6);
+}
+
+.backButton {
+  z-index: 99;
+  position: sticky;
+  top: base(3.75);
+  width: 100%;
+  cursor: pointer;
+  padding-bottom: base(0.5);
+  padding-top: base(0.5);
+  margin-bottom: base();
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: calc(100% + (#{var(--mobile-gutter)} * 2));
+    height: 1px;
+    bottom: 0;
+    left: calc(#{var(--mobile-gutter)} * -1);
+    background-color: var(--color-trans-white-2);
+  }
+}
+
+.backLabel {
+  margin: 0;
+  margin-left: base(0.5);
+}
+
+.backContent {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
