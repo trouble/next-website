@@ -11,12 +11,12 @@ import { PrevNext } from '@components/PrevNext';
 import { useRouter } from 'next/router';
 // import { getPostCategoryBySlug } from '@root/payload';
 // import { revalidationRate } from '@root/revalidationRate';
-import { PayloadDoc, PostCategoryType } from '@root/types';
+import { PayloadDoc, PayloadPostCategory } from '@root/cms/types';
 
 const Post: React.FC<PayloadDoc & {
   prev?: PayloadDoc | null
   next?: PayloadDoc | null
-  category?: PostCategoryType
+  category?: PayloadPostCategory
   passwordSuccess?: boolean
 }> = (props) => {
   const [pageProps, setPageProps] = useState(props);

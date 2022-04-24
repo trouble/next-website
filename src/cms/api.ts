@@ -1,9 +1,9 @@
-import { AlertsType } from "./providers/Alerts";
+import { AlertsType } from "../providers/Alerts";
 import {
   FooterType,
   GlobalMeta,
   MainMenuType
-} from "./types/globals";
+} from "../types/globals";
 
 // TODO: if in preview mode, add payload token and ?draft=true to the request
 export const getByID = async ({

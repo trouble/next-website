@@ -1,4 +1,4 @@
-import { PayloadMediaType } from '@root/types/Media';
+import { PayloadMediaType } from '@root/cms/types';
 import NextHead from 'next/head';
 import React, { Fragment } from 'react';
 

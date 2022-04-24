@@ -1,7 +1,7 @@
 import { GetServerSideProps } from "next";
 import fs from "fs";
 import { formatPermalink } from "@root/utilities/formatPermalink";
-import { PayloadDoc } from "@root/types";
+import { PayloadDoc } from "@root/cms/types";
 // import { Housing, Page, Person, Post } from "";
 const path = require("path");
 

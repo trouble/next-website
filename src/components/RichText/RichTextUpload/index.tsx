@@ -3,14 +3,13 @@ import { Media } from '@components/Media';
 import classes from './index.module.scss';
 import { RichText, RichTextNode, RichTextType } from '..';
 import { Hyperlink, HyperlinkProps } from "@components/Hyperlink";
-import { PayloadMediaType } from '@root/types/Media';
-import { LinkType } from '@root/types';
+import { PayloadLink, PayloadMediaType } from '@root/cms/types';
 
 export type RichTextUploadNodeType = {
   fields: {
     caption?: RichTextType
     alignment?: 'left' | 'center' | 'right'
-    link?: LinkType
+    link?: PayloadLink
     enableLink?: boolean
   },
   value?: PayloadMediaType,

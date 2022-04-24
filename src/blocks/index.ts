@@ -1,18 +1,20 @@
-import { ContentBlock } from './Content';
-import { MediaContent } from './MediaContent';
-import { ContentSlider } from './ContentSlider';
-import { EmbeddedForm } from './Form';
-import { MediaBlock } from './MediaBlock';
-import { MediaSlider } from './MediaSlider';
-import { ArchiveBlock } from './Archive';
+import { ContentBlock, ContentBlockType } from './Content';
+import { MediaContent, MediaContentBlockType } from './MediaContent';
+import { ContentSlider, ContentSliderBlockType } from './ContentSlider';
+import { EmbeddedForm, EmbeddedFormType } from './Form';
+import { MediaBlock, MediaBlockType } from './MediaBlock';
+import { MediaSlider, MediaSliderType } from './MediaSlider';
+import { ArchiveBlock, ArchiveBlockType } from './Archive';
 
-export type BlockTypes = 'content' |
-  'archive' |
-  'mediaContent' |
-  'media' |
-  'contentSlider' |
-  'embeddedForm' |
-  'mediaSlider'
+export type BlocksType = (
+  ContentBlockType
+  | ArchiveBlockType
+  | MediaContentBlockType
+  | MediaBlockType
+  | ContentSliderBlockType
+  | EmbeddedFormType
+  | MediaSliderType
+)[]
 
 export const blocks = {
   content: ContentBlock,

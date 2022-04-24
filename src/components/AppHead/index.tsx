@@ -1,6 +1,6 @@
 import React from 'react';
 import Head from 'next/head'
-import { PayloadMediaType } from '@root/types/Media';
+import { PayloadMediaType } from '@root/cms/types';
 
 export const AppHead: React.FC<{
   image?: PayloadMediaType

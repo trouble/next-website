@@ -5,12 +5,11 @@ import { BlockContainer } from '@root/layout/BlockContainer';
 import { Cell, Grid } from '@faceless-ui/css-grid';
 import { ButtonGroup } from '@components/ButtonGroup';
 import { Media } from '@components/Media';
-import { LinkGroupType } from '@root/types';
-import { PayloadMediaType } from '@root/types/Media';
+import { PayloadLinkGroup, PayloadMediaType } from '@root/cms/types';
 
 export type FullscreenBackgroundHeroType = {
   type?: 'fullscreenBackground'
-  links?: LinkGroupType
+  links?: PayloadLinkGroup
   richText?: RichTextType
   backgroundMedia?: PayloadMediaType
   invertColors?: boolean

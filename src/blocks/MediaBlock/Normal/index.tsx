@@ -14,9 +14,10 @@ export const NormalMediaBlock: React.FC<MediaBlockType & {
   const {
     media,
     caption,
-    useVimeo,
+    embedVideo,
+    platform,
+    videoID,
     aspectRatio,
-    vimeoID,
     id
   } = props;
 
@@ -31,18 +32,18 @@ export const NormalMediaBlock: React.FC<MediaBlockType & {
           colsM={8}
         >
           <AnimateInOut>
-            {!useVimeo && (
+            {!embedVideo && (
               <Media
                 className={classes.media}
                 cmsImageSize="hero"
                 mediaFromCMS={media}
               />
             )}
-            {useVimeo && (
+            {embedVideo && (
               <VideoPlayer
-                platform="vimeo"
+                platform={platform}
                 aspectRatio={aspectRatio}
-                videoID={vimeoID}
+                videoID={videoID}
                 poster={media}
               />
             )}

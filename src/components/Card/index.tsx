@@ -1,7 +1,6 @@
 // import { Card as CardType } from "";
 import { RichTextType } from "@components/RichText";
-import { LinkType } from "@root/types";
-import { PayloadMediaType } from "@root/types/Media";
+import { PayloadLink, PayloadMediaType } from "@root/cms/types";
 import { FullBGCard } from "./FullBG";
 import { InsetImageCard } from "./InsetImage";
 import { NoImageCard } from "./NoImage";
@@ -17,7 +16,7 @@ export type CardAppearances = 'fullBG' | 'insetImage' | 'noImage'
 export type CardType = {
   appearance?: CardAppearances
   richText?: RichTextType
-  link?: LinkType
+  link?: PayloadLink
   media?: PayloadMediaType
   useOverlay?: boolean
 }

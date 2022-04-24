@@ -79,7 +79,7 @@ $headerHeight: base(4);
   will-change: opacity;
   transition: opacity var(--default-trans-time) linear;
   opacity: 1;
-  background-color: var(--color-white);
+  background-color: var(--color-dark-gray);
   width: base(1.5);
   height: base(1.5);
   border-radius: 100%;
@@ -92,50 +92,6 @@ $headerHeight: base(4);
 .searchDimmed,
 .closeDimmed {
   opacity: 0.5;
-}
-
-.white {
-  color: var(--color-white);
-}
-
-.red {
-  color: var(--color-red);
-}
-
-.dark-red {
-  color: var(--color-dark-red);
-}
-
-.dark-red {
-  color: var(--color-dark-red);
-}
-
-.blue {
-  color: var(--color-blue);
-}
-
-.dark-blue {
-  color: var(--color-dark-blue);
-}
-
-.green {
-  color: var(--color-green);
-}
-
-.dark-green {
-  color: var(--color-dark-green);
-}
-
-.purple {
-  color: var(--color-purple);
-}
-
-.dark-purple {
-  color: var(--color-dark-purple);
-}
-
-.dark-gray {
-  color: var(--color-dark-gray);
 }
 
 .subsiteNav {

@@ -1,5 +1,5 @@
 import { AddressType } from '@components/Address';
-import { PayloadMediaType } from '@root/types/Media';
+import { PayloadMediaType } from '@root/cms/types';
 import { generateDirectionsHref } from '@root/utilities/generateDirectionsHref';
 
 import classes from './index.module.scss'

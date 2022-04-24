@@ -1,0 +1,11 @@
+{
+  "totalDocs": 2,
+  "docs": [
+    {
+      "slug": "home"
+    },
+    {
+      "slug": "about"
+    }
+  ]
+}

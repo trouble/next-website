@@ -11,7 +11,7 @@ import { Breadcrumb as BreadcrumbType } from 'payload-plugin-nested-pages/dist/t
 // import { Meta as MetaType } from 'payload-plugin-seo/dist/types';
 import { formatPermalink } from '@root/utilities/formatPermalink';
 import { useRouter } from 'next/router';
-import { PostCategoriesType } from '@root/types';
+import { PayloadPostCategories } from '@root/cms/types';
 
 export const ResultRow: React.FC<{
   alignItems?: 'center'
@@ -24,7 +24,7 @@ export const ResultRow: React.FC<{
     relationTo?: string
     title?: string
     name?: string
-    categories?: PostCategoriesType
+    categories?: PayloadPostCategories
     breadcrumbs?: BreadcrumbType[]
     slug?: string
     publishedDate?: string

@@ -154,9 +154,15 @@ export const DesktopHeader: React.FC<{
                   }}
                 >
                   {!searchIsOpen ? (
-                    <SearchIcon bold />
+                    <SearchIcon
+                      bold
+                      color="white"
+                    />
                   ) : (
-                    <CloseIcon bold />
+                    <CloseIcon
+                      bold
+                      color="white"
+                    />
                   )}
                 </ModalToggler>
               </div>
@@ -171,7 +177,10 @@ export const DesktopHeader: React.FC<{
                     'aria-label': 'Open or close main menu'
                   }}
                 >
-                  <Hamburger isOpen={mainMenuIsOpen} />
+                  <Hamburger
+                    isOpen={mainMenuIsOpen}
+                    color="white"
+                  />
                 </ModalToggler>
               </div>
             </div>

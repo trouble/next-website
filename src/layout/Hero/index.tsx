@@ -1,6 +1,6 @@
+import { HeroType } from '@root/heros/types';
 import React from 'react';
 import heros from '../../heros';
-import { Hero as HeroType } from '../../types/Hero';
 
 export const Hero: React.FC<HeroType> = (props) => {
   const { type, publishedDate, categories } = props;

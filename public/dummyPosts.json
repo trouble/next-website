@@ -1,0 +1,35 @@
+{
+  "totalDocs": 10,
+  "docs": [
+    {
+      "slug": "post-1"
+    },
+    {
+      "slug": "post-2"
+    },
+    {
+      "slug": "post-3"
+    },
+    {
+      "slug": "post-4"
+    },
+    {
+      "slug": "post-5"
+    },
+    {
+      "slug": "post-6"
+    },
+    {
+      "slug": "post-7"
+    },
+    {
+      "slug": "post-8"
+    },
+    {
+      "slug": "post-9"
+    },
+    {
+      "slug": "post-10"
+    }
+  ]
+}

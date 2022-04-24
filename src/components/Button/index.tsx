@@ -1,17 +1,19 @@
 import { Hyperlink } from '@components/Hyperlink';
 import { ArrowIcon } from '@root/icons/Arrow';
-import { LinkAppearances, LinkType } from '@root/types';
+import { PayloadLink } from '@root/cms/types';
 import React, { Fragment } from 'react';
 import classes from './index.module.scss';
+
+export type ButtonAppearances = 'text' | 'primaryButton' | 'secondaryButton';
 
 export type ButtonProps = {
   className?: string,
   anchorClassName?: string
   href?: string
   label?: string
-  appearance?: LinkAppearances
+  appearance?: ButtonAppearances
   color?: string
-  linkFromCMS?: LinkType
+  linkFromCMS?: PayloadLink
   arrow?: boolean
   size?: string
   onMouseEnter?: () => void

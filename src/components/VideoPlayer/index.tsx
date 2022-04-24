@@ -4,7 +4,7 @@ import classes from './index.module.scss';
 import { Media } from '@components/Media';
 import { VimeoPlayer } from './Vimeo';
 import { YouTubePlayer } from './YouTube';
-import { PayloadMediaType } from '@root/types/Media';
+import { PayloadMediaType } from '@root/cms/types';
 
 // const youtubeID = 'OEFAgWQ_Gvg';
 const vimeoID = '367107968';

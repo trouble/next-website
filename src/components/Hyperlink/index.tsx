@@ -1,4 +1,4 @@
-import { LinkType } from '@root/types';
+import { PayloadLink } from '@root/cms/types';
 import { formatPermalink } from '@root/utilities/formatPermalink';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -11,7 +11,7 @@ import classes from './index.module.scss';
 export type HyperlinkProps = {
   href?: string
   className?: string
-  linkFromCMS?: LinkType
+  linkFromCMS?: PayloadLink
   onMouseEnter?: () => void
   onMouseLeave?: () => void
   onClick?: () => void

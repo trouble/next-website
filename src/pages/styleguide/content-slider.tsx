@@ -1,15 +1,15 @@
 import Meta from '@components/Meta';
-import { dummyBody } from '../../../public/styleguideData';
 import { BasicHero } from '@root/heros/Basic';
 import React, { Fragment } from 'react';
 import NextHead from 'next/head';
 import Blocks from '@root/layout/Blocks';
+import { dummyBody } from '../../../public/styleguideData';
 
-const ContentBlockDemo = () => {
+const ContentSliderDemo = () => {
   return (
     <Fragment>
       <Meta
-        title="Content Block"
+        title="Content Slider"
       />
       <NextHead>
         <meta
@@ -46,7 +46,7 @@ const ContentBlockDemo = () => {
           {
             type: 'h1',
             children: [{
-              text: 'Content Block',
+              text: 'Content Slider',
             }]
           }
         ]}
@@ -54,63 +54,39 @@ const ContentBlockDemo = () => {
       <Blocks
         blocks={[
           {
-            blockType: 'content',
+            blockType: 'contentSlider',
             blockName: '',
-            columns: [
+            slides: [
               {
-                width: 'oneThird',
                 richText: [
                   dummyBody
                 ]
               },
               {
-                width: 'oneThird',
                 richText: [
                   dummyBody
                 ]
               },
               {
-                width: 'oneThird',
+                richText: [
+                  dummyBody
+                ]
+              },
+              {
+                richText: [
+                  dummyBody
+                ]
+              },
+              {
+                richText: [
+                  dummyBody
+                ]
+              },
+              {
                 richText: [
                   dummyBody
                 ]
               }
-            ]
-          },
-          {
-            blockType: 'content',
-            blockName: '',
-            columns: [
-              {
-                width: 'half',
-                richText: [
-                  dummyBody
-                ]
-              },
-              {
-                width: 'half',
-                richText: [
-                  dummyBody
-                ]
-              },
-            ]
-          },
-          {
-            blockType: 'content',
-            blockName: '',
-            columns: [
-              {
-                width: 'twoThirds',
-                richText: [
-                  dummyBody
-                ]
-              },
-              {
-                width: 'oneThird',
-                richText: [
-                  dummyBody
-                ]
-              },
             ]
           }
         ]}
@@ -119,4 +95,4 @@ const ContentBlockDemo = () => {
   )
 }
 
-export default ContentBlockDemo;
+export default ContentSliderDemo;

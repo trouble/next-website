@@ -42,7 +42,18 @@ Core features:
 
 After cloning the repo, cd into it and run `yarn` then `yarn dev`
 
+Now visit `localhost:3000` in your browser to see the "getting started" page. By default, the app initializes using dummy data served locally from the public folder. This is a great way make progress while your CMS is being configured. These static files can be found here:
+
+    - `/public/dummyPages.json`
+    - `/public/dummyPosts.json`
+    - `/public/dummyGlobals.json`
+
+To turn this feature off, set `NEXT_PUBLIC_DUMMY_DATA` to `false` in your `.env`.
+
+Another useful tool is the static styleguide found at `localhost:3000/styleguide` - where fonts, type sizes, color schemes, button styles, etc. are all rendered in one place. There is also a page for every layout building block. This provides a way to iterate on each block and represent all possible states (minimum/maximum content, light/dark mode, etc).
+
 You'll want to then configure a few basic things
+  - If you already have a working CMS, set `devMode` to false in `getStaticPaths` and `getStaticProps`
   - Add your API, CMS, or CDN domains in `./csp.js`
   - Format your permalinks in `./src/utilities/formatPermalink.js`
   - Add your logo to `./src/components/Logo.tsx`

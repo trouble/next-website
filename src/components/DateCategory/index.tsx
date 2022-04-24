@@ -3,11 +3,11 @@ import { Hyperlink } from '@components/Hyperlink';
 import { formatDateTime } from '@root/utilities/formatDateTime';
 
 import classes from './index.module.scss';
-import { PostCategoriesType } from '@root/types';
+import { PayloadPostCategories } from '@root/cms/types';
 
 export type DateCategoryType = {
   publishedDate?: string
-  categories?: PostCategoriesType
+  categories?: PayloadPostCategories
 }
 
 export const DateCategory: React.FC<DateCategoryType> = (props) => {

@@ -7,7 +7,7 @@ import { Grid, Cell } from '@faceless-ui/css-grid'
 import Padding from '@components/Padding';
 import { AnimateInOut } from '@components/AnimateInOut';
 import { BlockID } from '@components/BlockID';
-import { LinkGroupType } from '@root/types';
+import { PayloadLinkGroup } from '@root/cms/types';
 import { BackgroundColor } from '@components/BackgroundColor';
 
 export type ColumnWidth = 'oneThird' | 'half' | 'twoThirds' | 'full';
@@ -18,7 +18,7 @@ export type Column = {
   richText?: RichTextType
   width?: ColumnWidth
   alignment?: Alignment
-  links?: LinkGroupType
+  links?: PayloadLinkGroup
 }
 
 export type ContentBlockType = {

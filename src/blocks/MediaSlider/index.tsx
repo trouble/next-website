@@ -13,7 +13,7 @@ import { base } from '@root/utilities/base';
 import { BlockID } from '@components/BlockID';
 import { RichText, RichTextType } from '@components/RichText';
 import { Media } from '@components/Media';
-import { PayloadMediaType } from '@root/types/Media';
+import { PayloadMediaType } from '@root/cms/types';
 
 export type Slide = {
   media?: PayloadMediaType

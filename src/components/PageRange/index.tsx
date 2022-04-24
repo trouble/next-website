@@ -1,4 +1,4 @@
-import { collectionLabels } from '@root/types/collectionLabels';
+import { collectionLabels } from '@root/cms/collectionLabels';
 import React from 'react';
 import classes from './index.module.scss';
 

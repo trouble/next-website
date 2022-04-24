@@ -8,7 +8,7 @@ import { Media } from '@components/Media';
 import { Hyperlink, HyperlinkProps } from '@components/Hyperlink';
 import { RichTextUpload, RichTextUploadNodeType } from './RichTextUpload';
 import { RichTextNode } from '.';
-import { PayloadMediaType } from '@root/types/Media';
+import { PayloadMediaType } from '@root/cms/types';
 
 export type RichTextRenderers = {
   [node: string]: (text?: string) => JSX.Element // eslint-disable-line no-unused-vars
@@ -371,6 +371,20 @@ const Serialize: React.FC<Props> = (props) => {
                 }
 
                 return null;
+
+              case 'span':
+                return (
+                  <span
+                    key={i}
+                    className={classes.span}
+                  >
+                    <Serialize
+                      customRenderers={customRenderers}
+                      overrides={overrides}
+                      content={node.children}
+                    />
+                  </span>
+                );
 
               default:
                 return (

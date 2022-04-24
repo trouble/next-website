@@ -11,8 +11,9 @@ import { Hero } from '../layout/Hero';
 import Meta from '@components/Meta';
 import { useRouter } from 'next/router';
 // import { revalidationRate } from '@root/revalidationRate';
-import { PayloadDoc } from '@root/types';
+import { PayloadDoc } from '@root/cms/types';
 import { useBreadcrumbs } from '@root/providers/Breadcrumbs';
+import dummyPages from '../../public/dummyPages.json';
 
 const Page: React.FC<PayloadDoc & {
   preview?: boolean
@@ -159,58 +160,61 @@ export const getStaticProps: GetStaticProps = async (
   // })
 }
 
-// type Path = {
-//   params: {
-//     slug: string[]
-//   }
-// };
+type Path = {
+  params: {
+    slug: string[]
+  }
+};
 
-// type Paths = Path[];
+type Paths = Path[];
 
 export const getStaticPaths: GetStaticPaths = async () => {
+  const useDummyData = process.env.NEXT_PUBLIC_DUMMY_DATA;
+
+  let paths: Paths = [];
+  let pagesReq;
+  let pagesData;
+
+  if (useDummyData) {
+    pagesData = dummyPages;
+  } else {
+    pagesReq = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/pages?where[_status][equals]=published&depth=0&limit=300`);
+    pagesData = await pagesReq.json();
+  }
+
+  if (pagesReq?.ok || useDummyData) {
+    const { docs: pages } = pagesData;
+
+    if (pages && Array.isArray(pages) && pages.length > 0) {
+      paths = pages.map((page) => {
+        const {
+          slug,
+          breadcrumbs,
+        } = page;
+
+        let slugs = [slug];
+
+        const hasBreadcrumbs = breadcrumbs && Array.isArray(breadcrumbs) && breadcrumbs.length > 0;
+
+        if (hasBreadcrumbs) {
+          slugs = breadcrumbs.map((crumb: any) => { // TODO: type this
+            const { url } = crumb;
+            let slug;
+            if (url) {
+              const split = url.split('/');
+              slug = split[split.length - 1];
+            }
+            return slug;
+          })
+        }
+
+        return ({ params: { slug: slugs } })
+      });
+    }
+  }
+
   return {
-    paths: [],
+    paths,
     fallback: true
-  };
-
-  // let paths: Paths = [];
-
-  // const pagesReq = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/pages?where[_status][equals]=published&depth=0&limit=300`);
-  // const pagesData = await pagesReq.json();
-
-  // if (pagesReq.ok) {
-  //   const { docs: pages } = pagesData;
-
-  //   if (pages && Array.isArray(pages) && pages.length > 0) {
-  //     paths = pages.map((page) => {
-  //       const {
-  //         slug,
-  //         breadcrumbs,
-  //       } = page;
-
-  //       let slugs = [slug];
-
-  //       const hasBreadcrumbs = breadcrumbs && Array.isArray(breadcrumbs) && breadcrumbs.length > 0;
-
-  //       if (hasBreadcrumbs) {
-  //         slugs = breadcrumbs.map((crumb: any) => { // TODO: type this
-  //           const { url } = crumb;
-  //           let slug;
-  //           if (url) {
-  //             const split = url.split('/');
-  //             slug = split[split.length - 1];
-  //           }
-  //           return slug;
-  //         })
-  //       }
-
-  //       return ({ params: { slug: slugs } })
-  //     });
-  //   }
-  // }
-
-  // return {
-  //   paths,
-  //   fallback: true
-  // }
+  }
 }

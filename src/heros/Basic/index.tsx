@@ -5,14 +5,14 @@ import { BlockContainer } from '@root/layout/BlockContainer';
 import { Cell, Grid } from '@faceless-ui/css-grid';
 import { PageCrumb } from '@components/PageCrumb';
 import { DateCategory } from '@components/DateCategory';
-import { LinkGroupType, PostCategoriesType } from '@root/types';
+import { PayloadLinkGroup, PayloadPostCategories } from '@root/cms/types';
 
 export type BasicHeroType = {
   type?: 'basic'
-  links?: LinkGroupType
+  links?: PayloadLinkGroup
   richText?: RichTextType
   publishedDate?: string
-  categories?: PostCategoriesType
+  categories?: PayloadPostCategories
 }
 
 export const BasicHero: React.FC<BasicHeroType> = (props) => {

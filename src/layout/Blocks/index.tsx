@@ -1,11 +1,10 @@
 import Margin from '@components/Margin';
-import { PayloadBlocks } from '@root/types';
 import kebabCase from 'lodash.kebabcase';
 import React, { Fragment } from 'react';
-import { blocks as allBlocks } from '../../blocks';
+import { blocks as allBlocks, BlocksType } from '../../blocks';
 
 const Blocks: React.FC<{
-  blocks: PayloadBlocks
+  blocks: BlocksType
 }> = (props) => {
   const {
     blocks,

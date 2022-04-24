@@ -1,11 +1,10 @@
 import { SocialMediaLinksType } from '@components/SocialMediaLinks';
-import { LinkType, PayloadDoc } from '..';
-import { PayloadMediaType } from '../Media';
+import { PayloadLink, PayloadDoc, PayloadMediaType } from '../../cms/types';
 
 export type GlobalMeta = {
   socialMediaLinks?: SocialMediaLinksType
   legalLinks?: {
-    link: LinkType
+    link: PayloadLink
   }[]
   locations?: Location[]
   phone?: string

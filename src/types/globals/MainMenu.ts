@@ -1,4 +1,4 @@
-import { LinkType } from '..';
+import { PayloadLink } from '../../cms/types';
 import { MenuDescriptionType } from '../menuBlocks/MenuDescription';
 import { MenuFeature } from '../menuBlocks/MenuFeature';
 import { MenuLinkType } from '../menuBlocks/MenuLink';
@@ -15,10 +15,10 @@ export type MainMenuType = {
   items: {
     type: 'subMenu' | 'link'
     label: string
-    link: LinkType
+    link: PayloadLink
     subMenu: MainMenuSubmenu
   }[]
   secondaryItems: {
-    link: LinkType
+    link: PayloadLink
   }[]
 }

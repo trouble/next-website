@@ -11,8 +11,7 @@ import { VideoPlayer } from '@components/VideoPlayer';
 import { useWindowInfo } from '@faceless-ui/window-info';
 import cssVariables from '../../../cssVariables';
 import { BlockID } from '@components/BlockID';
-import { PayloadMediaType } from '@root/types/Media';
-import { LinkGroupType } from '@root/types';
+import { PayloadLinkGroup, PayloadMediaType } from '@root/cms/types';
 
 export type Alignment = 'contentOnLeft' | 'contentOnRight';
 
@@ -25,7 +24,7 @@ export type MediaContentBlockType = {
   invertColors?: boolean
   alignment?: Alignment
   overlap?: boolean
-  links?: LinkGroupType
+  links?: PayloadLinkGroup
 }
 
 export const MediaContent: React.FC<MediaContentBlockType & {

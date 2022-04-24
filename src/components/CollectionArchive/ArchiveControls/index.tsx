@@ -6,7 +6,7 @@ import Form from '@root/forms/Form';
 import { Cell, Grid } from '@faceless-ui/css-grid';
 import { Select } from '@root/forms/fields/Select';
 import { useRouter } from 'next/router';
-import { PayloadDoc } from '@root/types';
+import { PayloadDoc } from '@root/cms/types';
 
 type Field = {
   label: string,

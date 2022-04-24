@@ -10,7 +10,8 @@ export const BackgroundColor: React.FC<{
   const {
     className,
     children,
-    style
+    style,
+    color
   } = props;
 
   return (
@@ -19,7 +20,10 @@ export const BackgroundColor: React.FC<{
         classes.backgroundColor,
         className,
       ].filter(Boolean).join(' ')}
-      style={style}
+      style={{
+        ...style,
+        backgroundColor: `var(--color-${color})`
+      }}
     >
       {children}
     </div>

@@ -6,8 +6,8 @@ import { Grid, Cell } from '@faceless-ui/css-grid'
 import Margin from '@components/Margin';
 import { Media } from '@components/Media';
 import { Button } from '@components/Button';
-import { PayloadDoc, PostCategoryType } from '@root/types';
-import { collectionLabels } from '@root/types/collectionLabels';
+import { PayloadDoc, PayloadPostCategory } from '@root/cms/types';
+import { collectionLabels } from '@root/cms/collectionLabels';
 
 export const PrevNext: React.FC<{
   prev?: PayloadDoc | null
@@ -15,7 +15,7 @@ export const PrevNext: React.FC<{
   className?: string
   collection?: string
   buttonLabel?: string
-  category?: PostCategoryType
+  category?: PayloadPostCategory
 }> = (props) => {
   const {
     prev,

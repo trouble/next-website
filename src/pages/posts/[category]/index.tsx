@@ -8,10 +8,10 @@ import { Archive } from '@root/layout/Archive';
 import { useRouter } from 'next/router';
 import { Hero } from '@root/layout/Hero';
 // import { revalidationRate } from '@root/revalidationRate';
-import { PostCategoryType } from '@root/types';
+import { PayloadPostCategory } from '@root/cms/types';
 
 const Posts: React.FC<{
-  category: PostCategoryType
+  category: PayloadPostCategory
 }> = (props) => {
   const {
     category: {
@@ -62,22 +62,22 @@ export default Posts;
 export const getStaticPaths: GetStaticPaths = async () => {
   let paths = [] as string[];
 
-  const categoriesReq = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/post-categories?depth=0`);
-  const categoriesData = await categoriesReq.json();
+  // const categoriesReq = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/post-categories?depth=0`);
+  // const categoriesData = await categoriesReq.json();
 
-  if (categoriesData) {
-    const {
-      totalDocs,
-      docs: categories
-    } = categoriesData;
+  // if (categoriesData) {
+  //   const {
+  //     totalDocs,
+  //     docs: categories
+  //   } = categoriesData;
 
-    if (totalDocs > 0) {
-      paths = categories.map((category: PostCategoryType) => {
-        const { slug: categorySlug } = category;
-        return `/posts/${categorySlug}`;
-      })
-    }
-  }
+  //   if (totalDocs > 0) {
+  //     paths = categories.map((category: PayloadPostCategory) => {
+  //       const { slug: categorySlug } = category;
+  //       return `/posts/${categorySlug}`;
+  //     })
+  //   }
+  // }
 
   return {
     paths,

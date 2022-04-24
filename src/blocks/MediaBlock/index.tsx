@@ -5,7 +5,7 @@ import { NormalMediaBlock } from './Normal';
 import { WideMediaBlock } from './Wide';
 import classes from './index.module.scss';
 import { RichTextType } from '@components/RichText';
-import { PayloadMediaType } from '@root/types/Media';
+import { PayloadMediaType } from '@root/cms/types';
 
 export type MediaBlockType = {
   blockType?: 'media'
@@ -13,8 +13,9 @@ export type MediaBlockType = {
   media?: PayloadMediaType
   caption?: RichTextType
   size?: 'normal' | 'wide' | 'fullscreen'
-  useVimeo?: boolean
-  vimeoID?: string
+  embedVideo?: boolean
+  platform?: 'youtube' | 'vimeo'
+  videoID?: string
   aspectRatio?: number
 }
 
@@ -28,7 +29,7 @@ export const MediaBlock: React.FC<MediaBlockType & {
   id?: string
 }> = (props) => {
   const {
-    size,
+    size = 'normal',
     id,
     blockName
   } = props;

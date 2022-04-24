@@ -1,6 +1,13 @@
-import { CollectionLabels } from ".";
+export type PayloadCollectionLabel = {
+  singular: string
+  plural: string
+}
 
-export const collectionLabels: CollectionLabels = {
+export type PayloadCollectionLabels = {
+  [collection: string]: PayloadCollectionLabel;
+}
+
+export const collectionLabels: PayloadCollectionLabels = {
   posts: {
     singular: 'Post',
     plural: 'Posts',

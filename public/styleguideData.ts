@@ -33,18 +33,22 @@ export const dummyH4 = {
   ]
 };
 
+export const dummyVimeoID = '456585947';
+
 export const dummyVimeoEmbed = {
   embed: true,
   platform: 'vimeo',
-  videoID: "456585947",
+  videoID: dummyVimeoID,
   // poster: dummyImageDark,
   // aspectRatio: '75',
 }
 
+export const dummyYoutubeID = "OEFAgWQ_Gvg";
+
 export const dummyYoutubeEmbed = {
   embed: true,
   platform: 'youtube',
-  videoID: "OEFAgWQ_Gvg",
+  videoID: dummyYoutubeID
   // poster: dummyImageDark
 }
 

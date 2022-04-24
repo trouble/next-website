@@ -1,12 +1,12 @@
 import React from 'react';
 import classes from './index.module.scss';
 import { Button, ButtonProps } from '@components/Button';
-import { LinkGroupType } from '@root/types';
+import { PayloadLinkGroup } from '@root/cms/types';
 
 export const ButtonGroup: React.FC<{
   className?: string
   buttons?: ButtonProps[]
-  linksFromCMS?: LinkGroupType
+  linksFromCMS?: PayloadLinkGroup
   marginSize?: 'small'
 }> = (props) => {
   const {

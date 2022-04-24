@@ -1,13 +1,13 @@
 import React, { ElementType, Fragment, Ref } from 'react';
 import { Video } from './Video';
 import { Image } from './Image';
-import { MediaSize, PayloadMediaType } from '@root/types/Media';
+import { PayloadMediaSize, PayloadMediaType } from '@root/cms/types';
 
 export type MediaProps = {
   className?: string
   imgClassName?: string
   videoClassName?: string
-  cmsImageSize?: MediaSize
+  cmsImageSize?: PayloadMediaSize
   htmlElement?: ElementType | null
   onClick?: () => void
   onLoad?: () => void

@@ -4,14 +4,14 @@ import { RichText, RichTextType } from '@components/RichText';
 import { CloseIcon } from '@root/icons/CloseIcon';
 import { BlockContainer } from '@root/layout/BlockContainer';
 import { useAlerts } from '@root/providers/Alerts';
-import { LinkGroupType } from '@root/types';
+import { PayloadLinkGroup } from '@root/cms/types';
 import React from 'react';
 import classes from './index.module.scss';
 
 export type AlertType = {
   id: string
   content?: RichTextType
-  links?: LinkGroupType
+  links?: PayloadLinkGroup
   backgroundColor?: string
 }
 

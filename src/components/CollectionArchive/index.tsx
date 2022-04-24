@@ -10,7 +10,7 @@ import { ResultRow } from '@components/ResultRow';
 import { Pagination } from '@components/Pagination';
 import { PageRange } from '@components/PageRange';
 import { ArchiveControls } from './ArchiveControls';
-import { PayloadDoc } from '@root/types';
+import { PayloadDoc } from '@root/cms/types';
 
 const perPage = 10;
 const minLoadingTime = 1000; // require at least 1 second to load to give time for the scroll to finish
@@ -40,6 +40,8 @@ export type Props = {
   showDates?: boolean
   showCategories?: boolean
 }
+
+const useDummyData = process.env.NEXT_PUBLIC_DUMMY_DATA;
 
 export const CollectionArchive: React.FC<Props> = (props) => {
   const {
@@ -98,54 +100,56 @@ export const CollectionArchive: React.FC<Props> = (props) => {
   ])
 
   useEffect(() => {
-    setIsLoading(true);
-
-    // wait x ms before requesting new data, to give the illusion of load while the scrollTo finishes and to avoid loading flash when on fast networks
     let timer: NodeJS.Timeout;
-    timer = setTimeout(() => {
-      const searchParams = qs.stringify({
-        sort,
-        where: {
-          ...(categories || category) ? {
-            'categories.slug': {
-              in: [
-                categories,
-                category
-              ].filter(Boolean)
-            },
-          } : {},
-          ...city ? {
-            'address.city': {
-              like: city
-            },
-          } : {},
-        },
-        limit: perPage,
-        page,
-      }, { encode: false })
 
-      const makeRequest = async () => {
-        try {
-          const req = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/${collection}?${searchParams}`);
-          const json = await req.json();
+    if (!useDummyData) {
+      setIsLoading(true);
+      // wait x ms before requesting new data, to give the illusion of load while the scrollTo finishes and to avoid loading flash when on fast networks
+      timer = setTimeout(() => {
+        const searchParams = qs.stringify({
+          sort,
+          where: {
+            ...(categories || category) ? {
+              'categories.slug': {
+                in: [
+                  categories,
+                  category
+                ].filter(Boolean)
+              },
+            } : {},
+            ...city ? {
+              'address.city': {
+                like: city
+              },
+            } : {},
+          },
+          limit: perPage,
+          page,
+        }, { encode: false })
 
-          const { docs } = json as { docs: PayloadDoc[] };
-          if (docs && Array.isArray(docs)) {
-            setResults(json)
-            setIsLoading(false);
-            if (typeof onResultChange === 'function') {
-              onResultChange(json);
+        const makeRequest = async () => {
+          try {
+            const req = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/${collection}?${searchParams}`);
+            const json = await req.json();
+
+            const { docs } = json as { docs: PayloadDoc[] };
+            if (docs && Array.isArray(docs)) {
+              setResults(json)
+              setIsLoading(false);
+              if (typeof onResultChange === 'function') {
+                onResultChange(json);
+              }
             }
+          } catch (err) {
+            console.warn(err);
+            setIsLoading(false);
+            setError(JSON.stringify(err));
           }
-        } catch (err) {
-          console.warn(err);
-          setIsLoading(false);
-          setError(JSON.stringify(err));
         }
-      }
 
-      makeRequest();
-    }, minLoadingTime);
+        makeRequest();
+      }, minLoadingTime);
+    }
 
     return () => {
       if (timer) clearTimeout(timer);

@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import Meta from "@components/Meta";
 import { CollectionArchive } from "@components/CollectionArchive";
 import Margin from "@components/Margin";
-import { PayloadDoc, PostCategoryType } from "@root/types";
+import { PayloadDoc, PayloadPostCategory } from "@root/cms/types";
 
 export const Archive: React.FC<{
   title?: string
@@ -16,7 +16,7 @@ export const Archive: React.FC<{
   hasNextPage?: number
   hasPrevPage?: number
   limit?: number
-  category?: PostCategoryType
+  category?: PayloadPostCategory
   showDates?: boolean
   sort?: string
   showCategories?: boolean

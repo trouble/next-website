@@ -1,10 +1,10 @@
-import { LinkType } from ".."
+import { PayloadLink } from "../../cms/types"
 
 export type FooterMenuLinkType = {
   appearance?: 'primary' | 'secondary' | 'tertiary'
   label?: string
   useLink?: boolean
-  link?: LinkType
+  link?: PayloadLink
 }
 
 export type FooterType = {
