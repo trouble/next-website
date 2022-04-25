@@ -41,7 +41,7 @@ export type Props = {
   showCategories?: boolean
 }
 
-const useDummyData = process.env.NEXT_PUBLIC_DUMMY_DATA;
+const useDummyData = process.env.NEXT_PUBLIC_OFFLINE_MODE;
 
 export const CollectionArchive: React.FC<Props> = (props) => {
   const {

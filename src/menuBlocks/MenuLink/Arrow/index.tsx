@@ -1,6 +1,6 @@
 import { Button } from '@components/Button';
-import { MenuLinkType } from '@root/types/menuBlocks';
 import React from 'react';
+import { MenuLinkType } from '..';
 import classes from './index.module.scss';
 
 export const ArrowMenuLink: React.FC<MenuLinkType> = (props) => {

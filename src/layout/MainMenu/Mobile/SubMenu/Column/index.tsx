@@ -2,7 +2,7 @@ import { menuBlocks } from '@root/menuBlocks';
 import React from 'react';
 import classes from './index.module.scss';
 import mainClasses from '../../index.module.scss';
-import { MainMenuSubmenu, SubmenuColumn } from '@root/types/globals/MainMenu';
+import { MainMenuSubmenu, SubmenuColumn } from '@root/layout/MainMenu';
 
 export const Column: React.FC<{
   items: SubmenuColumn

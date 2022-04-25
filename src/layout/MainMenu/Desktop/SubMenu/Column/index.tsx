@@ -1,5 +1,5 @@
+import { SubmenuColumn } from '@root/layout/MainMenu';
 import { menuBlocks } from '@root/menuBlocks';
-import { SubmenuColumn } from '@root/types/globals/MainMenu';
 import React from 'react';
 import classes from './index.module.scss';
 

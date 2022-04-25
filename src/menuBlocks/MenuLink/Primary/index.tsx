@@ -1,6 +1,6 @@
 import { Hyperlink } from '@components/Hyperlink';
-import { MenuLinkType } from '@root/types/menuBlocks';
 import React from 'react';
+import { MenuLinkType } from '..';
 import classes from './index.module.scss';
 
 export const PrimaryMenuLink: React.FC<MenuLinkType> = (props) => {

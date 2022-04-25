@@ -22,11 +22,11 @@ import { GoogleAnalytics } from '@components/GoogleAnalytics';
 import { GoogleTagManager } from '@components/GoogleTagManager';
 import HeaderHeightProvider from '@root/providers/HeaderHeight';
 import { AlertBar } from '@root/layout/AlertBar';
-// import { getAllGlobals } from '@root/payload';
 import { BreadcrumbsProvider } from '@root/providers/Breadcrumbs';
 import { SkipToContent } from '@root/layout/Header/SkipToContent';
-
+import { dummyGlobals } from '../../public/dummyData/dummyGlobals'
 import '../scss/app.scss';
+import { getAllGlobals } from '@root/cms/api';
 
 const MyApp = (appProps: AppProps & {
   globals: IGlobals,
@@ -136,25 +136,19 @@ const MyApp = (appProps: AppProps & {
 MyApp.getInitialProps = async (appContext: AppContext) => {
   const appProps = await App.getInitialProps(appContext);
 
-  // const {
-  //   mainMenu,
-  //   footer,
-  //   meta,
-  //   alerts
-  // } = await getAllGlobals();
+  const useDummyData = process.env.NEXT_PUBLIC_OFFLINE_MODE;
 
-  // return {
-  //   ...appProps,
-  //   globals: {
-  //     mainMenu,
-  //     footer,
-  //     meta,
-  //   },
-  //   alerts
-  // };
+  let globals: IGlobals;
+
+  if (useDummyData) {
+    globals = dummyGlobals;
+  } else {
+    globals = await getAllGlobals();
+  }
 
   return {
     ...appProps,
+    globals
   };
 };
 

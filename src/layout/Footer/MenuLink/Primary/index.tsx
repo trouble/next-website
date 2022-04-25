@@ -1,6 +1,6 @@
 import { Hyperlink } from '@components/Hyperlink';
-import { FooterMenuLinkType } from '@root/types/globals/Footer';
 import React from 'react';
+import { FooterMenuLinkType } from '..';
 import classes from './index.module.scss';
 
 export const PrimaryMenuLink: React.FC<FooterMenuLinkType> = (props) => {

@@ -5,6 +5,11 @@ import { HeroType } from "@root/heros/types"
 
 // docs, taxonomies, links, and media
 
+export type PayloadResponse = {
+  totalDocs: number
+  docs: PayloadDoc[]
+}
+
 export type PayloadDoc = {
   id: string
   title: string

@@ -1,8 +1,16 @@
-import { MenuLinkType } from '@root/types/menuBlocks';
 import React from 'react';
 import { ArrowMenuLink } from './Arrow';
 import { PrimaryMenuLink } from './Primary';
 import { SecondaryMenuLink } from './Secondary';
+import { PayloadLink } from "../../cms/types"
+
+export type MenuLinkType = {
+  blockType?: 'menuLink',
+  blockName?: string
+  content?: string
+  appearance?: 'primary' | 'secondary' | 'arrow'
+  link?: PayloadLink
+}
 
 const appearances = {
   primary: PrimaryMenuLink,

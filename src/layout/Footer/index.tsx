@@ -4,12 +4,17 @@ import Link from 'next/link';
 import { BlockContainer } from '../BlockContainer';
 import { useGlobals } from '@root/providers/Globals';
 import { Cell, Grid } from '@faceless-ui/css-grid';
-import { MenuLink } from './MenuLink';
+import { FooterMenuLinkType, MenuLink } from './MenuLink';
 import { Hyperlink } from '@components/Hyperlink';
 import { LanguageIcon } from '@root/icons/Language';
 import { ModalToggler } from '@faceless-ui/modal'
 import { SocialMediaLinks } from '@components/SocialMediaLinks';
 import { Logo } from '@components/Logo';
+
+export type FooterType = {
+  column1?: FooterMenuLinkType[]
+  column2?: FooterMenuLinkType[]
+}
 
 export const Footer: React.FC = () => {
   const {

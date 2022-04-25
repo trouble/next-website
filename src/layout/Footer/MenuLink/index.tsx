@@ -2,7 +2,14 @@ import React from 'react';
 import { TertiaryMenuLink } from './Tertiary';
 import { PrimaryMenuLink } from './Primary';
 import { SecondaryMenuLink } from './Secondary';
-import { FooterMenuLinkType } from '@root/types/globals/Footer';
+import { PayloadLink } from '@root/cms/types';
+
+export type FooterMenuLinkType = {
+  appearance?: 'primary' | 'secondary' | 'tertiary'
+  label?: string
+  useLink?: boolean
+  link?: PayloadLink
+}
 
 const appearances = {
   primary: PrimaryMenuLink,

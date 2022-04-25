@@ -1,9 +1,4 @@
-import { AlertsType } from "../providers/Alerts";
-import {
-  FooterType,
-  GlobalMeta,
-  MainMenuType
-} from "../types/globals";
+import { GlobalMeta, IGlobals } from "@root/providers/Globals";
 
 // TODO: if in preview mode, add payload token and ?draft=true to the request
 export const getByID = async ({
@@ -76,12 +71,7 @@ export const getGlobalMeta = async (): Promise<GlobalMeta> => {
   return doc;
 }
 
-export const getAllGlobals = async (): Promise<{
-  meta: GlobalMeta
-  alerts: AlertsType
-  footer: FooterType
-  mainMenu: MainMenuType
-}> => {
+export const getAllGlobals = async (): Promise<IGlobals> => {
   const [
     mainMenu,
     footer,

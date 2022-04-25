@@ -1,19 +1,19 @@
 import { Fragment, useState } from 'react'
 import {
   GetStaticProps,
-  // GetStaticPropsContext,
+  GetStaticPropsContext,
   GetStaticPaths
 } from 'next';
 import Blocks from '../layout/Blocks'
 import { useEffect } from 'react';
-// import { ParsedUrlQuery } from 'querystring';
+import { ParsedUrlQuery } from 'querystring';
 import { Hero } from '../layout/Hero';
 import Meta from '@components/Meta';
 import { useRouter } from 'next/router';
-// import { revalidationRate } from '@root/revalidationRate';
+import { revalidationRate } from '@root/revalidationRate';
 import { PayloadDoc } from '@root/cms/types';
 import { useBreadcrumbs } from '@root/providers/Breadcrumbs';
-import dummyPages from '../../public/dummyPages.json';
+import { dummyPages } from '../../public/dummyData/dummyPages';
 
 const Page: React.FC<PayloadDoc & {
   preview?: boolean
@@ -84,80 +84,95 @@ const Page: React.FC<PayloadDoc & {
 
 export default Page;
 
-// interface IParams extends ParsedUrlQuery {
-//   slug: string[]
-// }
+interface IParams extends ParsedUrlQuery {
+  slug: string[]
+}
 
 // when 'preview' cookies are set in the browser, getStaticProps runs on every request :)
 // NOTE: 'slug' is an array (i.e. [...slug].tsx)
 export const getStaticProps: GetStaticProps = async (
-  // context: GetStaticPropsContext,
+  context: GetStaticPropsContext,
 ) => {
-  return {
-    props: {}
+  const useDummyData = process.env.NEXT_PUBLIC_OFFLINE_MODE;
+
+  const {
+    preview,
+    previewData,
+    params
+  } = context;
+
+  const {
+    payloadToken
+  } = previewData as {
+    payloadToken: string
+  } || {};
+
+  let { slug } = params as IParams || {};
+  if (!slug) slug = ['home'];
+
+  let doc = {};
+  let subsite = null;
+  let notFound = false;
+
+  const lastSlug = slug[slug.length - 1];
+
+  let pageReq;
+  let pageData;
+
+  if (useDummyData) {
+    const foundDummyPage = dummyPages.docs.find(({ slug: dummySlug }) => dummySlug === lastSlug);
+    if (foundDummyPage) {
+      pageData = {
+        totalDocs: 1,
+        docs: [foundDummyPage]
+      }
+    } else {
+      notFound = true;
+    }
+  } else {
+    // when previewing, send the payload token to bypass draft access control
+    pageReq = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/pages?where[slug][equals]=${lastSlug}&depth=2&draft=true`, {
+      headers: {
+        ...preview ? {
+          Authorization: `JWT ${payloadToken}`
+        } : {}
+      }
+    });
+    if (pageReq.ok) {
+      pageData = await pageReq.json();
+    }
   }
 
-  // const {
-  //   preview,
-  //   previewData,
-  //   params
-  // } = context;
+  if (pageData) {
+    const { docs } = pageData;
 
-  // const {
-  //   payloadToken
-  // } = previewData as {
-  //   payloadToken: string
-  // } || {};
+    if (docs.length > 0) {
+      const slugChain = `/${slug.join('/')}`;
+      // 'slug' is not unique, need to match the correct result to its last-most breadcrumb
+      const foundDoc = docs.find((doc: PayloadDoc) => {
+        const { breadcrumbs } = doc;
+        const hasBreadcrumbs = breadcrumbs && Array.isArray(breadcrumbs) && breadcrumbs.length > 0;
+        if (hasBreadcrumbs) {
+          const lastCrumb = breadcrumbs[breadcrumbs.length - 1];
+          return lastCrumb.url === slugChain;
+        }
+      })
+      if (foundDoc) {
+        doc = foundDoc
+      } else notFound = true
+    } else notFound = true;
+  } else notFound = true;
 
-  // let { slug } = params as IParams || {};
-  // if (!slug) slug = ['home'];
-
-  // let doc = {};
-  // let subsite = null;
-  // let notFound = false;
-
-  // const lastSlug = slug[slug.length - 1];
-
-  // when previewing, send the payload token to bypass draft access control
-  // const pageReq = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/pages?where[slug][equals]=${lastSlug}&depth=2&draft=true`, {
-  //   headers: {
-  //     ...preview ? {
-  //       Authorization: `JWT ${payloadToken}`
-  //     } : {}
-  //   }
-  // });
-
-  // const pageData = await pageReq.json();
-
-  // if (pageReq.ok) {
-  //   const { docs } = pageData;
-
-  //   if (docs.length > 0) {
-  //     const slugChain = `/${slug.join('/')}`;
-  //     const foundDoc = docs.find((doc: PayloadDoc) => { // 'slug' is not unique, need to match the correct result to its last-most breadcrumb
-  //       const { breadcrumbs } = doc;
-  //       const hasBreadcrumbs = breadcrumbs && Array.isArray(breadcrumbs) && breadcrumbs.length > 0;
-  //       if (hasBreadcrumbs) {
-  //         const lastCrumb = breadcrumbs[breadcrumbs.length - 1];
-  //         return lastCrumb.url === slugChain;
-  //       }
-  //     })
-  //     if (foundDoc) {
-  //       doc = foundDoc
-  //     } else notFound = true
-  //   } else notFound = true;
-  // } else notFound = true;
-
-  // return ({
-  //   props: {
-  //     ...doc,
-  //     subsite,
-  //     preview: preview || null,
-  //     collection: 'pages'
-  //   },
-  //   notFound,
-  //   revalidate: revalidationRate
-  // })
+  return ({
+    props: {
+      ...doc,
+      subsite,
+      preview: preview || null,
+      collection: 'pages'
+    },
+    notFound,
+    revalidate: revalidationRate
+  })
 }
 
 type Path = {
@@ -169,7 +184,7 @@ type Path = {
 type Paths = Path[];
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const useDummyData = process.env.NEXT_PUBLIC_DUMMY_DATA;
+  const useDummyData = process.env.NEXT_PUBLIC_OFFLINE_MODE;
 
   let paths: Paths = [];
   let pagesReq;

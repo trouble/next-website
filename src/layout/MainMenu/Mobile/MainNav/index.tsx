@@ -4,7 +4,7 @@ import { ArrowIcon } from '@root/icons/Arrow';
 import { useGlobals } from '@root/providers/Globals';
 import classes from './index.module.scss';
 import mainClasses from '../index.module.scss';
-import { MainMenuSubmenu } from '@root/types/globals/MainMenu';
+import { MainMenuSubmenu } from '../..';
 
 export const MainNav: React.FC<{
   setShowSubmenu: (show: boolean) => void // eslint-disable-line no-unused-vars
