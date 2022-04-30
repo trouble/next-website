@@ -74,34 +74,6 @@
   }
 }
 
-.red {
-  color: var(--color-red);
-  &:hover {
-    color: var(--color-dark-red);
-  }
-}
-
-.blue {
-  color: var(--color-blue);
-  &:hover {
-    color: var(--color-dark-blue);
-  }
-}
-
-.green {
-  color: var(--color-green);
-  &:hover {
-    color: var(--color-dark-green);
-  }
-}
-
-.purple {
-  color: var(--color-purple);
-  &:hover {
-    color: var(--color-dark-purple);
-  }
-}
-
 .large {
   width: base(2);
   height: base(2);

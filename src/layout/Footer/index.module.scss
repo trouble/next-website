@@ -1,27 +1,11 @@
 @use "@scss/common" as *;
 
 .footer {
-  background-color: var(--color-black);
-  color: var(--color-white);
+  background-color: var(--color-light-gray);
   padding: base(4) 0;
 
   @include mid-break {
     padding: base(2) 0;
-  }
-
-  .socialLinksDesktop {
-    margin-top: base(2);
-    @include mid-break {
-      display: none !important;
-    }
-  }
-
-  .socialLinksMobile {
-    display: none !important;
-    @include mid-break {
-      display: flex !important;
-      margin-top: base();
-    }
   }
 }
 
@@ -31,7 +15,7 @@
 
 .content {
   & > *:not(:last-child) {
-    margin-bottom: base(4);
+    margin-bottom: base(2);
   }
 
   @include mid-break {
@@ -50,13 +34,9 @@
   }
 }
 
-.logo {
-  display: flex;
-  margin-bottom: base();
-  width: base(1.5);
-
-  @include mid-break {
-    display: none;
+.bottomNav {
+  & > *:not(:last-child) {
+    margin-bottom: base(0.5);
   }
 }
 
@@ -75,21 +55,9 @@
   font-weight: normal;
 }
 
-.mobileLogo {
-  display: none;
-  @include mid-break {
-    width: base(1.75);
-    display: flex;
-    margin-bottom: base(1);
-  }
-}
-
 .legal {
   @include small;
-  color: var(--color-gray);
-  text-align: center;
   display: flex;
-  justify-content: center;
 
   & > *:not(:last-child) {
     margin-right: base(0.5);
@@ -98,7 +66,6 @@
   @include mid-break {
     flex-direction: column;
     justify-content: flex-start;
-    text-align: start;
 
     & > *:not(:last-child) {
       margin-right: 0;
@@ -110,32 +77,4 @@
 .legalLink {
   text-decoration: underline;
   font-weight: inherit;
-}
-
-.languageToggler {
-  @include button-reset;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  margin-top: base();
-  opacity: 1;
-  transition: all linear vaR(--default-trans-time);
-
-  &:hover {
-    opacity: 0.5;
-  }
-
-  @include mid-break {
-    margin-top: base(0.5);
-  }
-}
-
-.languageLabel {
-  margin-left: base(0.5);
-}
-
-.locations {
-  & > *:not(:last-child) {
-    margin-bottom: base(0.5);
-  }
 }

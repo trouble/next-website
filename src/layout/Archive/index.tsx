@@ -2,12 +2,13 @@ import { Fragment } from "react";
 import Meta from "@components/Meta";
 import { CollectionArchive } from "@components/CollectionArchive";
 import Margin from "@components/Margin";
-import { PayloadDoc, PayloadPostCategory } from "@root/cms/types";
+import { CollectionTypes, DocFromCMS, PayloadPostCategory } from "@root/cms/types";
+import { BasicHero } from "@root/heros/Basic";
 
-export const Archive: React.FC<{
+export const ArchiveLayout: React.FC<{
   title?: string
-  collection: 'posts' | 'people' | 'housing'
-  docs?: PayloadDoc[]
+  collection: CollectionTypes
+  docs?: DocFromCMS[]
   totalDocs?: number
   totalPages?: number
   page?: number
@@ -37,7 +38,18 @@ export const Archive: React.FC<{
         description={`My Website ${collection}`}
       />
       <main>
-        {/* TODO: render the basic hero with static rich text */}
+        <BasicHero
+          richText={[
+            {
+              type: 'h1',
+              children: [
+                {
+                  text: `All ${collection}`
+                }
+              ]
+            }
+          ]}
+        />
         <Margin bottom="large">
           <CollectionArchive
             collection={collection}

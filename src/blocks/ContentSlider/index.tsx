@@ -13,12 +13,12 @@ import { ArrowButton } from '@components/ArrowButton';
 import { useGutter } from '@root/providers/GutterProvider';
 import { base } from '@root/utilities/base';
 import { BlockID } from '@components/BlockID';
-import { PayloadLink } from '@root/cms/types';
+import { LinkFromCMS } from '@root/cms/types';
 
 export type Slide = {
   richText?: RichTextType
   enableLink?: boolean
-  link?: PayloadLink
+  link?: LinkFromCMS
 }
 
 export type ContentSliderBlockType = {

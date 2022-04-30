@@ -4,7 +4,7 @@ import classes from './index.module.scss';
 import { BackgroundColor } from '@components/BackgroundColor';
 import { sanitizePath, usePageTransition } from "./usePageTransition";
 import { useRouter } from 'next/router'
-// do not mount both pages at the same time (ie 'TransitionGroup'), because their color themes interfere
+// do not mount both pages at the same time (ie 'TransitionGroup'), because their data interfere
 // first animate the current page out, then the next page in
 // switch transition allows the animation via the 'key' prop on the nested child
 // css transition injects transition lifecycle class names into its nested child

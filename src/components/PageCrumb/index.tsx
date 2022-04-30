@@ -15,7 +15,7 @@ export const PageCrumb: React.FC<{
   } = useBreadcrumbs();
 
   if (breadcrumbs && Array.isArray(breadcrumbs) && breadcrumbs.length > 0) {
-    const moreThanTwoDeep = breadcrumbs.length > 2;
+    const moreThanOneDeep = breadcrumbs.length > 1;
 
     if (showBreadcrumbs) {
       return (
@@ -25,7 +25,7 @@ export const PageCrumb: React.FC<{
             className,
           ].filter(Boolean).join(' ')}
         >
-          {moreThanTwoDeep ? (
+          {moreThanOneDeep ? (
             <Hyperlink
               href={`/${breadcrumbs[breadcrumbs.length - 2].url}`}
             >

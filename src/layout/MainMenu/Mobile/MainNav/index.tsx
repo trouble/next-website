@@ -32,8 +32,6 @@ export const MainNav: React.FC<{
             const {
               type,
               label,
-              link,
-              subMenu
             } = item;
 
             return (
@@ -49,7 +47,7 @@ export const MainNav: React.FC<{
                   <h2 className={classes.link}>
                     <Hyperlink
                       {...{
-                        ...link,
+                        ...item?.link || {},
                         className: classes.linkAnchor,
                         label: (
                           <b>
@@ -66,7 +64,7 @@ export const MainNav: React.FC<{
                     onClick={() => {
                       setShowSubmenu(true);
                       setCurrentSubMenu({
-                        ...subMenu,
+                        ...item?.subMenu || {},
                         title: label
                       })
                     }}

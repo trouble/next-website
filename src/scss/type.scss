@@ -5,9 +5,9 @@
 @mixin jumbo {
   font-size: base(3.25);
   line-height: 1.125;
-  font-weight: 600;
+  font-weight: normal;
   margin: base(2) 0;
-  letter-spacing: -2px;
+  // letter-spacing: -2px;
   font-family: $fontHeading;
 
   @include extra-large-break {
@@ -23,9 +23,9 @@
   font-size: base(3.5);
   line-height: 1.125;
   margin: 0 0 base();
-  font-weight: 200;
+  font-weight: normal;
   font-family: $fontHeading;
-  letter-spacing: 1px;
+  // letter-spacing: 1px;
 
   @include extra-large-break {
     font-size: base(2.75);
@@ -43,8 +43,8 @@
 @mixin h2 {
   font-size: base(2);
   line-height: 1.25;
-  font-weight: 200;
-  letter-spacing: 1px;
+  font-weight: normal;
+  // letter-spacing: 1px;
   margin: base(1.5) 0 base(0.5);
   font-family: $fontHeading;
 
@@ -60,9 +60,9 @@
 @mixin h3 {
   font-size: base(1.65);
   line-height: 1.25;
-  font-weight: 200;
+  font-weight: normal;
   margin: base(1.5) 0 base(0.5);
-  letter-spacing: 1px;
+  // letter-spacing: 1px;
   font-family: $fontHeading;
 
   @include extra-large-break {
@@ -77,9 +77,9 @@
 @mixin h4 {
   font-size: base(1.35);
   line-height: 1.25;
-  font-weight: 200;
+  font-weight: normal;
   margin: base() 0 base(0.5);
-  letter-spacing: 1px;
+  // letter-spacing: 1px;
   font-family: $fontHeading;
 
   @include extra-large-break {
@@ -94,10 +94,10 @@
 @mixin h5 {
   font-size: base(1.125);
   line-height: 1.25;
-  font-weight: 200;
+  font-weight: normal;
   margin: base() 0 base(0.25);
   font-family: $fontHeading;
-  letter-spacing: 0.75px;
+  // letter-spacing: 0.75px;
 
   @include extra-large-break {
     font-size: base(0.95);
@@ -113,8 +113,8 @@
   line-height: 1.25;
   margin: base() 0 base(0.25);
   font-family: $fontHeading;
-  font-weight: 200;
-  letter-spacing: 0.55px;
+  font-weight: normal;
+  // letter-spacing: 0.55px;
 
   @include extra-large-break {
     font-size: base(0.75);

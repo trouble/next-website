@@ -6,12 +6,12 @@ import { Grid, Cell } from '@faceless-ui/css-grid'
 import Margin from '@components/Margin';
 import { Media } from '@components/Media';
 import { Button } from '@components/Button';
-import { PayloadDoc, PayloadPostCategory } from '@root/cms/types';
+import { DocFromCMS, PayloadPostCategory } from '@root/cms/types';
 import { collectionLabels } from '@root/cms/collectionLabels';
 
 export const PrevNext: React.FC<{
-  prev?: PayloadDoc | null
-  next?: PayloadDoc | null
+  prev?: DocFromCMS | null
+  next?: DocFromCMS | null
   className?: string
   collection?: string
   buttonLabel?: string
@@ -21,13 +21,12 @@ export const PrevNext: React.FC<{
     prev,
     next,
     className,
-    category,
     collection = 'posts',
     buttonLabel = 'Read post'
   } = props;
 
-  const prevURL = `/${collection}/${collection === 'posts' ? `${category?.slug}/` : ''}${prev?.slug}`;
-  const nextURL = `/${collection}/${collection === 'posts' ? `${category?.slug}/` : ''}${next?.slug}`;
+  const prevURL = `/${collection}/${prev?.slug}`;
+  const nextURL = `/${collection}/${next?.slug}`;
 
   const {
     singular,
@@ -70,7 +69,7 @@ export const PrevNext: React.FC<{
                       dimOnHover
                     >
                       <h5 className={classes.title}>
-                        {prev.title}
+                        {prev?.meta?.title || prev?.title}
                       </h5>
                     </Hyperlink>
                     {prev?.meta?.description && (
@@ -118,7 +117,7 @@ export const PrevNext: React.FC<{
                       dimOnHover
                     >
                       <h5 className={classes.title}>
-                        {next.title}
+                        {next?.meta?.title || next?.title}
                       </h5>
                     </Hyperlink>
                     {next?.meta?.description && (

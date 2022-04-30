@@ -5,10 +5,10 @@ import { BlockContainer } from '../../BlockContainer';
 import { Logo } from '@components/Logo';
 
 export const AdminBar: React.FC<{
-  adminBarProps: PayloadAdminBarProps
+  adminBarProps?: PayloadAdminBarProps
 }> = (props) => {
   const {
-    adminBarProps
+    adminBarProps = {}
   } = props;
 
   const [user, setUser] = useState<PayloadMeUser>();
@@ -34,7 +34,7 @@ export const AdminBar: React.FC<{
           }}
           logo={(
             <Logo
-              colorHex="#ffffff"
+              color="#ffffff"
             />
           )}
           style={{

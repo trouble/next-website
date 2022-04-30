@@ -10,33 +10,13 @@
 }
 
 :root {
-  --html-font-size: #{$html-font-size-xl};
-  --html-line-height: #{$html-line-height-xl};
+  --html-font-size: #{$html-font-size};
+  --html-line-height: #{$html-line-height};
 
   --caption-font-size: #{$caption-font-size};
 
   --font-heading: #{$fontHeading};
   --font-body: #{$fontBody};
-
-  --color-dark-green: #{$color-dark-green};
-  --color-darker-green: #{$color-darker-green};
-  --color-green: #{$color-green};
-  --color-light-green: #{$color-light-green};
-
-  --color-dark-blue: #{$color-dark-blue};
-  --color-darker-blue: #{$color-darker-blue};
-  --color-blue: #{$color-blue};
-  --color-light-blue: #{$color-light-blue};
-
-  --color-dark-red: #{$color-dark-red};
-  --color-darker-red: #{$color-darker-red};
-  --color-red: #{$color-red};
-  --color-light-red: #{$color-light-red};
-
-  --color-dark-purple: #{$color-dark-purple};
-  --color-darker-purple: #{$color-darker-purple};
-  --color-purple: #{$color-purple};
-  --color-light-purple: #{$color-light-purple};
 
   --color-dark-gray: #{$color-dark-gray};
   --color-gray: #{$color-gray};
@@ -47,7 +27,6 @@
   --color-white: #{$color-white};
   --color-black: #{$color-black};
 
-  --breakpoint-xs-width: #{$breakpoint-xs-width};
   --breakpoint-s-width: #{$breakpoint-s-width};
   --breakpoint-m-width: #{$breakpoint-m-width};
   --breakpoint-l-width: #{$breakpoint-l-width};
@@ -94,15 +73,6 @@ html {
   line-height: calc(#{var(--html-line-height)} * 1px);
   -webkit-font-smoothing: antialiased;
   scroll-behavior: smooth;
-
-  @include large-break {
-    @at-root {
-      :root {
-        --html-font-size: #{$html-font-size-l};
-        --html-line-height: #{$html-line-height-l};
-      }
-    }
-  }
 
   @include mid-break {
     @at-root {

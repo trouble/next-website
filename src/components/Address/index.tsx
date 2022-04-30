@@ -1,13 +1,16 @@
 import { Hyperlink } from "@components/Hyperlink";
+import { Coords } from "@components/Map";
 import { generateDirectionsHref } from "@root/utilities/generateDirectionsHref";
 import { Fragment } from "react";
 
 export type AddressType = {
+  title?: string
   line1?: string
   line2?: string
   city?: string
   state?: string
   zip?: string
+  coords?: Coords
 }
 
 export const Address: React.FC<AddressType> = (props) => {

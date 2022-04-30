@@ -42,7 +42,7 @@ export const SubMenu: React.FC<{
         }}
         className={classes.backButton}
       >
-        <BackgroundColor color="themeDark" />
+        <BackgroundColor color="black" />
         <div className={classes.backContent}>
           <ArrowIcon rotation={180} />
           <h4 className={classes.backLabel}>

@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Logo } from '../../../components/Logo';
 import classes from './index.module.scss';
-import Link from 'next/link';
 import { ModalToggler, useModal } from '@faceless-ui/modal';
 import { SearchIcon } from '@root/icons/SearchIcon';
 import { Hamburger } from '@components/Hamburger';
@@ -10,10 +9,12 @@ import { BlockContainer } from '../../BlockContainer';
 // import { SubsiteMenu } from './SubsiteMenu';
 import { useWindowInfo } from '@faceless-ui/window-info'
 import { CloseIcon } from '@root/icons/CloseIcon';
-// import { useScrollInfo } from '@faceless-ui/scroll-info';
+import { useScrollInfo } from '@faceless-ui/scroll-info';
 import { useHeaderHeight } from '@root/providers/HeaderHeight';
 import { useResize } from '@root/utilities/useResize';
 import { useRouter } from 'next/router';
+import { Hyperlink } from '@components/Hyperlink';
+import { BackgroundColor } from '@components/BackgroundColor';
 
 export const DesktopHeader: React.FC<{
   className?: string
@@ -70,9 +71,27 @@ export const DesktopHeader: React.FC<{
     } = {}
   } = useWindowInfo();
 
-  // const {
-  //   y: scrollY
-  // } = useScrollInfo();
+  const {
+    y: scrollY
+  } = useScrollInfo();
+
+  const [headerBackgroundColor, setHeaderBackgroundColor] = useState<string | undefined>();
+
+  useEffect(() => {
+    if (!midBreak) {
+      let newBGColor = 'transparent';
+
+      if (!modalIsOpen && scrollY > 0) {
+        newBGColor = 'light-gray';
+      }
+
+      setHeaderBackgroundColor(newBGColor)
+    }
+  }, [
+    modalIsOpen,
+    showSubmenu,
+    scrollY,
+  ]);
 
   const { size } = useResize(containerRef);
 
@@ -108,6 +127,10 @@ export const DesktopHeader: React.FC<{
           if (!midBreak) setShowSubmenu(false)
         }}
       >
+        <BackgroundColor
+          className={classes.backgroundColor}
+          color={headerBackgroundColor}
+        />
         <BlockContainer
           className={[
             classes.content,
@@ -117,17 +140,13 @@ export const DesktopHeader: React.FC<{
           <div className={classes.wrapper}>
             <div className={classes.logoNavWrapper}>
               <div className={classes.logoWrapper}>
-                <Link
+                <Hyperlink
                   href="/"
-                  scroll={false}
+                  className={classes.logoAnchor}
+                  aria-label="Home link"
                 >
-                  <a
-                    className={classes.logoAnchor}
-                    aria-label="Home link"
-                  >
-                    <Logo />
-                  </a>
-                </Link>
+                  <Logo />
+                </Hyperlink>
               </div>
               {/* {renderSubsiteNav && (
                 <SubsiteNav
@@ -156,7 +175,7 @@ export const DesktopHeader: React.FC<{
                   {!searchIsOpen ? (
                     <SearchIcon
                       bold
-                      color="white"
+                      color="black"
                     />
                   ) : (
                     <CloseIcon
@@ -179,7 +198,7 @@ export const DesktopHeader: React.FC<{
                 >
                   <Hamburger
                     isOpen={mainMenuIsOpen}
-                    color="white"
+                    color="black"
                   />
                 </ModalToggler>
               </div>

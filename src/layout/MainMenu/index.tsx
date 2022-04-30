@@ -3,7 +3,7 @@ import React, { Fragment } from 'react';
 import classes from './index.module.scss';
 import { DesktopMainMenu } from './Desktop';
 import { MobileMainMenu } from './Mobile';
-import { PayloadLink } from '@root/cms/types';
+import { LinkFromCMS } from '@root/cms/types';
 import { MenuLinkType } from '@root/menuBlocks/MenuLink';
 import { MenuFeatureType } from '@root/menuBlocks/MenuFeature';
 import { MenuDescriptionType } from '@root/menuBlocks/MenuDescription';
@@ -24,10 +24,10 @@ export type MainMenuType = {
   } | {
     type: 'link'
     label: string
-    link: PayloadLink
+    link: LinkFromCMS
   })[]
   secondaryItems: {
-    link: PayloadLink
+    link: LinkFromCMS
   }[]
 }
 

@@ -10,14 +10,15 @@ import { ResultRow } from '@components/ResultRow';
 import { Pagination } from '@components/Pagination';
 import { PageRange } from '@components/PageRange';
 import { ArchiveControls } from './ArchiveControls';
-import { PayloadDoc } from '@root/cms/types';
+import { CollectionTypes, DocFromCMS, PostFromCMS } from '@root/cms/types';
+import { dummyPosts } from '../../../public/dummyData/dummyPosts';
 
 const perPage = 10;
 const minLoadingTime = 1000; // require at least 1 second to load to give time for the scroll to finish
 
 type Result = {
   totalDocs: number
-  docs: PayloadDoc[]
+  docs: (DocFromCMS | PostFromCMS)[]
   page: number
   totalPages: number
   hasPrevPage: boolean
@@ -28,7 +29,7 @@ type Result = {
 
 export type Props = {
   className?: string
-  collection?: 'housing' | 'posts' | 'people'
+  collection: CollectionTypes
   showPageRange?: boolean
   onResultChange?: (result: Result) => void // eslint-disable-line no-unused-vars
   showControls?: boolean
@@ -41,7 +42,7 @@ export type Props = {
   showCategories?: boolean
 }
 
-const useDummyData = process.env.NEXT_PUBLIC_OFFLINE_MODE;
+const offlineMode = process.env.NEXT_PUBLIC_OFFLINE_MODE;
 
 export const CollectionArchive: React.FC<Props> = (props) => {
   const {
@@ -102,7 +103,10 @@ export const CollectionArchive: React.FC<Props> = (props) => {
   useEffect(() => {
     let timer: NodeJS.Timeout;
 
-    if (!useDummyData) {
+    if (offlineMode) {
+      setIsLoading(false);
+      setResults(dummyPosts);
+    } else {
       setIsLoading(true);
       // wait x ms before requesting new data, to give the illusion of load while the scrollTo finishes and to avoid loading flash when on fast networks
       timer = setTimeout(() => {
@@ -132,7 +136,7 @@ export const CollectionArchive: React.FC<Props> = (props) => {
             const req = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/${collection}?${searchParams}`);
             const json = await req.json();
 
-            const { docs } = json as { docs: PayloadDoc[] };
+            const { docs } = json as { docs: DocFromCMS[] };
             if (docs && Array.isArray(docs)) {
               setResults(json)
               setIsLoading(false);
@@ -178,6 +182,7 @@ export const CollectionArchive: React.FC<Props> = (props) => {
       {showControls && (
         <ArchiveControls
           controlsToShow={controlsToShow}
+          collection={collection}
         />
       )}
       {isLoading && (
@@ -212,29 +217,22 @@ export const CollectionArchive: React.FC<Props> = (props) => {
             </BlockContainer>
           )}
           <BlockContainer>
-            {results.docs?.map((result, index) => {
-              const isLast = index === results.docs.length - 1;
-
-              return (
-                <Fragment key={index}>
-                  <Grid className={classes.grid}>
-                    <ResultRow
-                      showCategories={showCategories}
-                      showPublishedDate={showDates}
-                      doc={{
-                        ...result,
-                        relationTo: collection
-                      }}
-                    />
-                  </Grid>
-                  {!isLast && (
-                    <div className={classes.divider}>
-                      <hr style={{ margin: 0 }} />
-                    </div>
-                  )}
-                </Fragment>
-              )
-            })}
+            <Grid className={classes.grid}>
+              {results.docs?.map((result, index) => {
+                // const isLast = index === results.docs.length - 1;
+                return (
+                  <ResultRow
+                    key={index}
+                    showCategories={showCategories}
+                    showPublishedDate={showDates}
+                    doc={{
+                      ...result,
+                      relationTo: collection
+                    }}
+                  />
+                )
+              })}
+            </Grid>
           </BlockContainer>
           <BlockContainer className={classes.pagination}>
             <Pagination
@@ -244,7 +242,8 @@ export const CollectionArchive: React.FC<Props> = (props) => {
             />
           </BlockContainer>
         </Fragment>
-      )}
-    </div>
+      )
+      }
+    </div >
   )
 }

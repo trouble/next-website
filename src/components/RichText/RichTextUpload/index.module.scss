@@ -15,10 +15,6 @@
   }
 
   @include small-break {
-    margin-right: base(0.75);
-  }
-
-  @include extra-small-break {
     margin-right: 0;
   }
 }
@@ -31,10 +27,6 @@
   }
 
   @include small-break {
-    margin-left: base(0.75);
-  }
-
-  @include extra-small-break {
     margin-left: 0;
   }
 }

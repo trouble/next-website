@@ -1,6 +1,7 @@
 @use "@scss/common" as *;
 
 $transCurve: cubic-bezier(0.6, 0, 0.5, 1);
+$transition: transform var(--page-trans-time) $transCurve, opacity var(--page-trans-time) $transCurve;
 
 .wipe {
   pointer-events: none;
@@ -16,19 +17,15 @@ $transCurve: cubic-bezier(0.6, 0, 0.5, 1);
 
 .page {
   opacity: 1;
+  transition: $transition;
   // IMPORTANT: do not create a new stacking context here, i.e. transform, etc
 }
 
 .exit {
   &:local() {
     .page {
-      transition: transform var(--page-trans-time) $transCurve, opacity var(--page-trans-time) $transCurve;
       opacity: 0;
       transform: translate3d(0, -100px, 0);
-    }
-
-    .wipe {
-      transform: translate3d(0, 100%, 0);
     }
   }
 }
@@ -55,12 +52,7 @@ $transCurve: cubic-bezier(0.6, 0, 0.5, 1);
   &:local() {
     .page {
       opacity: 0;
-      transform: translate3d(0, 0, 0);
-    }
-
-    .wipe {
-      transition: transform var(--page-trans-time) $transCurve;
-      transform: translate3d(0, 100%, 0);
+      transform: translate3d(0, 100px, 0);
     }
   }
 }
@@ -69,12 +61,7 @@ $transCurve: cubic-bezier(0.6, 0, 0.5, 1);
   &:local() {
     .page {
       opacity: 0;
-      transform: translate3d(0, 0, 0);
-    }
-
-    .wipe {
-      transition: transform var(--page-trans-time) $transCurve;
-      transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 100px, 0);
     }
   }
 }
@@ -83,12 +70,8 @@ $transCurve: cubic-bezier(0.6, 0, 0.5, 1);
   &:local() {
     .page {
       opacity: 1;
+      transform: translate3d(0, 0, 0);
       // IMPORTANT: do not create a new stacking context here, i.e. transform, etc
-    }
-
-    .wipe {
-      transition: transform var(--page-trans-time) $transCurve;
-      transform: translate3d(0, -100%, 0);
     }
   }
 }

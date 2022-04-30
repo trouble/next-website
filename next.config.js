@@ -1,7 +1,7 @@
 const path = require('path');
 const csp = require('./csp');
 const redirects = require('./redirects');
-const cssVariables = require('./cssVariables');
+const cssVariables = require('./src/cssVariables');
 
 module.exports = {
   images: {

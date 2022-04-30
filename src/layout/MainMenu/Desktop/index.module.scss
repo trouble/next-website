@@ -48,15 +48,6 @@
   opacity: 1;
 }
 
-.itemIndex {
-  font-family: $fontHeading;
-  font-weight: 400;
-  letter-spacing: 2px;
-  position: absolute;
-  left: base(-2);
-  top: 0;
-}
-
 .link {
   cursor: pointer;
   margin: 0;
@@ -81,56 +72,8 @@
   }
 }
 
-.red {
-  &:local() {
-    .itemIndex {
-      color: var(--color-red);
-    }
-  }
-}
-
-.blue {
-  &:local() {
-    .itemIndex {
-      color: var(--color-blue);
-    }
-  }
-}
-
-.green {
-  &:local() {
-    .itemIndex {
-      color: var(--color-green);
-    }
-  }
-}
-
-.purple {
-  &:local() {
-    .itemIndex {
-      color: var(--color-purple);
-    }
-  }
-}
-
 .bold {
   font-weight: bold;
-}
-
-.background {
-  position: absolute;
-  width: 100%;
-  top: 0;
-  height: 100%;
-  left: 0;
-}
-
-.backgroundGrid {
-  height: 100%;
-}
-
-.backgroundCell {
-  position: relative;
 }
 
 .backgroundColor {
@@ -139,6 +82,5 @@
   top: 0;
   height: 100%;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.05);
-  mix-blend-mode: multiply;
+  background-color: black;
 }

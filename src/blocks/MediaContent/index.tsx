@@ -9,9 +9,9 @@ import { BackgroundColor } from '@components/BackgroundColor';
 import { AnimateInOut } from '@components/AnimateInOut';
 import { VideoPlayer } from '@components/VideoPlayer';
 import { useWindowInfo } from '@faceless-ui/window-info';
-import cssVariables from '../../../cssVariables';
+import cssVariables from '../../cssVariables';
 import { BlockID } from '@components/BlockID';
-import { PayloadLinkGroup, PayloadMediaType } from '@root/cms/types';
+import { LinkGroupFromCMS, PayloadMediaType } from '@root/cms/types';
 
 export type Alignment = 'contentOnLeft' | 'contentOnRight';
 
@@ -24,7 +24,7 @@ export type MediaContentBlockType = {
   invertColors?: boolean
   alignment?: Alignment
   overlap?: boolean
-  links?: PayloadLinkGroup
+  links?: LinkGroupFromCMS
 }
 
 export const MediaContent: React.FC<MediaContentBlockType & {

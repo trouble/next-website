@@ -1,5 +1,5 @@
 import { RichTextType } from '@components/RichText';
-import { PayloadLinkGroup } from '@root/cms/types';
+import { LinkGroupFromCMS } from '@root/cms/types';
 import React, {
   createContext,
   useCallback,
@@ -17,9 +17,9 @@ export type Alert = {
     relationTo: string
     value: any // TODO: type this
   }[]
-  backgroundColor?: 'matchTheme' | 'green' | 'blue' | 'red' | 'purple'
+  backgroundColor?: string
   content?: RichTextType
-  links?: PayloadLinkGroup
+  links?: LinkGroupFromCMS
 }
 
 export type AlertsType = Alert[]

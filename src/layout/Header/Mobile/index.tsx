@@ -14,7 +14,7 @@ import { useResize } from '@root/utilities/useResize';
 
 export const MobileHeader: React.FC<{
   className?: string
-  adminBarProps: PayloadAdminBarProps
+  adminBarProps?: PayloadAdminBarProps
 }> = (props) => {
   const {
     className,
@@ -60,9 +60,11 @@ export const MobileHeader: React.FC<{
           classes.headerOuter,
         ].filter(Boolean).join(' ')}
       >
-        <AdminBar
-          adminBarProps={adminBarProps}
-        />
+        {adminBarProps && (
+          <AdminBar
+            adminBarProps={adminBarProps}
+          />
+        )}
         <div
           className={[
             classes.headerInner,
@@ -71,7 +73,7 @@ export const MobileHeader: React.FC<{
         >
           <BackgroundColor
             className={classes.backgroundColor}
-            color="black"
+            color="light-gray"
           />
           <BlockContainer className={classes.content} >
             <div className={classes.wrapper}>

@@ -2,16 +2,14 @@ import classes from './index.module.scss';
 import { Cell, Grid } from '@faceless-ui/css-grid';
 import { Hyperlink } from '@components/Hyperlink';
 import { Media } from '@components/Media';
-import { Address, AddressType } from '@components/Address';
 import { Fragment } from 'react';
-import cssVariables from '../../../cssVariables';
-// import { Placeholder } from '@root/graphics/Placeholder';
+import cssVariables from '../../cssVariables';
 import { formatDateTime } from '@root/utilities/formatDateTime';
-import { Breadcrumb as BreadcrumbType } from 'payload-plugin-nested-pages/dist/types';
-// import { Meta as MetaType } from 'payload-plugin-seo/dist/types';
 import { formatPermalink } from '@root/utilities/formatPermalink';
 import { useRouter } from 'next/router';
-import { PayloadPostCategories } from '@root/cms/types';
+import { CollectionTypes, DocFromCMS, PayloadPostCategories, PostFromCMS } from '@root/cms/types';
+import PlaceholderImage from '../../../public/placeholder.jpg';
+import NextImage from 'next/image';
 
 export const ResultRow: React.FC<{
   alignItems?: 'center'
@@ -20,16 +18,8 @@ export const ResultRow: React.FC<{
   showPublishedDate?: boolean
   hideImagesOnMobile?: boolean
   title?: string
-  doc?: {
-    relationTo?: string
-    title?: string
-    name?: string
-    categories?: PayloadPostCategories
-    breadcrumbs?: BreadcrumbType[]
-    slug?: string
-    publishedDate?: string
-    address?: AddressType
-    meta: any // TODO: type this once payload-plugin-seo is updated
+  doc: DocFromCMS & {
+    relationTo?: CollectionTypes
   }
 }> = (props) => {
   const {
@@ -40,17 +30,23 @@ export const ResultRow: React.FC<{
     title: titleFromProps,
     doc,
     doc: {
-      relationTo,
-      name,
+      relationTo, // ?
       title,
-      categories,
-      publishedDate,
       meta,
-      address,
     } = {}
   } = props;
 
+  let categories: PayloadPostCategories | undefined;
+  let publishedDate;
+
+  if (relationTo === 'posts') {
+    const docAsPost = doc as PostFromCMS;
+    categories = docAsPost?.categories;
+    publishedDate = docAsPost?.publishedDate;
+  }
+
   const {
+    title: metaTitle,
     description,
     image: metaImage
   } = meta || {};
@@ -72,7 +68,7 @@ export const ResultRow: React.FC<{
   );
 
   const hasCategories = categories && Array.isArray(categories) && categories.length > 0;
-  const titleToUse = titleFromProps || title || name; // people have names, not titles
+  const titleToUse = titleFromProps || metaTitle || title;
   const sanitizedDescription = description?.replace(/\s/g, ' ');
 
   return (
@@ -92,9 +88,11 @@ export const ResultRow: React.FC<{
           className={hideImagesOnMobile === true ? classes.hideImageOnMobile : undefined}
         >
           <Hyperlink href={href}>
-            {/* {!metaImage && (
-              <Placeholder className={classes.placeholder} />
-            )} */}
+            {!metaImage && (
+              <NextImage
+                src={PlaceholderImage}
+              />
+            )}
             {metaImage && typeof metaImage !== 'string' && (
               <Media
                 className={classes.media}
@@ -130,7 +128,7 @@ export const ResultRow: React.FC<{
                       slug: categorySlug
                     } = category;
 
-                    const isLast = index === categories.length - 1;
+                    const isLast = index === (categories?.length || 0) - 1;
 
                     return (
                       <Fragment key={index}>
@@ -161,22 +159,15 @@ export const ResultRow: React.FC<{
               {titleToUse}
             </Hyperlink>
           </h4>
-          {
-            (description || address) && (
-              <div className={classes.body}>
-                {description && (
-                  <p className={classes.description}>
-                    {sanitizedDescription}
-                  </p>
-                )}
-                {address && (
-                  <div className={classes.address}>
-                    <Address {...address} />
-                  </div>
-                )}
-              </div>
-            )
-          }
+          {description && (
+            <div className={classes.body}>
+              {description && (
+                <p className={classes.description}>
+                  {sanitizedDescription}
+                </p>
+              )}
+            </div>
+          )}
         </Cell >
       </Grid >
     </Cell >

@@ -11,11 +11,12 @@ import { Hero } from '../layout/Hero';
 import Meta from '@components/Meta';
 import { useRouter } from 'next/router';
 import { revalidationRate } from '@root/revalidationRate';
-import { PayloadDoc } from '@root/cms/types';
+import { DocFromCMS } from '@root/cms/types';
 import { useBreadcrumbs } from '@root/providers/Breadcrumbs';
 import { dummyPages } from '../../public/dummyData/dummyPages';
+import { getOfflineDoc } from '../../public/dummyData/offlineAPI';
 
-const Page: React.FC<PayloadDoc & {
+const Page: React.FC<DocFromCMS & {
   preview?: boolean
   passwordSuccess?: boolean
 }> = (props) => {
@@ -31,8 +32,6 @@ const Page: React.FC<PayloadDoc & {
     hero,
     showBreadcrumbs,
     meta,
-    isPasswordProtected,
-    passwordSuccess
   } = pageProps;
 
   const {
@@ -69,7 +68,7 @@ const Page: React.FC<PayloadDoc & {
           }}
         />
       )}
-      {!isFallback && (!isPasswordProtected || passwordSuccess) && (
+      {!isFallback && (
         <Fragment>
           <Meta {...meta} />
           <div id="page-content">
@@ -93,7 +92,7 @@ interface IParams extends ParsedUrlQuery {
 export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext,
 ) => {
-  const useDummyData = process.env.NEXT_PUBLIC_OFFLINE_MODE;
+  const offlineMode = process.env.NEXT_PUBLIC_OFFLINE_MODE;
 
   const {
     preview,
@@ -119,17 +118,13 @@ export const getStaticProps: GetStaticProps = async (
   let pageReq;
   let pageData;
 
-  if (useDummyData) {
-    const foundDummyPage = dummyPages.docs.find(({ slug: dummySlug }) => dummySlug === lastSlug);
-    if (foundDummyPage) {
-      pageData = {
-        totalDocs: 1,
-        docs: [foundDummyPage]
-      }
-    } else {
-      notFound = true;
-    }
-  } else {
+  if (offlineMode) {
+    const offlineData = getOfflineDoc(lastSlug, 'pages');
+    if (offlineData) pageData = offlineData;
+    else notFound = true;
+  }
+
+  if (!offlineMode) {
     // when previewing, send the payload token to bypass draft access control
     pageReq = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/pages?where[slug][equals]=${lastSlug}&depth=2&draft=true`, {
       headers: {
@@ -149,7 +144,7 @@ export const getStaticProps: GetStaticProps = async (
     if (docs.length > 0) {
       const slugChain = `/${slug.join('/')}`;
       // 'slug' is not unique, need to match the correct result to its last-most breadcrumb
-      const foundDoc = docs.find((doc: PayloadDoc) => {
+      const foundDoc = docs.find((doc: DocFromCMS) => {
         const { breadcrumbs } = doc;
         const hasBreadcrumbs = breadcrumbs && Array.isArray(breadcrumbs) && breadcrumbs.length > 0;
         if (hasBreadcrumbs) {

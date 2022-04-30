@@ -15,12 +15,13 @@ import { useRouter } from 'next/router';
 import { CloseIcon } from '@root/icons/CloseIcon';
 import { useGlobals } from '@root/providers/Globals';
 import { formatPermalink } from '@root/utilities/formatPermalink';
+import { CollectionTypes, DocFromCMS } from '@root/cms/types';
 // import { Search as SearchType } from 'payload-plugin-search/dist/types';
 
 type SearchType = {  // TODO: use type from plugin when ready
   meta: any // TODO: type this when plugin is ready
-  doc: {
-    relationTo?: string
+  doc: DocFromCMS & {
+    relationTo: CollectionTypes
   }
 };
 
@@ -273,6 +274,7 @@ export const SearchModal: React.FC<Props> = ({ popularSearchTerms }) => {
                 <ul className={classes.results}>
                   {results.docs.map((result: SearchType, i: number) => {
                     const {
+                      doc,
                       doc: {
                         relationTo
                       } = {}
@@ -288,7 +290,7 @@ export const SearchModal: React.FC<Props> = ({ popularSearchTerms }) => {
                             alignItems="center"
                             title={result?.meta?.title}
                             doc={{
-                              ...result,
+                              ...doc,
                               relationTo
                             }}
                             hideImagesOnMobile

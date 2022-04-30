@@ -5,12 +5,13 @@ import classes from './index.module.scss'
 import { RichText, RichTextType } from '@components/RichText';
 import { CollectionArchive } from '@components/CollectionArchive';
 import { BlockID } from '@components/BlockID';
+import { CollectionTypes } from '@root/cms/types';
 
 export type ArchiveBlockType = {
   blockType?: 'archive'
   blockName?: string
   introContent?: RichTextType
-  collection?: 'housing' | 'posts'
+  collection: CollectionTypes
 }
 
 export const ArchiveBlock: React.FC<ArchiveBlockType & {
@@ -23,8 +24,7 @@ export const ArchiveBlock: React.FC<ArchiveBlockType & {
     blockName
   } = props;
 
-  let sort;
-  if (collection === 'housing') sort = 'title';
+  let sort = 'title';
   if (collection === 'posts') sort = '-publishedDate';
 
   return (
@@ -48,11 +48,6 @@ export const ArchiveBlock: React.FC<ArchiveBlockType & {
       <CollectionArchive
         collection={collection}
         sort={sort}
-        showControls={collection === 'housing'}
-        controlsToShow={collection === 'housing' ? {
-          city: true,
-          categories: true
-        } : undefined}
       />
     </div>
   )

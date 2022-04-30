@@ -6,7 +6,7 @@ import classes from './index.module.scss';
 export const SkipToContent: React.FC = () => {
   return (
     <div className={classes.skipToContent}>
-      <BackgroundColor color="themeDark" />
+      <BackgroundColor color="black" />
       <BlockContainer
         tabIndex={-1}
         className={classes.buttonWrapper}

@@ -20,7 +20,12 @@ export const MobileMainMenu: React.FC<{
     } = {}
   } = useGlobals();
 
-  const [currentSubMenu, setCurrentSubMenu] = useState<SubMenuType | undefined>(items?.[0]?.subMenu); // TODO: type this
+  const [currentSubMenu, setCurrentSubMenu] = useState<SubMenuType | undefined>(() => {
+    const firstItem = items?.[0];
+    if (firstItem && firstItem.type === 'subMenu') {
+      return firstItem.subMenu;
+    }
+  }); // TODO: type this
   const [showSubmenu, setShowSubmenu] = useState(false);
   const [animationKey, setAnimationKey] = useState<'mainNav' | 'submenu'>('mainNav');
   const hasInitialized = useRef(false);
@@ -54,7 +59,7 @@ export const MobileMainMenu: React.FC<{
         paddingTop: totalHeaderHeight
       }}
     >
-      <BackgroundColor color="themeDark" />
+      <BackgroundColor color="black" />
       <BlockContainer className={classes.blockContainer}>
         {/* @ts-ignore TODO: fix this */}
         <SwitchTransition mode="out-in">

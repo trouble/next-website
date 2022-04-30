@@ -1,10 +1,12 @@
+import { Hyperlink } from '@components/Hyperlink';
 import { SocialMedia } from '@components/SocialMedia';
-import React from 'react';
+import React, { Fragment } from 'react';
 import classes from './index.module.scss';
 
 
 export type SocialMediaLink = {
-  type: 'facebook' | 'vimeo' | 'twitter' | 'linkedin' | 'instagram' | 'pinterest' | 'email'
+  platform: 'facebook' | 'vimeo' | 'twitter' | 'linkedin' | 'instagram' | 'pinterest' | 'email'
+  label: string
   url: string
 }
 
@@ -12,18 +14,18 @@ export type SocialMediaLinksType = SocialMediaLink[];
 
 
 export const SocialMediaLinks: React.FC<{
-  label?: string
   links?: SocialMediaLinksType
   className?: string
   color?: string
   justifyContent?: 'flex-start' | 'center' | 'flex-end'
+  useIcons?: boolean
 }> = (props) => {
   const {
-    label,
     links,
     className,
     color,
-    justifyContent
+    justifyContent,
+    useIcons = true
   } = props;
 
   if (links && Array.isArray(links) && links.length > 0) {
@@ -32,27 +34,44 @@ export const SocialMediaLinks: React.FC<{
         className={[
           className,
           classes.socialMediaLinks,
-          justifyContent && classes[`justify-${justifyContent}`]
+          justifyContent && classes[`justify-${justifyContent}`],
+          useIcons && classes.useIcons,
         ].filter(Boolean).join(' ')}
       >
-        {label && (
-          <div className={classes.label}>
-            {label}
-          </div>
-        )}
         {links.map((socialLink, index) => {
           const {
-            type,
-            url
+            platform,
+            url,
+            label
           } = socialLink;
 
+          const isLast = index === links.length - 1;
+
+          if (useIcons) {
+            return (
+              <SocialMedia
+                key={index}
+                platform={platform}
+                href={url}
+                bgColor={color}
+              />
+            )
+          }
+
           return (
-            <SocialMedia
-              key={index}
-              platform={type}
-              href={url}
-              bgColor={color}
-            />
+            <Fragment key={index}            >
+              <Hyperlink
+                href={url}
+                underline
+              >
+                {label}
+              </Hyperlink>
+              {!isLast && (
+                <Fragment>
+                  &#44;&nbsp;
+                </Fragment>
+              )}
+            </Fragment>
           )
         })}
       </div>

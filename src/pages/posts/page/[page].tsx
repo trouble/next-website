@@ -4,13 +4,13 @@ import {
   // GetStaticPropsContext,
 } from 'next'
 
-import { Archive } from '@root/layout/Archive';
+import { ArchiveLayout } from '@root/layout/Archive';
 // import { revalidationRate } from '@root/revalidationRate';
-// import { PayloadDoc } from '@root/types';
+// import { DocFromCMS } from '@root/types';
 
 const Posts: React.FC = (props) => {
   return (
-    <Archive
+    <ArchiveLayout
       collection="posts"
       title="All posts"
       showDates
@@ -65,7 +65,7 @@ export const getStaticProps: GetStaticProps = async (
   // if (postsData) {
   //   const { totalDocs }: {
   //     totalDocs: number
-  //     docs: PayloadDoc[]
+  //     docs: DocFromCMS[]
   //   } = postsData;
 
   //   if (totalDocs > 0) props = postsData

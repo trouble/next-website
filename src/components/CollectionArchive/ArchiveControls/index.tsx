@@ -6,7 +6,7 @@ import Form from '@root/forms/Form';
 import { Cell, Grid } from '@faceless-ui/css-grid';
 import { Select } from '@root/forms/fields/Select';
 import { useRouter } from 'next/router';
-import { PayloadDoc } from '@root/cms/types';
+import { DocFromCMS } from '@root/cms/types';
 
 type Field = {
   label: string,
@@ -46,7 +46,7 @@ export const ArchiveControls: React.FC<Props> = (props) => {
         const {
           docs: allCategories
         } = json as {
-          docs: PayloadDoc[]
+          docs: DocFromCMS[]
         };
         if (allCategories && Array.isArray(allCategories) && allCategories.length > 0) {
           const categoriesAsFields = allCategories.map((category) => {

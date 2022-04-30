@@ -16,7 +16,8 @@
 }
 
 .icon {
-  translate: translate3d(0, 0, 0);
+  display: flex;
+  transform: translate3d(0, 0, 0);
   transition: all linear var(--default-trans-time);
 }
 

@@ -33,7 +33,9 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    "src/cssVariables.js",
+    "next.config.js"
   ],
   "exclude": [
     "node_modules"

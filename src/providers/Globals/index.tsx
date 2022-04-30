@@ -1,24 +1,23 @@
+import { AddressType } from '@components/Address';
 import { SocialMediaLinksType } from '@components/SocialMediaLinks';
 import { FooterType } from '@root/layout/Footer';
 import { MainMenuType } from '@root/layout/MainMenu';
 import React, { createContext, useContext } from 'react';
-import { PayloadDoc, PayloadLink, PayloadMediaType } from '../../cms/types';
+import { DocFromCMS, LinkFromCMS, PayloadMediaType } from '../../cms/types';
 import { AlertsType } from '../Alerts';
 
 export type GlobalMeta = {
   socialMediaLinks?: SocialMediaLinksType
   legalLinks?: {
-    link: PayloadLink
+    link: LinkFromCMS
   }[]
-  locations?: Location[]
+  locations?: AddressType[]
   phone?: string
-  nationalPhone?: string
-  fax?: string
   popularSearchTerms: {
     term: string
   }[]
   fallbackImage?: PayloadMediaType
-  contactPage?: PayloadDoc
+  contactPage?: DocFromCMS
 }
 
 export interface IGlobals {

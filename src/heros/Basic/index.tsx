@@ -5,11 +5,11 @@ import { BlockContainer } from '@root/layout/BlockContainer';
 import { Cell, Grid } from '@faceless-ui/css-grid';
 import { PageCrumb } from '@components/PageCrumb';
 import { DateCategory } from '@components/DateCategory';
-import { PayloadLinkGroup, PayloadPostCategories } from '@root/cms/types';
+import { LinkGroupFromCMS, PayloadPostCategories } from '@root/cms/types';
 
 export type BasicHeroType = {
   type?: 'basic'
-  links?: PayloadLinkGroup
+  links?: LinkGroupFromCMS
   richText?: RichTextType
   publishedDate?: string
   categories?: PayloadPostCategories

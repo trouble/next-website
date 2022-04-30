@@ -2,14 +2,16 @@ import React from 'react';
 import { ArrowMenuLink } from './Arrow';
 import { PrimaryMenuLink } from './Primary';
 import { SecondaryMenuLink } from './Secondary';
-import { PayloadLink } from "../../cms/types"
+import { LinkFromCMS } from "../../cms/types"
+
+export type MenuLinkAppearances = 'primary' | 'secondary' | 'arrow';
 
 export type MenuLinkType = {
   blockType?: 'menuLink',
   blockName?: string
   content?: string
-  appearance?: 'primary' | 'secondary' | 'arrow'
-  link?: PayloadLink
+  appearance?: MenuLinkAppearances
+  link?: LinkFromCMS
 }
 
 const appearances = {

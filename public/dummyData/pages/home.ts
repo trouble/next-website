@@ -1,8 +1,10 @@
-import { PayloadDoc } from "@root/cms/types";
+import { PageFromCMS } from "@root/cms/types";
 
-export const dummyHomePage: PayloadDoc = {
+export const dummyHomePage: PageFromCMS = {
   slug: "home",
+  createdAt: "2020-01-01T00:00:00.000Z",
   id: "123",
+  updatedAt: "",
   title: "",
   hero: {
     type: 'basic',
@@ -48,11 +50,12 @@ export const dummyHomePage: PayloadDoc = {
           type: 'paragraph',
           children: [
             {
-              text: 'For more information there is a comprehensive '
+              text: 'For more information see the '
             },
             {
               type: 'link',
               url: 'https://github.com/trouble/next-website#readme',
+              newTab: true,
               children: [
                 {
                   text: 'README.md'
@@ -60,7 +63,7 @@ export const dummyHomePage: PayloadDoc = {
               ]
             },
             {
-              text: ' which includes a step-by-step to getting started, troubleshooting tips, and more.'
+              text: '.'
             },
           ]
         }
@@ -76,8 +79,4 @@ export const dummyHomePage: PayloadDoc = {
   ],
   layout: [],
   meta: {},
-  author: {
-    id: "",
-    email: ""
-  }
 }

@@ -1,6 +1,6 @@
 import { Hyperlink } from '@components/Hyperlink';
 import { ArrowIcon } from '@root/icons/Arrow';
-import { PayloadLink } from '@root/cms/types';
+import { LinkFromCMS } from '@root/cms/types';
 import React, { Fragment } from 'react';
 import classes from './index.module.scss';
 
@@ -13,7 +13,7 @@ export type ButtonProps = {
   label?: string
   appearance?: ButtonAppearances
   color?: string
-  linkFromCMS?: PayloadLink
+  linkFromCMS?: LinkFromCMS
   arrow?: boolean
   size?: string
   onMouseEnter?: () => void

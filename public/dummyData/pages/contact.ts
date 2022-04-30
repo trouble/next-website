@@ -1,9 +1,11 @@
-import { PayloadDoc } from "@root/cms/types";
+import { PageFromCMS } from "@root/cms/types";
 
-export const dummyContactPage: PayloadDoc = {
+export const dummyContactPage: PageFromCMS = {
   slug: "contact",
+  createdAt: "2020-01-01T00:00:00.000Z",
   id: "456",
   title: "",
+  updatedAt: "",
   breadcrumbs: [
     {
       label: 'Contact',
@@ -28,8 +30,4 @@ export const dummyContactPage: PayloadDoc = {
   },
   layout: [],
   meta: {},
-  author: {
-    id: "",
-    email: ""
-  }
 }

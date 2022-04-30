@@ -16,7 +16,7 @@ import { CookiesProvider } from 'react-cookie'
 import { PageTransition } from '@root/layout/PageTransition';
 import { ModalContainer } from '@root/layout/ModalContainer';
 import GutterProvider from '@root/providers/GutterProvider';
-import cssVariables from '../../cssVariables';
+import cssVariables from '../cssVariables';
 // import { useRouter } from 'next/router';
 import { GoogleAnalytics } from '@components/GoogleAnalytics';
 import { GoogleTagManager } from '@components/GoogleTagManager';

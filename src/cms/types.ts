@@ -3,15 +3,26 @@ import { BlocksType } from "@root/blocks"
 import { ButtonAppearances } from "@components/Button"
 import { HeroType } from "@root/heros/types"
 
-// docs, taxonomies, links, and media
+// docs, taxonomies, links, and media\
+
+export type CollectionTypes = 'pages' | 'posts';
 
 export type PayloadResponse = {
   totalDocs: number
-  docs: PayloadDoc[]
+  docs: DocFromCMS[]
+  page: number
+  limit: number
+  totalPages: number
+  hasPrevPage: boolean
+  hasNextPage: boolean
+  prevPage: number
+  nextPage: number
 }
 
-export type PayloadDoc = {
+export type PageFromCMS = {
   id: string
+  updatedAt: string
+  createdAt: string
   title: string
   hero: HeroType
   showBreadcrumbs?: boolean
@@ -20,28 +31,44 @@ export type PayloadDoc = {
   layout: BlocksType
   meta: any // TODO: type this once the plugin exports it
   excerpt?: string
-  parent?: PayloadDoc | string
+  parent?: PageFromCMS | string
   breadcrumbs?: Breadcrumb[]
-  author: PayloadUser
-  updatedAt?: string
-  appUrl?: string
-  isPasswordProtected?: boolean
 }
 
-export type PayloadLink = {
+export type DocFromCMS = (PageFromCMS | PostFromCMS)
+
+export type PostFromCMS = {
+  id: string
+  updatedAt: string
+  createdAt: string
+  publishedDate: string
+  title: string
+  hero: HeroType
+  showBreadcrumbs?: boolean
+  slug: string
+  image?: any // TODO type this
+  layout: BlocksType
+  meta: any // TODO: type this once the plugin exports it
+  excerpt?: string
+  breadcrumbs?: Breadcrumb[]
+  author: PayloadUser
+  categories?: PayloadPostCategories
+}
+
+export type LinkFromCMS = {
   appearance?: ButtonAppearances
   type: 'reference' | 'custom'
   label?: string
   reference?: {
-    relationTo: 'pages' | 'posts' | 'housing'
-    value: PayloadDoc | 'null'
+    relationTo: CollectionTypes
+    value: PageFromCMS | PostFromCMS | 'null'
   }
   url?: string
   newTab?: boolean
 }
 
-export type PayloadLinkGroup = {
-  link: PayloadLink
+export type LinkGroupFromCMS = {
+  link: LinkFromCMS
 }[]
 
 export type PayloadPostCategory = {

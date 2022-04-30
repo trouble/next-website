@@ -1,8 +1,8 @@
 import { Hyperlink } from '@components/Hyperlink';
 import { Media } from '@components/Media';
-import { PayloadLink, PayloadMediaType } from '@root/cms/types';
+import { LinkFromCMS, PayloadMediaType } from '@root/cms/types';
 import React from 'react';
-import cssVariables from '../../../cssVariables';
+import cssVariables from '../../cssVariables';
 import classes from './index.module.scss';
 
 export type MenuFeatureType = {
@@ -10,7 +10,7 @@ export type MenuFeatureType = {
   blockName?: string
   media?: PayloadMediaType
   headline?: string
-  link?: PayloadLink
+  link?: LinkFromCMS
 }
 
 export const MenuFeature: React.FC<MenuFeatureType> = (props) => {

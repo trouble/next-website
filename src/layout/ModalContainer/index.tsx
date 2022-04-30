@@ -7,9 +7,9 @@ export const ModalContainer = () => {
   const { currentModal } = useModal();
 
   let backgroundColor = 'transparent';
-  if (currentModal) backgroundColor = "themeDark";
-  if (currentModal === 'language-assistance') backgroundColor = 'trans-black';
-  if (currentModal === 'instagram-feed') backgroundColor = 'trans-black-2'
+  if (currentModal) backgroundColor = "black";
+  // NOTE: you can change the background or behavior of modals based on slug
+  // if (currentModal.slug === 'mainMenu')
 
   return (
     <FacelessModalContainer className={classes.modalContainer}>

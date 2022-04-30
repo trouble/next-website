@@ -11,7 +11,6 @@ $headerHeight: base(4);
 
 .headerInner {
   position: relative;
-  color: transparent;
   height: $headerHeight;
   margin-bottom: calc(#{$headerHeight} * -1);
 }
@@ -69,7 +68,7 @@ $headerHeight: base(4);
   align-items: center;
 
   &:not(:last-child) {
-    margin-right: base(0.5);
+    margin-right: base(1);
   }
 }
 
@@ -79,14 +78,9 @@ $headerHeight: base(4);
   will-change: opacity;
   transition: opacity var(--default-trans-time) linear;
   opacity: 1;
-  background-color: var(--color-dark-gray);
-  width: base(1.5);
-  height: base(1.5);
-  border-radius: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: var(--shadow-s);
 }
 
 .searchDimmed,

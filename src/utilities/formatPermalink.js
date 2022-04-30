@@ -1,4 +1,4 @@
-// cannot use ts here, for nodejs sitemap and redirects module
+// must remain a CommonJS module, both React and Node needs it (sitemap and redirects)
 // this means we have to send through the 'currentCategory' which is a url param not accessible within node
 
 module.exports.formatPermalink = (reference, currentCategory) => {
@@ -13,8 +13,6 @@ module.exports.formatPermalink = (reference, currentCategory) => {
     const {
       slug,
       breadcrumbs,
-      categories,
-      firstCategory
     } = value;
 
     // pages could be nested, so use breadcrumbs
@@ -26,23 +24,9 @@ module.exports.formatPermalink = (reference, currentCategory) => {
         permalink = slug;
       }
     }
-    // posts could have multiple categories
-    if (relationTo === 'posts') {
-      // when there's a category in the url, use that
-      if (currentCategory) {
-        permalink = `/posts/${currentCategory}/${slug}`
-      } else {
-        // else use the first category of the doc (via 'firstCategory' bc categories array is shallow)
-        if (firstCategory) {
-          permalink = `/posts/${firstCategory}/${slug}`;
-        } else {
-          permalink = `/posts/${slug}`;
-        }
-      }
-    }
 
-    if (relationTo === 'people' || relationTo === 'housing') {
-      permalink = `/${relationTo}/${slug}`
+    if (relationTo === 'posts') {
+      permalink = `/posts/${slug}`;
     }
   }
 

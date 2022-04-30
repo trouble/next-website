@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import NextImage from 'next/image';
 import classes from './index.module.scss'
-import cssVariables from '../../../../cssVariables';
+import cssVariables from '../../../cssVariables';
 import { MediaProps } from '..';
 
 export const Image: React.FC<MediaProps> = (props) => {

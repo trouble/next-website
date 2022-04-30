@@ -8,6 +8,8 @@ import { Cell, Grid } from '@faceless-ui/css-grid';
 import { Button } from '@components/Button';
 import { useHeaderHeight } from '@root/providers/HeaderHeight';
 import { SubMenuType } from '../Mobile/SubMenu';
+import { TextWithInlineIcon } from '@components/TextWithInlineIcon';
+import { Chevron } from '@root/icons/Chevron';
 
 export const DesktopMainMenu: React.FC = () => {
   const {
@@ -17,24 +19,20 @@ export const DesktopMainMenu: React.FC = () => {
     } = {}
   } = useGlobals();
 
-  const [currentSubMenu, setCurrentSubMenu] = useState<SubMenuType | undefined>(items?.[0]?.subMenu); // TODO: type this
+  const [currentSubMenu, setCurrentSubMenu] = useState<SubMenuType | undefined>(() => {
+    const firstItem = items?.[0];
+    if (firstItem && firstItem.type === 'subMenu') {
+      return firstItem.subMenu;
+    }
+  });
+
   const [hoveredIndex, setHoveredIndex] = useState<number | undefined>()
 
   const { totalHeaderHeight } = useHeaderHeight();
 
   return (
     <div className={classes.desktopMainMenu}>
-      <div className={classes.background}>
-        <Grid className={classes.backgroundGrid}>
-          <Cell
-            className={classes.backgroundCell}
-            cols={6}
-            colsL={5}
-          >
-            <div className={classes.backgroundColor} />
-          </Cell>
-        </Grid>
-      </div>
+      <div className={classes.backgroundColor} />
       <BlockContainer
         className={classes.content}
         style={{
@@ -50,11 +48,9 @@ export const DesktopMainMenu: React.FC = () => {
                     const {
                       type,
                       label,
-                      link,
-                      subMenu
                     } = item;
 
-                    const submenuIsActive = subMenu === currentSubMenu;
+                    const submenuIsActive = type === 'subMenu' && item?.subMenu !== undefined && item.subMenu === currentSubMenu;
                     const isHovered = hoveredIndex === index;
 
                     return (
@@ -65,14 +61,11 @@ export const DesktopMainMenu: React.FC = () => {
                         ].filter(Boolean).join(' ')}
                         key={index}
                       >
-                        <div className={classes.itemIndex}>
-                          {`0${index + 1}`}
-                        </div>
                         {type === 'link' && (
                           <h3 className={classes.link}>
                             <Hyperlink
                               className={classes.linkAnchor}
-                              linkFromCMS={link}
+                              linkFromCMS={item.link}
                               onMouseEnter={() => {
                                 setCurrentSubMenu(undefined)
                                 setHoveredIndex(index)
@@ -89,14 +82,22 @@ export const DesktopMainMenu: React.FC = () => {
                           <h3
                             className={classes.link}
                             onMouseEnter={() => {
-                              setCurrentSubMenu(subMenu)
+                              setCurrentSubMenu(item.subMenu)
                               setHoveredIndex(index)
                             }}
                             onMouseLeave={() => {
                               setHoveredIndex(undefined)
                             }}
                           >
-                            {label}
+                            <TextWithInlineIcon
+                              text={label}
+                              icon={(
+                                <Chevron
+                                  rotation={90}
+                                  bold
+                                />
+                              )}
+                            />
                           </h3>
                         )}
                       </div>

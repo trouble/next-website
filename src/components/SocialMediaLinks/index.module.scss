@@ -2,10 +2,12 @@
 
 .socialMediaLinks {
   display: flex;
+}
+
+.useIcons {
   flex-wrap: wrap;
   margin: base(-0.25);
   padding: base(0.25);
-
   & > * {
     margin: base(0.25);
   }
