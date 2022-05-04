@@ -1,5 +1,5 @@
-const permalinks = require('./src/utilities/formatPermalink');
-const { formatPermalink } = permalinks;
+const permalinks = require('./src/utilities/formatSlug');
+const { formatSlug } = permalinks;
 
 module.exports = async () => {
   const internetExplorerRedirect = {
@@ -46,7 +46,7 @@ module.exports = async () => {
   //     }
 
   //     if (type === 'reference' && reference?.value?.status === 'published') {
-  //       destination = formatPermalink(reference)
+  //       destination = formatSlug(reference)
   //     }
 
   //     const redirect = {

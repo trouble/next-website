@@ -1,5 +1,5 @@
 import { LinkFromCMS } from '@root/cms/types';
-import { formatPermalink } from '@root/utilities/formatPermalink';
+import { formatSlug } from '@root/utilities/formatSlug';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { CSSProperties } from 'react';
@@ -9,7 +9,7 @@ import classes from './index.module.scss';
 // this adds consistency and safety to any links rendered through the app, in or outside a traditional button component
 
 export type HyperlinkProps = {
-  href?: string
+  href: string
   className?: string
   linkFromCMS?: LinkFromCMS
   onMouseEnter?: () => void
@@ -38,11 +38,11 @@ export const Hyperlink: React.FC<HyperlinkProps> = (props) => {
     onClick,
     underline,
     underlineOnHover,
-    dimOnHover,
+    dimOnHover = true,
     htmlAttributes,
     display,
     style,
-    newTab: newTabFromProps
+    newTab: newTabFromProps,
   } = props;
 
   let href = hrefFromProps;
@@ -65,10 +65,10 @@ export const Hyperlink: React.FC<HyperlinkProps> = (props) => {
     } = linkFromCMS;
 
     if (type === 'reference' && reference) {
-      href = formatPermalink(reference, currentCategory);
+      href = formatSlug(reference, currentCategory);
     }
 
-    if (type === 'custom') {
+    if (type === 'custom' && url) {
       href = url;
     }
 
@@ -88,7 +88,7 @@ export const Hyperlink: React.FC<HyperlinkProps> = (props) => {
       (underline !== true && underlineOnHover) && classes.underlineOnHover,
       (dimOnHover && href) && classes.dimOnHover, // only do when href is actually set
       display && classes[`display-${display}`],
-      !href || isOnPage && classes.disableCursor
+      (!href || isOnPage) && classes.disableCursor,
     ].filter(Boolean).join(' '),
     onMouseEnter,
     onMouseLeave,
@@ -96,27 +96,25 @@ export const Hyperlink: React.FC<HyperlinkProps> = (props) => {
     style,
     target: openInNewTab ? '_blank' : '',
     rel: openInNewTab ? 'noopener noreferrer' : '',
+  };
+
+  const hrefIsLocal = ['tel:', 'mailto:', '/'].some(prefix => href.startsWith(prefix));
+
+  if (!hrefIsLocal) {
+    try {
+      const url = new URL(href);
+      if (url.origin === process.env.NEXT_PUBLIC_APP_URL) {
+        href = url.href.replace(process.env.NEXT_PUBLIC_APP_URL, '');
+      }
+    } catch (e) {
+      console.error(`Failed to format url: ${href}`, e);
+    }
   }
 
-  if (!href) {
-    return (
-      <span
-        {...sharedProps}
-      >
-        {children}
-      </span>
-    )
-  }
-
-  const sanitizedHref = href; // todo: sanitize the href as necessary (strip top-level domains, etc)
-  let isLocal = true; // todo: check isLocalPath (to conditionally render a link or raw html anchor and open in new tab)
-
-  if (sanitizedHref.startsWith('tel:') || sanitizedHref.startsWith('mailto:')) isLocal = false;
-
-  if (isLocal) {
+  if (href.indexOf('/') === 0) {
     return (
       <Link
-        href={sanitizedHref}
+        href={href}
         prefetch={false}
         scroll={false}
       >
@@ -126,15 +124,15 @@ export const Hyperlink: React.FC<HyperlinkProps> = (props) => {
           {children}
         </a>
       </Link>
-    )
+    );
   }
 
   return (
     <a
-      href={sanitizedHref}
+      href={href}
       {...sharedProps}
     >
       {children}
     </a>
-  )
-}
+  );
+};

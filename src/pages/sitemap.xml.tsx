@@ -1,6 +1,6 @@
 import { GetServerSideProps } from "next";
 import fs from "fs";
-import { formatPermalink } from "@root/utilities/formatPermalink";
+import { formatSlug } from "@root/utilities/formatSlug";
 import { DocFromCMS } from "@root/cms/types";
 // import { Housing, Page, Person, Post } from "";
 const path = require("path");
@@ -35,7 +35,7 @@ const getCollection = async (collectionName: 'pages' | 'posts' | 'housing' | 'pe
         updatedAt
       } = doc;
 
-      const permalink = formatPermalink({
+      const permalink = formatSlug({
         relationTo: collectionName,
         value: doc
       }); // TODO: create a permalink for every category of a post (i.e. /posts/slug, /posts/cat1/slug, posts/cat2/slug, etc)
