@@ -1,5 +1,5 @@
-const permalinks = require('./src/utilities/formatSlug');
-const { formatSlug } = permalinks;
+const slugUtils = require('./src/utilities/formatSlug');
+const { formatSlug } = slugUtils;
 
 module.exports = async () => {
   const internetExplorerRedirect = {

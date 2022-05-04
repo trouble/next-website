@@ -1,7 +1,4 @@
-// must remain a CommonJS module, both React and Node needs it (sitemap and redirects)
-// this means we have to send through the 'currentCategory' which is a url param not accessible within node
-
-module.exports.formatSlug = (reference, currentCategory) => {
+module.exports.formatSlug = (reference) => {
   let slug = '';
 
   const {

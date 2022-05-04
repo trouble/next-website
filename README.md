@@ -88,7 +88,7 @@ Now visit `localhost:3000` in your browser and you should see the "getting start
 You'll want to then configure a few basic things
   - Add your API, CMS, or CDN domains to the [Content Security Policy](./csp.js)
   - Set `NEXT_PUBLIC_OFFLINE_MODE` to `false` in your `.env` if you have a working API
-  - Format your [permalinks / slugs](./src/utilities/formatSlug.js)
+  - Format your page [slugs](./src/utilities/formatSlug.js)
   - Update the [SCSS library](./src/scss/) (breakpoints, colors, fonts, etc)
   - Add your [Logo](./src/components/Logo/index.tsx)
   - Style your [Header](./src/layout/Header/index.tsx) and [Footer](./src/layout/Footer/index.tsx)

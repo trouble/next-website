@@ -38,7 +38,7 @@ export const Hyperlink: React.FC<HyperlinkProps> = (props) => {
     onClick,
     underline,
     underlineOnHover,
-    dimOnHover = true,
+    dimOnHover,
     htmlAttributes,
     display,
     style,
@@ -48,12 +48,7 @@ export const Hyperlink: React.FC<HyperlinkProps> = (props) => {
   let href = hrefFromProps;
   let openInNewTab = newTabFromProps;
 
-  const {
-    asPath,
-    query: {
-      category: currentCategory
-    } = {}
-  } = useRouter();
+  const { asPath } = useRouter();
 
   // links from the cms need to be extracted
   if (linkFromCMS) {
@@ -65,7 +60,7 @@ export const Hyperlink: React.FC<HyperlinkProps> = (props) => {
     } = linkFromCMS;
 
     if (type === 'reference' && reference) {
-      href = formatSlug(reference, currentCategory);
+      href = formatSlug(reference);
     }
 
     if (type === 'custom' && url) {

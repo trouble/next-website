@@ -101,12 +101,6 @@ export const EmbeddedForm: React.FC<EmbeddedFormType & {
         stripeTokenID = token?.id || '';
       }
 
-      const {
-        query: {
-          category: currentCategory
-        } = {}
-      } = router;
-
       try {
         const req = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/form-submissions`, {
           method: 'POST',
@@ -149,7 +143,7 @@ export const EmbeddedForm: React.FC<EmbeddedFormType & {
           if (type === 'custom') redirectUrl = url;
 
           if (type === 'reference' && reference) {
-            redirectUrl = formatSlug(reference, currentCategory);
+            redirectUrl = formatSlug(reference);
           };
 
           if (redirectUrl) router.push(redirectUrl);
