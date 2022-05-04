@@ -2,6 +2,7 @@ import { Breadcrumb } from "payload-plugin-nested-pages/dist/types"
 import { BlocksType } from "@root/blocks"
 import { ButtonAppearances } from "@components/Button"
 import { HeroType } from "@root/heros/types"
+import { Meta } from 'payload-plugin-seo/dist/types';
 
 // docs, taxonomies, links, and media\
 
@@ -29,7 +30,7 @@ export type PageFromCMS = {
   slug: string
   image?: any // TODO type this
   layout: BlocksType
-  meta: any // TODO: type this once the plugin exports it
+  meta: Meta
   excerpt?: string
   parent?: PageFromCMS | string
   breadcrumbs?: Breadcrumb[]
@@ -48,7 +49,7 @@ export type PostFromCMS = {
   slug: string
   image?: any // TODO type this
   layout: BlocksType
-  meta: any // TODO: type this once the plugin exports it
+  meta: Meta
   excerpt?: string
   breadcrumbs?: Breadcrumb[]
   author: PayloadUser

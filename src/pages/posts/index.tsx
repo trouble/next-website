@@ -29,7 +29,7 @@ export const getStaticProps: GetStaticProps = async () => {
   let postsData;
 
   if (offlineMode) {
-    postsData = dummyPostsPage1.docs; // TODO: sort these by updatedAt, but in a performant way
+    postsData = dummyPostsPage1.docs;
   } else {
     const postsReq = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/posts?depth=1&sort=createdAt&limit=10`);
     postsData = await postsReq.json();

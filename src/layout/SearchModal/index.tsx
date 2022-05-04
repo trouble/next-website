@@ -16,10 +16,11 @@ import { CloseIcon } from '@root/icons/CloseIcon';
 import { useGlobals } from '@root/providers/Globals';
 import { formatPermalink } from '@root/utilities/formatPermalink';
 import { CollectionTypes, DocFromCMS } from '@root/cms/types';
+import { Meta } from 'payload-plugin-seo/dist/types';
 // import { Search as SearchType } from 'payload-plugin-search/dist/types';
 
-type SearchType = {  // TODO: use type from plugin when ready
-  meta: any // TODO: type this when plugin is ready
+type SearchType = { // TODO: type this from plugin
+  meta: Meta
   doc: DocFromCMS & {
     relationTo: CollectionTypes
   }

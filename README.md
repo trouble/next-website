@@ -1,13 +1,13 @@
 # NextJS Website Boilerplate
 
-A [NextJS](https://nextjs.org) front-end boilerplate for rapidly developing custom websites that are fast and scalable. Built specifically for a [PayloadCMS](https://payloadcms.com) API, for easily tie into any headless CMS.
+A [NextJS](https://nextjs.org) front-end boilerplate for rapidly developing custom websites that are fast and scalable. Built specifically for a [PayloadCMS](https://payloadcms.com) API, but can easily tie into any headless CMS.
 
 Core features:
   - TypeScript
   - NextJS SSG starter pages and blog, including:
       - Nested pages
       - Static blog pagination
-  - Media component that leverages NextImage optimization
+  - Image optimization
   - Starter SCSS library
   - Comes pre-configured with:
     - Grid system
@@ -39,6 +39,24 @@ Core features:
   - Static XML sitemap
   - Starter content security policy
 
+### Prerequisites
+
+- ### NextJS
+
+  This boilerplate assumes you are familiar with [NextJS](https://nextjs.org), a React server and static site generator. It implements many different NextJS features. For exact specifications, see the [docs](https://nextjs.org/docs/getting-started).
+
+- ### TypeScript
+
+  Everything is written in TypeScript and assumes you have a working knowledge of basic type patterns. For exact specifications, see the [docs](https://typescriptlang.org). This boilerplate has been conveniently typed to allow for easy migration to another API if your app is not using Payload.
+
+- ### Payload CMS
+
+  This boilerplate also assumes you will have a working [PayloadCMS](https://payloadcms.com) API. If your API is still being configured, you can still build your app in [offline mode](#offline-mode). For exact specifications on Payload, see the [docs](https://payloadcms.com/docs/getting-started/what-is-payload). If your not using Payload, you can [migrate to another API](#migrate-to-another-api).
+
+### Faceless UI
+
+  Some components of this boilerplate implement [Faceless UI](https://faceless-ui.com), an unstyled React component library. This includes the grid, modal, sliders, and more. For exact specifications, see the [docs](https://faceless-ui.com/docs/getting-started).
+
 ### Layout building blocks
 
 This boilerplate includes a set of default layout building blocks for building dynamic page content. Included are the most common blocks for most projects, but you will need to add, remove, and modify these as necessary. Each block can have a varying degree of content and treatment and is fully responsive out of the box. Each block also has a corresponding page in the [styleguide](#styleguide) which renders the block in every of its variations — like minimum and maximum content, light and dark background, left and right alignment, etc.
@@ -53,7 +71,7 @@ Very similar to [layout building blocks](#layout-building-blocks) but for buildi
 
 ### Styleguide
 
-A static UI styleguide is also available at `/styleguide`. This includes a page for each layout block. These pages are meant to represent all possible states of each block — like minimum and maximum content, light and dark background, left and right alignment, etc. The pages of the styleguide are not indexed by search engines, and provide a great place to troubleshoot UI even in production environments.
+A static UI styleguide is available at `/styleguide`. This includes a page for each layout block. These pages are meant to represent all possible states of each block — like minimum and maximum content, light and dark background, left and right alignment, etc. The pages of the styleguide are not indexed by search engines, and provide a great place to troubleshoot UI even in production environments.
 
 ### Offline Mode
 
@@ -77,6 +95,16 @@ You'll want to then configure a few basic things
   - Remove, modify, or add [pages](./src/pages/) as necessary
   - Remove, modify, or add [blocks](./src/blocks/) as necessary
   - If you're not supporting nested pages, you can remove all `breadcrumb` setup (see `getStaticPaths` and `getStaticProps` on each page)
+
+### Migrate to another API
+
+If you're not using a [PayloadCMS](https://payloadcms.com) API, you can easily migrate to another API. This boilerplate been written in a way to make it easy to change data sources.
+
+- Update the [API endpoints](./src/cms/api.ts)
+- Migrate the [global types](./src/cms/types.ts)
+- Adapt your data, or migrate your components as necessary
+
+If you're here migrating this boilerplate to a [WordPress](https://wordpress.com) API, please consider contributing a step-by-step guide of your process.
 
 ### Production
 
