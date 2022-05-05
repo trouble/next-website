@@ -3,6 +3,7 @@ import { ArchiveLayout } from '@root/layout/Archive';
 import { dummyPostsPage1 } from '../../../public/dummyData/dummyPosts';
 import { DocFromCMS } from '@root/cms/types';
 import { revalidationRate } from '@root/revalidationRate';
+import { isUsingOfflineData } from '@root/utilities/isUsingOfflineData';
 // import { revalidationRate } from '@root/revalidationRate';
 // import { DocFromCMS } from '@root/types';
 
@@ -24,7 +25,7 @@ export const getStaticProps: GetStaticProps = async () => {
   let props = {};
   let notFound = false;
 
-  const offlineMode = process.env.NEXT_PUBLIC_OFFLINE_MODE;
+  const offlineMode = isUsingOfflineData();
 
   let postsData;
 

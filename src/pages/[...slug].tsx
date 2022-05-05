@@ -15,6 +15,7 @@ import { DocFromCMS } from '@root/cms/types';
 import { useBreadcrumbs } from '@root/providers/Breadcrumbs';
 import { dummyPages } from '../../public/dummyData/dummyPages';
 import { getOfflineDoc } from '../../public/dummyData/offlineAPI';
+import { isUsingOfflineData } from '@root/utilities/isUsingOfflineData';
 
 const Page: React.FC<DocFromCMS & {
   preview?: boolean
@@ -92,7 +93,7 @@ interface IParams extends ParsedUrlQuery {
 export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext,
 ) => {
-  const offlineMode = process.env.NEXT_PUBLIC_OFFLINE_MODE;
+  const offlineMode = isUsingOfflineData();
 
   const {
     preview,
