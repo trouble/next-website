@@ -33,6 +33,10 @@ const HeaderHeightProvider: React.FC<{
   const { y: scrollY } = useScrollInfo();
 
   useEffect(() => {
+    document.documentElement.style.setProperty('--header-height', `${total}px`);
+  }, [total])
+
+  useEffect(() => {
     const allHeights = (headerHeight || 0) + (alertsHeight || 0);
     let newTotal;
 
