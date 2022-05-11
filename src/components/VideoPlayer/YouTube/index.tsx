@@ -1,7 +1,7 @@
 import React, { Fragment, useCallback, useEffect, useRef, useState } from 'react';
 import classes from '../index.module.scss';
-import NextHead from 'next/head';
 import qs from 'qs';
+import Script from 'next/script';
 
 declare global {
   interface Window { // eslint-disable-line no-unused-vars
@@ -95,13 +95,10 @@ export const YouTubePlayer: React.FC<{
   return (
     <Fragment>
       {loadSDK && (
-        <NextHead>
-          <script
-            async
-            type="text/javascript"
-            src="https://www.youtube.com/iframe_api"
-          />
-        </NextHead>
+        <Script
+          async
+          src="https://www.youtube.com/iframe_api"
+        />
       )}
       <iframe
         title="YouTube player"
