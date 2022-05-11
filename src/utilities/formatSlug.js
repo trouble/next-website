@@ -1,8 +1,5 @@
-// must remain a CommonJS module, both React and Node needs it (sitemap and redirects)
-// this means we have to send through the 'currentCategory' which is a url param not accessible within node
-
-module.exports.formatPermalink = (reference, currentCategory) => {
-  let permalink = '';
+module.exports.formatSlug = (reference) => {
+  let slug = '';
 
   const {
     relationTo,
@@ -11,7 +8,7 @@ module.exports.formatPermalink = (reference, currentCategory) => {
 
   if (typeof value === 'object' && value !== null) {
     const {
-      slug,
+      slug: referenceSlug,
       breadcrumbs,
     } = value;
 
@@ -19,16 +16,16 @@ module.exports.formatPermalink = (reference, currentCategory) => {
     if (relationTo === 'pages') {
       if (breadcrumbs) {
         const { url: lastCrumbURL = '' } = breadcrumbs?.[breadcrumbs.length - 1] || {}; // last crumb
-        permalink = lastCrumbURL;
+        slug = lastCrumbURL;
       } else {
-        permalink = slug;
+        slug = referenceSlug;
       }
     }
 
     if (relationTo === 'posts') {
-      permalink = `/posts/${slug}`;
+      slug = `/posts/${referenceSlug}`;
     }
   }
 
-  return permalink;
+  return slug;
 }

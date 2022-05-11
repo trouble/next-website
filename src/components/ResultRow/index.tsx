@@ -5,7 +5,7 @@ import { Media } from '@components/Media';
 import { Fragment } from 'react';
 import cssVariables from '../../cssVariables';
 import { formatDateTime } from '@root/utilities/formatDateTime';
-import { formatPermalink } from '@root/utilities/formatPermalink';
+import { formatSlug } from '@root/utilities/formatSlug';
 import { useRouter } from 'next/router';
 import { CollectionTypes, DocFromCMS, PayloadPostCategories, PostFromCMS } from '@root/cms/types';
 import PlaceholderImage from '../../../public/placeholder.jpg';
@@ -62,7 +62,7 @@ export const ResultRow: React.FC<{
     value: doc,
   };
 
-  let href = formatPermalink(
+  let href = formatSlug(
     newDoc,
     currentCategory,
   );

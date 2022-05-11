@@ -12,6 +12,7 @@ import { PageRange } from '@components/PageRange';
 import { ArchiveControls } from './ArchiveControls';
 import { CollectionTypes, DocFromCMS, PostFromCMS } from '@root/cms/types';
 import { dummyPosts } from '../../../public/dummyData/dummyPosts';
+import { isUsingOfflineData } from '@root/utilities/isUsingOfflineData';
 
 const perPage = 10;
 const minLoadingTime = 1000; // require at least 1 second to load to give time for the scroll to finish
@@ -42,7 +43,7 @@ export type Props = {
   showCategories?: boolean
 }
 
-const offlineMode = process.env.NEXT_PUBLIC_OFFLINE_MODE;
+const offlineMode = isUsingOfflineData();
 
 export const CollectionArchive: React.FC<Props> = (props) => {
   const {

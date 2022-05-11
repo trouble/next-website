@@ -12,6 +12,7 @@ import { useRouter } from 'next/router';
 import { PayloadPostCategory, PayloadResponse, PostFromCMS } from '@root/cms/types';
 import { revalidationRate } from '@root/revalidationRate';
 import { getOfflineDoc, getOfflinePrevNext } from '../../../public/dummyData/offlineAPI';
+import { isUsingOfflineData } from '@root/utilities/isUsingOfflineData';
 
 const Post: React.FC<PostFromCMS & {
   prev?: PostFromCMS | null
@@ -88,7 +89,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext
 ) => {
-  const offlineMode = process.env.NEXT_PUBLIC_OFFLINE_MODE;
+  const offlineMode = isUsingOfflineData();
 
   let doc = {};
   let subsite = null;

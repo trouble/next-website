@@ -9,7 +9,7 @@ import { fields } from './fields';
 import Submit from '@root/forms/Submit';
 import { Data } from '@root/forms/types';
 import { useRouter } from 'next/router';
-import { formatPermalink } from '@root/utilities/formatPermalink';
+import { formatSlug } from '@root/utilities/formatSlug';
 import { BlockID } from '@components/BlockID';
 import { Form as FormType } from 'payload-plugin-form-builder/dist/types';
 import {
@@ -101,12 +101,6 @@ export const EmbeddedForm: React.FC<EmbeddedFormType & {
         stripeTokenID = token?.id || '';
       }
 
-      const {
-        query: {
-          category: currentCategory
-        } = {}
-      } = router;
-
       try {
         const req = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/form-submissions`, {
           method: 'POST',
@@ -149,7 +143,7 @@ export const EmbeddedForm: React.FC<EmbeddedFormType & {
           if (type === 'custom') redirectUrl = url;
 
           if (type === 'reference' && reference) {
-            redirectUrl = formatPermalink(reference, currentCategory);
+            redirectUrl = formatSlug(reference);
           };
 
           if (redirectUrl) router.push(redirectUrl);

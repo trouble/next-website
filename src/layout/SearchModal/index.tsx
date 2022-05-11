@@ -14,7 +14,7 @@ import { PageRange } from '@components/PageRange';
 import { useRouter } from 'next/router';
 import { CloseIcon } from '@root/icons/CloseIcon';
 import { useGlobals } from '@root/providers/Globals';
-import { formatPermalink } from '@root/utilities/formatPermalink';
+import { formatSlug } from '@root/utilities/formatSlug';
 import { CollectionTypes, DocFromCMS } from '@root/cms/types';
 import { Meta } from 'payload-plugin-seo/dist/types';
 // import { Search as SearchType } from 'payload-plugin-search/dist/types';
@@ -169,7 +169,7 @@ export const SearchModal: React.FC<Props> = ({ popularSearchTerms }) => {
 
   const { totalHeaderHeight } = useHeaderHeight();
 
-  const contactHref = formatPermalink({
+  const contactHref = formatSlug({
     relationTo: 'pages',
     value: contactPage
   })
