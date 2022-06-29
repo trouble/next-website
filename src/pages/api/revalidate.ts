@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 
 const revalidate = async (req: NextApiRequest, res: NextApiResponse) => {
   // Check for secret to confirm this is a valid request
-  if (req.query.secret !== process.env.NEXT_SECRET_REVALIDATION_KEY) {
+  if (req.query.secret !== process.env.NEXT_PRIVATE_REVALIDATION_KEY) {
     return res.status(401).json({ message: 'Invalid token' });
   }
 
