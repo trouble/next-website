@@ -93,33 +93,35 @@ export const Hyperlink: React.FC<HyperlinkProps> = (props) => {
     rel: openInNewTab ? 'noopener noreferrer' : '',
   };
 
-  const hrefIsLocal = ['tel:', 'mailto:', '/'].some(prefix => href.startsWith(prefix));
+  if (href) {
+    const hrefIsLocal = ['tel:', 'mailto:', '/'].some(prefix => href.startsWith(prefix));
 
-  if (!hrefIsLocal) {
-    try {
-      const url = new URL(href);
-      if (url.origin === process.env.NEXT_PUBLIC_APP_URL) {
-        href = url.href.replace(process.env.NEXT_PUBLIC_APP_URL, '');
+    if (!hrefIsLocal) {
+      try {
+        const url = new URL(href);
+        if (url.origin === process.env.NEXT_PUBLIC_APP_URL) {
+          href = url.href.replace(process.env.NEXT_PUBLIC_APP_URL, '');
+        }
+      } catch (e) {
+        console.error(`Failed to format url: ${href}`, e);
       }
-    } catch (e) {
-      console.error(`Failed to format url: ${href}`, e);
     }
-  }
 
-  if (href.indexOf('/') === 0) {
-    return (
-      <Link
-        href={href}
-        prefetch={false}
-        scroll={false}
-      >
-        <a
-          {...sharedProps}
+    if (href.indexOf('/') === 0) {
+      return (
+        <Link
+          href={href}
+          prefetch={false}
+          scroll={false}
         >
-          {children}
-        </a>
-      </Link>
-    );
+          <a
+            {...sharedProps}
+          >
+            {children}
+          </a>
+        </Link>
+      );
+    }
   }
 
   return (
