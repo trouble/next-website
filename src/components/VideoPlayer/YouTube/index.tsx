@@ -1,7 +1,7 @@
 import React, { Fragment, useCallback, useEffect, useRef, useState } from 'react';
 import classes from '../index.module.scss';
 import qs from 'qs';
-import Script from 'next/script';
+import { useYoutubeApi } from '@root/providers/YoutubeApiProvider';
 
 declare global {
   interface Window { // eslint-disable-line no-unused-vars
@@ -18,6 +18,7 @@ export const YouTubePlayer: React.FC<{
   className?: string
   autoplay?: boolean
   showControls?: boolean
+  setIsVideoLoaded: (isLoaded: boolean) => void // eslint-disable-line no-unused-vars
 }> = (props) => {
   const {
     videoID,
@@ -25,13 +26,14 @@ export const YouTubePlayer: React.FC<{
     setPlay,
     onPlay,
     autoplay,
-    showControls = true
+    showControls = true,
+    setIsVideoLoaded,
   } = props;
+
+  const { iframeApiReady } = useYoutubeApi();
 
   const iframeRef = useRef(null);
   const [player, setPlayer] = useState<any>(null);
-  const [loadSDK, setLoadSDK] = useState(false);
-  const [callbackReady, setCallbackReady] = useState(false);
   const [playerReady, setPlayerReady] = useState(false);
 
   const onReady = useCallback(() => {
@@ -48,32 +50,31 @@ export const YouTubePlayer: React.FC<{
               onPlay();
             }
           },
-          onReady: () => setPlayerReady(true)
+          onReady: () => {
+            setPlayerReady(true)
+            setIsVideoLoaded(true);
+          }
         },
       });
       setPlayer(newPlayer);
     }
   }, [
     onPlay,
-    videoID
+    videoID,
+    setIsVideoLoaded,
   ])
-
-  useEffect(() => {
-    window.onYouTubeIframeAPIReady = onReady;
-    setCallbackReady(true);
-  }, [onReady])
-
-  useEffect(() => {
-    if (callbackReady && !window.YT) {
-      setLoadSDK(true)
-    }
-  }, [callbackReady])
 
   const playVideo = useCallback(() => {
     if (player && player?.playVideo) {
       player.playVideo();
     }
   }, [player])
+
+  useEffect(() => {
+    if (iframeApiReady) {
+      onReady();
+    }
+  }, [iframeApiReady, onReady]);
 
   useEffect(() => {
     if (player && playerReady) {
@@ -94,12 +95,6 @@ export const YouTubePlayer: React.FC<{
 
   return (
     <Fragment>
-      {loadSDK && (
-        <Script
-          async
-          src="https://www.youtube.com/iframe_api"
-        />
-      )}
       <iframe
         title="YouTube player"
         ref={iframeRef}

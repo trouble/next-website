@@ -5,6 +5,7 @@ import { Media } from '@components/Media';
 import { VimeoPlayer } from './Vimeo';
 import { YouTubePlayer } from './YouTube';
 import { PayloadMediaType } from '@root/cms/types';
+import { LoadingCircle } from '@components/LoadingCircle';
 
 // const youtubeID = 'OEFAgWQ_Gvg';
 const vimeoID = '367107968';
@@ -43,6 +44,7 @@ export const VideoPlayer: React.FC<{
 
   const [play, setPlay] = useState<() => void>();
   const [playCount, dispatchPlayCount] = useReducer(playCountReducer, 0);
+  const [isVideoLoaded, setIsVideoLoaded] = useState<Boolean>(false);
 
   const onPlay = useCallback(() => {
     dispatchPlayCount('tick');
@@ -68,6 +70,7 @@ export const VideoPlayer: React.FC<{
           setPlay={setPlay}
           autoplay={autoplay}
           showControls={showControls}
+          setIsVideoLoaded={setIsVideoLoaded}
         />
       )}
       {platform === 'vimeo' && (
@@ -89,7 +92,10 @@ export const VideoPlayer: React.FC<{
       >
         {poster && (
           <Media
-            className={classes.poster}
+            className={[
+              classes.poster,
+              !isVideoLoaded && classes.isLoading
+            ].filter(Boolean).join(' ')}
             imgClassName={classes.posterImg}
             cmsImageSize="hero"
             layout="fill"
@@ -97,10 +103,16 @@ export const VideoPlayer: React.FC<{
           />
         )}
         <div className={classes.playButton}>
-          <Play
-            color="white"
-            size="huge"
-          />
+          {isVideoLoaded ?
+            <Play
+              color="white"
+              size="huge"
+            />
+            :
+            <LoadingCircle
+              showLoader
+            />
+          }
         </div>
       </button>
     </div>
