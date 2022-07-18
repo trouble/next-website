@@ -92,7 +92,10 @@ export const VideoPlayer: React.FC<{
       >
         {poster && (
           <Media
-            className={classes.poster}
+            className={[
+              classes.poster,
+              !isVideoLoaded && classes.isLoading
+            ].filter(Boolean).join(' ')}
             imgClassName={classes.posterImg}
             cmsImageSize="hero"
             layout="fill"
